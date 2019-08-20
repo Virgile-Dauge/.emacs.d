@@ -4,6 +4,13 @@
 
 ;;; Code:
 
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (add-to-list 'load-path (concat user-emacs-directory "elisp"))
 
 (require 'base)
@@ -14,16 +21,4 @@
 (require 'my-packages)
 
 (require 'lang-python)
-
 (require 'lang-c)
-
-(with-eval-after-load 'org
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '(
-     (python . t)
-     (C . t)
-     (dot . t)
-   ))
-    (setq org-confirm-babel-evaluate nil)
-)

@@ -12,4 +12,15 @@
 (setq load-path (cons (expand-file-name "/dir/with/cmake-mode") load-path))
 (require 'cmake-mode)
 
+(with-eval-after-load 'org
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '(
+     (python . t)
+     (C . t)
+     (dot . t)
+   ))
+    (setq org-confirm-babel-evaluate nil)
+)
+
 (provide 'my-packages)
