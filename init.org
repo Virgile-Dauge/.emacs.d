@@ -9,10 +9,14 @@ Initialisation des dépots d'archives et installation de use-package.
 
 (when (not package-archive-contents)
   (package-refresh-contents))
-
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
+(setq use-package-verbose t)
+(setq use-package-always-ensure t)
 (require 'use-package)
+(use-package auto-compile
+  :config (auto-compile-on-load-mode))
+(setq load-prefer-newer t)
 #+end_src
 Gestion des backups :
 #+begin_src emacs-lisp :tangle yes
@@ -113,7 +117,7 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
    #+begin_src emacs-lisp :tangle yes
      (use-package company-quickhelp
        :config
-       (company-quickhelp-mode 1)
+       (company-quickhelp-mode 1))
    #+end_src
 **** Backends company
     Liste des backends :
