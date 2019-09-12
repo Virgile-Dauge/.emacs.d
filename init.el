@@ -5,10 +5,14 @@
 
 (when (not package-archive-contents)
   (package-refresh-contents))
-
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
+(setq use-package-verbose t)
+(setq use-package-always-ensure t)
 (require 'use-package)
+(use-package auto-compile
+  :config (auto-compile-on-load-mode))
+(setq load-prefer-newer t)
 
 (setq backup-directory-alist '(("." . "~/.emacs.d/backup"))
     backup-by-copying t    ; Don't delink hardlinks
@@ -69,7 +73,7 @@
 
 (use-package company-quickhelp
   :config
-  (company-quickhelp-mode 1)
+  (company-quickhelp-mode 1))
 
 ;; global activation of the unicode symbol completion
 (add-to-list 'company-backends 'company-math-symbols-unicode)
@@ -154,3 +158,17 @@
   ("C-x <down>" . windmove-down)
   ("C-x <left>" . windmove-left)
   ("C-x <right>" . windmove-right))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (hlinum smex counsel-projectile counsel dashboard writegood-mode org-bullets yasnippet-snippets yasnippet company-quickhelp use-package doom-themes doom-modeline company auto-compile))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
