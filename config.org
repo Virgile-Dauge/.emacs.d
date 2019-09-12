@@ -157,7 +157,7 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 *** Org main
     J'ai trouvé un site avec une config sympa :
     https://jamiecollinson.com/blog/my-emacs-config/#org
-#+begin_src emacs-lisp :tangle elisp/packages.el
+#+begin_src emacs-lisp :tangle yes
 (use-package org
   :config
   (setq org-directory "~/org-files"
@@ -167,7 +167,7 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
   ("C-c a" . org-agenda))
 #+end_src
 *** Apparence
-#+begin_src emacs-lisp :tangle elisp/packages.el
+#+begin_src emacs-lisp :tangle yes
 (use-package org-bullets
     :ensure t
     :config
@@ -175,7 +175,7 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
     (add-hook 'org-mode-hook 'org-bullets-mode))
 #+end_src
 *** Ecriture
-#+begin_src emacs-lisp :tangle elisp/packages.el
+#+begin_src emacs-lisp :tangle yes
 (use-package writegood-mode
     :ensure t
     :bind ("C-c g" . writegood-mode)
