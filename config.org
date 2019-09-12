@@ -1,0 +1,184 @@
+#+TITLE: Ma configuration Emacs
+#+PROPERTY: tangle "~/.emacs.d/init.el"
+* init.el
+#+begin_src emacs-lisp :tangle yes
+  (package-initialize)
+
+  (add-to-list 'load-path (concat user-emacs-directory "elisp"))
+
+  ;; (require 'base)
+  ;; (require 'theme)
+  ;; (require 'packages)
+#+end_src
+* Base
+Initialisation des dépots d'archives et installation de use-package.
+#+begin_src emacs-lisp :tangle yes
+(add-to-list 'package-archives
+	     '("melpa" . "https://melpa.org/packages/")
+             '("elpy" . "http://jorgenschaefer.github.io/packages/"))
+
+(when (not package-archive-contents)
+  (package-refresh-contents))
+
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
+(require 'use-package)
+#+end_src
+Gestion des backups :
+#+begin_src emacs-lisp :tangle yes
+(setq backup-directory-alist '(("." . "~/.emacs.d/backup"))
+    backup-by-copying t    ; Don't delink hardlinks
+    version-control t      ; Use version numbers on backups
+    delete-old-versions t  ; Automatically delete excess backups
+    kept-new-versions 20   ; how many of the newest versions to keep
+    kept-old-versions 5    ; and how many of the old
+    )
+#+end_src
+Tout passer en utf-8
+#+begin_src emacs-lisp :tangle yes
+;; Core settings
+;; UTF-8 please
+(set-charset-priority 'unicode)
+(setq locale-coding-system   'utf-8)   ; pretty
+(set-terminal-coding-system  'utf-8)   ; pretty
+(set-keyboard-coding-system  'utf-8)   ; pretty
+(set-selection-coding-system 'utf-8)   ; please
+(prefer-coding-system        'utf-8)   ; with sugar on top
+(setq default-process-coding-system '(utf-8-unix . utf-8-unix))
+#+end_src
+Enlever les barres de menu et d'outils, c'est un minimum :
+#+begin_src emacs-lisp :tangle yes
+;; Disable toolbar & menubar
+(menu-bar-mode -1)
+(when (fboundp 'tool-bar-mode)
+  (tool-bar-mode -1))
+(when (  fboundp 'scroll-bar-mode)
+  (scroll-bar-mode -1))
+#+end_src
+
+Montrer les paires de parenthèses :
+https://www.emacswiki.org/emacs/ShowParenMode
+#+begin_src emacs-lisp :tangle yes
+(setq show-paren-delay 0)
+(show-paren-mode 1)
+#+end_src
+
+Désactiver le curseur dans les fenetres non-actives:
+#+begin_src emacs-lisp :tangle yes
+(setq-default cursor-in-non-selected-windows 'hollow)
+#+end_src
+Suppression des espaces en fin de fichier avant de sauvegarder :
+#+begin_src emacs-lisp :tangle yes
+;; Delete trailing whitespace before save
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+#+end_src
+
+Fournir le module 'base'
+#+begin_src emacs-lisp :tangle yes
+(provide 'base)
+#+end_src
+
+* Theme
+Le site https://peach-melpa.org/ propose une galerie des themes Emacs disponibles sur MELPA.
+** Actuel
+J'ai trouvé le thème doom-one vraiment sympa.
+#+begin_src emacs-lisp :tangle yes
+  (use-package doom-modeline
+    :ensure t
+    :hook (after-init . doom-modeline-mode))
+
+  (use-package doom-themes
+    :defer t
+    :init
+    (load-theme 'doom-one t))
+
+  (provide 'theme)
+#+end_src
+
+** A tester :
+*** Mood-one
+Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo est
+    peut-être moins active. https://gitlab.com/jessieh/mood-one-theme
+*** Night owl
+    https://github.com/aaronjensen/night-owl-emacs
+*** SubAtomic
+    https://peach-melpa.org/themes/subatomic-theme/variants/subatomic?lang=rb
+* Packages
+** Completion
+*** Text
+**** Company https://company-mode.github.io/
+   #+begin_src emacs-lisp :tangle yes
+     (use-package company
+       :init
+       ;; No delay in showing suggestions.
+       (setq company-idle-delay 0)
+       ;; Show suggestions after entering one character.
+       (setq company-minimum-prefix-length 1)
+       (setq company-selection-wrap-around t)
+       ;; Use tab key to cycle through suggestions.
+       ;; ('tng' means 'tab and go')
+       (company-tng-configure-default)
+       :config
+       (add-hook 'after-init-hook 'global-company-mode))
+   #+end_src
+   ajout d'une pop-up avec Company quickhelp
+   https://github.com/expez/company-quickhelp
+   #+begin_src emacs-lisp :tangle yes
+     (use-package company-quickhelp
+       :config
+       (company-quickhelp-mode 1)
+   #+end_src
+**** Backends company
+    Liste des backends :
+    https://github.com/company-mode/company-mode/wiki/Third-Party-Packages
+    backends selectionées :
+    - Pour les symboles de Maths : https://github.com/vspinu/company-math
+      #+begin_src emacs-lisp :tangle yes
+      ;; global activation of the unicode symbol completion
+      (add-to-list 'company-backends 'company-math-symbols-unicode)
+      #+end_src
+      If you are using AUCTeX you might need to use TeX-mode-hook instead:
+      (add-hook 'TeX-mode-hook 'my-latex-mode-setup)
+    - Latex : https://github.com/alexeyr/company-auctex/
+*** Snipets
+**** Yasnippet
+     yasnippet permet d'ajouter des blocs de codes prédéfinis.
+     #+begin_src emacs-lisp :tangle yes
+       (use-package yasnippet
+	 :config
+	 (yas-global-mode 1))
+     #+end_src
+#+begin_src emacs-lisp :tangle yes
+  (provide 'packages)
+  ;;packages ends here
+#+end_src
+** Org
+   https://orgmode.org/worg/org-tutorials/org4beginners.html
+*** Org main
+    J'ai trouvé un site avec une config sympa :
+    https://jamiecollinson.com/blog/my-emacs-config/#org
+#+begin_src emacs-lisp :tangle elisp/packages.el
+(use-package org
+  :config
+  (setq org-directory "~/org-files"
+        org-default-notes-file (concat org-directory "/todo.org"))
+  :bind
+  ("C-c l" . org-store-link)
+  ("C-c a" . org-agenda))
+#+end_src
+*** Apparence
+#+begin_src emacs-lisp :tangle elisp/packages.el
+(use-package org-bullets
+    :ensure t
+    :config
+    (setq org-bullets-bullet-list '("∙"))
+    (add-hook 'org-mode-hook 'org-bullets-mode))
+#+end_src
+*** Ecriture
+#+begin_src emacs-lisp :tangle elisp/packages.el
+(use-package writegood-mode
+    :ensure t
+    :bind ("C-c g" . writegood-mode)
+    :config
+    (add-to-list 'writegood-weasel-words "actionable"))
+#+end_src
