@@ -1,4 +1,12 @@
 #+TITLE: Ma configuration Emacs
+#+begin_src emacs-lisp :tangle yes
+ (defun find-config ()
+    "Edit init.org"
+    (interactive)
+    (find-file "~/.emacs.d/init.org"))
+
+  (global-set-key (kbd "C-c I") 'find-config)
+#+end_src
 * Base
 Initialisation des dépots d'archives et installation de use-package.
 #+begin_src emacs-lisp :tangle yes
@@ -28,6 +36,10 @@ Gestion des backups :
     kept-old-versions 5    ; and how many of the old
     )
 #+end_src
+Désactiver le startup screen :
+#+begin_src emacs-lisp :tangle yes
+(setq inhibit-startup-screen t)
+#+end_src
 Tout passer en utf-8
 #+begin_src emacs-lisp :tangle yes
 ;; Core settings
@@ -50,8 +62,7 @@ Enlever les barres de menu et d'outils, c'est un minimum :
   (scroll-bar-mode -1))
 #+end_src
 
-Montrer les paires de parenthèses :
-https://www.emacswiki.org/emacs/ShowParenMode
+Montrer les paires de parenthèses : https://www.emacswiki.org/emacs/ShowParenMode
 #+begin_src emacs-lisp :tangle yes
 (setq show-paren-delay 0)
 (show-paren-mode 1)
@@ -82,18 +93,52 @@ J'ai trouvé le thème doom-one vraiment sympa.
     :defer t
     :init
     (load-theme 'doom-one t))
-
-  (provide 'theme)
 #+end_src
 
 ** A tester :
 *** Mood-one
+
 Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo est
     peut-être moins active. https://gitlab.com/jessieh/mood-one-theme
 *** Night owl
     https://github.com/aaronjensen/night-owl-emacs
 *** SubAtomic
     https://peach-melpa.org/themes/subatomic-theme/variants/subatomic?lang=rb
+** Compléments
+#+begin_src emacs-lisp :tangle yes
+(use-package all-the-icons)
+#+end_src
+** Fonts
+#+begin_src emacs-lisp :tangle yes
+;;(set-frame-font "Operator Mono 12" nil t)
+(set-fontset-font t 'unicode "STIXGeneral" nil 'prepend)
+#+end_src
+** pretty symbols
+#+begin_src emacs-lisp :tangle yes
+  (setq prettify-symbols-unprettify-at-point 'right-edge)
+  (global-prettify-symbols-mode 0)
+
+  (add-hook
+   'python-mode-hook
+   (lambda ()
+     (mapc (lambda (pair) (push pair prettify-symbols-alist))
+           '(("def" . "𝒇")
+             ("class" . "𝑪")
+             ("and" . "∧")
+             ("or" . "∨")
+             ("not" . "￢")
+             ("in" . "∈")
+             ("not in" . "∉")
+             ("return" . "⟼")
+             ("yield" . "⟻")
+             ("for" . "∀")
+             ("!=" . "≠")
+             ("==" . "＝")
+             (">=" . "≥")
+             ("<=" . "≤")
+             ("[]" . "⃞")
+             ("=" . "≝")))))
+#+end_src
 * Packages
 ** Completion
 *** Text
@@ -173,8 +218,37 @@ adding a collection of snippets
     :config
     (add-to-list 'writegood-weasel-words "actionable"))
 #+end_src
+*** Export
+Liste des exporteurs : https://orgmode.org/worg/exporters/index.html
+**** Pandoc, multi format
+     https://github.com/kawabata/ox-pandoc
+     We need to install last version of pandoc from https://github.com/jgm/pandoc/releases/
+#+begin_src emacs-lisp :tangle yes
+(use-package ox-pandoc)
+#+end_src
+**** Blog
+     https://melpa.org/#/ox-hugo
+**** Export HTML
+
+https://github.com/fniessen/org-html-themes
+
+
+#+begin_src emacs-lisp :tangle yes
+(use-package ox-twbs
+    :ensure t)
+#+end_src
+**** Slides
+     IOslide, joli et minimaliste
+     https://github.com/coldnew/org-ioslide
+     #+begin_src emacs-lisp :tangle yes
+     (use-package ox-ioslide)
+     #+end_src
+     html5slide, pas de maj depuis 6ans, on oublie :
+     https://github.com/coldnew/org-html5slide
 ** Dashboard
+install page-break-lines as it is required for dashboard.
 #+BEGIN_SRC emacs-lisp :tangle yes
+(use-package page-break-lines)
 (use-package dashboard
   :ensure t
   :config
@@ -206,6 +280,8 @@ adding a collection of snippets
   (define-key read-expression-map (kbd "C-r") 'counsel-expression-history))
 
 (use-package smex)
+
+(use-package all-the-icons-ivy)
 
 #+END_SRC
 ** Line number
@@ -239,4 +315,50 @@ adding a collection of snippets
   ("C-x <down>" . windmove-down)
   ("C-x <left>" . windmove-left)
   ("C-x <right>" . windmove-right))
+#+end_src
+** Next key
+#+begin_src emacs-lisp :tangle ye
+  (use-package which-key
+    :ensure t
+    :diminish which-key-mode
+    :config
+    (add-hook 'after-init-hook 'which-key-mode))
+#+end_src
+** Easier selection
+#+begin_src emacs-lisp :tangle yes
+  (use-package expand-region
+    :ensure t
+    :bind ("C-=" . er/expand-region))
+#+end_src
+** Parenthèses et autres
+   Automatisation autour des parenthèses
+   https://github.com/Fuco1/smartparens
+#+begin_src emacs-lisp :tangle yes
+  (use-package smartparens
+    :ensure t
+    :diminish smartparens-mode
+    :config
+    (add-hook 'prog-mode-hook 'smartparens-mode))
+#+end_src
+Highlight parents
+#+begin_src emacs-lisp :tangle yes
+(use-package rainbow-delimiters
+    :ensure t
+    :config
+    (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+#+end_src
+expend parents redondant avec smartparens ?
+#+begin_src emacs-lisp :tangle no
+(add-hook 'prog-mode-hook 'electric-pair-mode)
+#+end_src
+** Indentation
+#+begin_src emacs-lisp :tangle yes
+  (use-package aggressive-indent
+      :ensure t)
+#+end_src
+** Git
+#+begin_src emacs-lisp :tangle yes
+  (use-package magit
+    :ensure t
+    :bind ("C-x g" . magit-status))
 #+end_src

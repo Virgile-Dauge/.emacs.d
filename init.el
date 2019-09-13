@@ -1,3 +1,10 @@
+(defun find-config ()
+   "Edit init.org"
+   (interactive)
+   (find-file "~/.emacs.d/init.org"))
+
+ (global-set-key (kbd "C-c I") 'find-config)
+
 (package-initialize)
 (add-to-list 'package-archives
 	     '("melpa" . "https://melpa.org/packages/")
@@ -21,6 +28,8 @@
     kept-new-versions 20   ; how many of the newest versions to keep
     kept-old-versions 5    ; and how many of the old
     )
+
+(setq inhibit-startup-screen t)
 
 ;; Core settings
 ;; UTF-8 please
@@ -56,7 +65,34 @@
   :init
   (load-theme 'doom-one t))
 
-(provide 'theme)
+(use-package all-the-icons)
+
+;;(set-frame-font "Operator Mono 12" nil t)
+(set-fontset-font t 'unicode "STIXGeneral" nil 'prepend)
+
+(setq prettify-symbols-unprettify-at-point 'right-edge)
+(global-prettify-symbols-mode 0)
+
+(add-hook
+ 'python-mode-hook
+ (lambda ()
+   (mapc (lambda (pair) (push pair prettify-symbols-alist))
+         '(("def" . "𝒇")
+           ("class" . "𝑪")
+           ("and" . "∧")
+           ("or" . "∨")
+           ("not" . "￢")
+           ("in" . "∈")
+           ("not in" . "∉")
+           ("return" . "⟼")
+           ("yield" . "⟻")
+           ("for" . "∀")
+           ("!=" . "≠")
+           ("==" . "＝")
+           (">=" . "≥")
+           ("<=" . "≤")
+           ("[]" . "⃞")
+           ("=" . "≝")))))
 
 (use-package company
   :init
@@ -104,6 +140,14 @@
     :config
     (add-to-list 'writegood-weasel-words "actionable"))
 
+(use-package ox-pandoc)
+
+(use-package ox-twbs
+    :ensure t)
+
+(use-package ox-ioslide)
+
+(use-package page-break-lines)
 (use-package dashboard
   :ensure t
   :config
@@ -134,6 +178,8 @@
 
 (use-package smex)
 
+(use-package all-the-icons-ivy)
+
 (use-package hlinum
   :config
   (hlinum-activate))
@@ -158,6 +204,28 @@
   ("C-x <down>" . windmove-down)
   ("C-x <left>" . windmove-left)
   ("C-x <right>" . windmove-right))
+
+(use-package expand-region
+  :ensure t
+  :bind ("C-=" . er/expand-region))
+
+(use-package smartparens
+  :ensure t
+  :diminish smartparens-mode
+  :config
+  (add-hook 'prog-mode-hook 'smartparens-mode))
+
+(use-package rainbow-delimiters
+    :ensure t
+    :config
+    (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+
+(use-package aggressive-indent
+    :ensure t)
+
+(use-package magit
+  :ensure t
+  :bind ("C-x g" . magit-status))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -165,7 +233,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (hlinum smex counsel-projectile counsel dashboard writegood-mode org-bullets yasnippet-snippets yasnippet company-quickhelp use-package doom-themes doom-modeline company auto-compile))))
+    (magit yasnippet-snippets writegood-mode use-package smex smartparens rainbow-delimiters ox-twbs ox-pandoc ox-ioslide org-bullets hlinum expand-region doom-themes doom-modeline dashboard counsel-projectile company-quickhelp auto-compile all-the-icons-ivy aggressive-indent))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
