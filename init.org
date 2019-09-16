@@ -1,4 +1,5 @@
 #+TITLE: Ma configuration Emacs
+* Config ShortCut
 #+begin_src emacs-lisp :tangle yes
  (defun find-config ()
     "Edit init.org"
@@ -361,4 +362,43 @@ expend parents redondant avec smartparens ?
   (use-package magit
     :ensure t
     :bind ("C-x g" . magit-status))
+#+end_src
+** Syntaxe
+J'utilise flycheck pour vérifier la syntaxe à la volée
+#+begin_src emacs-lisp :tangle yes
+(use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode))
+#+end_src
+** C/C++
+   Le built in est bon, mais j'aimerai tester Irony
+   https://github.com/Sarcasm/irony-mode
+   #+begin_src emacs-lisp :tangle yes
+     (use-package irony
+	 :ensure t
+	 :hook
+	 (c-mode . irony-mode)
+	 (c++-mode . irony-mode)
+	 (irony-mode . irony-cdb-autosetup-compile-options))
+   #+end_src
+Irony-Server prerequisites
+irony-server provides the libclang interface to irony-mode. It uses a
+simple protocol based on S-expression. This server, written in C++ and
+requires the following packages to be installed on your system:
+
+-CMake >= 2.8.3
+-libclang
+
+ajout du support de company
+#+begin_src emacs-lisp :tangle yes
+  (use-package company-irony
+    :ensure t
+    :config
+    (add-to-list 'company-backends 'company-irony))
+#+end_src
+ Ajout du support de flycheck
+#+begin_src emacs-lisp :tangle yes
+(use-package flycheck-irony
+    :ensure t
+    :hook (flycheck-mode . flycheck-irony-setup))
 #+end_src

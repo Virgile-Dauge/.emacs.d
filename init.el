@@ -226,17 +226,23 @@
 (use-package magit
   :ensure t
   :bind ("C-x g" . magit-status))
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (magit yasnippet-snippets writegood-mode use-package smex smartparens rainbow-delimiters ox-twbs ox-pandoc ox-ioslide org-bullets hlinum expand-region doom-themes doom-modeline dashboard counsel-projectile company-quickhelp auto-compile all-the-icons-ivy aggressive-indent))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+
+(use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode))
+
+(use-package irony
+    :ensure t
+    :hook
+    (c-mode . irony-mode)
+    (c++-mode . irony-mode)
+    (irony-mode . irony-cdb-autosetup-compile-options))
+
+(use-package company-irony
+  :ensure t
+  :config
+  (add-to-list 'company-backends 'company-irony))
+
+(use-package flycheck-irony
+    :ensure t
+    :hook (flycheck-mode . flycheck-irony-setup))
