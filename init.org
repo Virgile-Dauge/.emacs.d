@@ -1,4 +1,5 @@
 #+TITLE: Ma configuration Emacs
+#+HTML_HEAD_EXTRA: <style>pre { background-color: #282c34 ; color: #bbc2cf }</style>
 * Config ShortCut
 #+begin_src emacs-lisp :tangle yes
  (defun find-config ()
@@ -79,21 +80,24 @@ Suppression des espaces en fin de fichier avant de sauvegarder :
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 #+end_src
 
-** Infos
-
 * Theme
 Le site https://peach-melpa.org/ propose une galerie des themes Emacs disponibles sur MELPA.
 ** Actuel
 J'ai trouvé le thème doom-one vraiment sympa.
 #+begin_src emacs-lisp :tangle yes
-  (use-package doom-modeline
-    :ensure t
-    :hook (after-init . doom-modeline-mode))
+    (use-package doom-modeline
+      :ensure t
+      :hook (after-init . doom-modeline-mode))
 
-  (use-package doom-themes
-    :defer t
-    :init
-    (load-theme 'doom-one t))
+    (use-package doom-themes
+      :defer t
+      :init
+      (load-theme 'doom-one t)
+      ;; Enable flashing mode-line on errors
+      (doom-themes-visual-bell-config)
+      ;; Enable custom neotree theme (all-the-icons must be installed!)
+      (doom-themes-neotree-config)
+      (doom-themes-org-config))
 #+end_src
 
 ** A tester :
@@ -117,8 +121,30 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 ** pretty symbols
 #+begin_src emacs-lisp :tangle yes
   (setq prettify-symbols-unprettify-at-point 'right-edge)
-  (global-prettify-symbols-mode 0)
+  (global-prettify-symbols-mode 1)
+  (setq-default prettify-symbols-alist '(("#+BEGIN_SRC" . "†")
+                                       ("#+END_SRC" . "†")
+                                       ("#+begin_src" . "†")
+                                       ("#+end_src" . "†")
+                                       (">=" . "≥")
+                                       ("=>" . "⇨")
+                                       ("def" . "𝒇")
+                                       ("class" . "𝑪")
+                                       ("and" . "∧")
+                                       ("or" . "∨")
+                                       ("not" . "￢")
+                                       ("in" . "∈")
+                                       ("not in" . "∉")
+                                       ("return" . "⟼")
+                                       ("yield" . "⟻")
+                                       ("for" . "∀")
+                                       ("!=" . "≠")
+                                       ("==" . "＝")
+                                       (">=" . "≥")
+                                       ("<=" . "≤")))
 
+
+  (add-hook 'org-mode-hook 'prettify-symbols-mode)
   (add-hook
    'python-mode-hook
    (lambda ()
@@ -137,7 +163,6 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
              ("==" . "＝")
              (">=" . "≥")
              ("<=" . "≤")
-             ("[]" . "⃞")
              ("=" . "≝")))))
 #+end_src
 * Packages
@@ -168,7 +193,7 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 **** Backends company
     Liste des backends :
     https://github.com/company-mode/company-mode/wiki/Third-Party-Packages
-    backends selectionées :
+    backends selectionées:
     - Pour les symboles de Maths : https://github.com/vspinu/company-math
       #+begin_src emacs-lisp :tangle yes
       ;; global activation of the unicode symbol completion
@@ -177,6 +202,12 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
       If you are using AUCTeX you might need to use TeX-mode-hook instead:
       (add-hook 'TeX-mode-hook 'my-latex-mode-setup)
     - Latex : https://github.com/alexeyr/company-auctex/
+
+    - Python
+      #+begin_src emacs-lisp :tangle yes
+      (eval-after-load "company"
+        '(add-to-list 'company-backends 'company-anaconda))
+      #+end_src
 *** yasSnipets
      yasnippet permet d'ajouter des blocs de codes prédéfinis.
      #+begin_src emacs-lisp :tangle yes
@@ -184,35 +215,66 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 	 :config
 	 (yas-global-mode 1))
 #+end_src
-adding a collection of snippets
+     adding a collection of snippets
 #+begin_src emacs-lisp :tangle yes
 (use-package yasnippet-snippets)
 #+end_src
+Ajout de snippets personalisés:
 
 ** Org
    https://orgmode.org/worg/org-tutorials/org4beginners.html
-*** Org main
+*** ajout d'org-mode et quelques config
     J'ai trouvé un site avec une config sympa :
     https://jamiecollinson.com/blog/my-emacs-config/#org
+
+ici, fontify et act natively servent à utiliser le mode majeur
+correspondant dans les blocs source.
 #+begin_src emacs-lisp :tangle yes
 (use-package org
   :config
-  (setq org-directory "~/org-files"
-        org-default-notes-file (concat org-directory "/todo.org"))
-  :bind
-  ("C-c l" . org-store-link)
-  ("C-c a" . org-agenda))
+  (setq org-src-fontify-natively t)
+  (setq org-src-tab-acts-natively t)
+)
+#+end_src
+
+*** Blocs source
+ajout du support de certains languages dans org-babel
+#+begin_src emacs-lisp :tangle yes
+(with-eval-after-load 'org
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '(
+     (ipython . t)
+     (python  . t)
+     (C       . t)
+     (dot     . t)
+     (shell   . t)
+   ))
+    (setq org-confirm-babel-evaluate nil)
+)
+#+end_src
+Afin de pouvoir gérer ipython, il faut installer le package org-babel ipython
+#+begin_src emacs-lisp :tangle yes
+(use-package ob-ipython)
 #+end_src
 *** Apparence
 #+begin_src emacs-lisp :tangle yes
-(use-package org-bullets
-    :ensure t
-    :config
-    (setq org-bullets-bullet-list '("∙"))
-    (add-hook 'org-mode-hook 'org-bullets-mode))
+  (use-package org-bullets
+      :ensure t
+      :config
+      ;; (setq org-bullets-bullet-list '("∙"))
+      (add-hook 'org-mode-hook 'org-bullets-mode)
+      )
+#+end_src
+
+*** Ref
+#+begin_src emacs-lisp :tangle yes
+(use-package org-ref)
+
+(setq org-latex-pdf-process (list "latexmk -shell-escape -bibtex -f -pdf %f"))
 #+end_src
 *** Ecriture
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle no
 (use-package writegood-mode
     :ensure t
     :bind ("C-c g" . writegood-mode)
@@ -221,6 +283,7 @@ adding a collection of snippets
 #+end_src
 *** Export
 Liste des exporteurs : https://orgmode.org/worg/exporters/index.html
+
 **** Pandoc, multi format
      https://github.com/kawabata/ox-pandoc
      We need to install last version of pandoc from https://github.com/jgm/pandoc/releases/
@@ -239,16 +302,65 @@ https://github.com/fniessen/org-html-themes
     :ensure t)
 #+end_src
 **** Slides
+***** Ioslides
      IOslide, joli et minimaliste
      https://github.com/coldnew/org-ioslide
      #+begin_src emacs-lisp :tangle yes
-     (use-package ox-ioslide)
+(use-package ox-ioslide)
+;;(use-package ox-ioslide-helper)
      #+end_src
-     html5slide, pas de maj depuis 6ans, on oublie :
-     https://github.com/coldnew/org-html5slide
+***** Html5slide
+      html5slide, pas de maj depuis 6ans, on oublie :
+      https://github.com/coldnew/org-html5slide
+***** Reveal js
+      https://github.com/hakimel/reveal.js/
+      To install reveal js locally :
+      #+begin_src bash
+      cd ~/
+      git clone https://github.com/hakimel/reveal.js/
+      npm update node-sass
+      npm install
+      #+end_src
+      as stated in https://github.com/yjwen/org-reveal: The easiest
+      way of getint org-reveal is to instal ox-reveal from melpa
+#+begin_src emacs-lisp :tangle yes
+(use-package ox-reveal)
+(setq org-reveal-root "file:///home/virgile/reveal.js")
+(use-package htmlize)
+#+end_src
+
+#+RESULTS:
+
+to come arount rainbow delimiter incompatibility issues :
+#+begin_src emacs-lisp :tangle yes
+(defadvice htmlize-buffer-1 (around ome-htmlize-buffer-1 disable)
+  (rainbow-delimiters-mode -1)
+  ad-do-it
+  (rainbow-delimiters-mode t))
+
+(defun ome-htmlize-setup ()
+  (if (el-get-read-package-status 'rainbow-delimiters)
+      (progn
+        (ad-enable-advice 'htmlize-buffer-1 'around 'ome-htmlize-buffer-1)
+        (ad-activate 'htmlize-buffer-1))))
+#+end_src
+***** Beamer
+#+begin_src emacs-lisp :tangle no
+(use-package ox-beamer)
+#+end_src
+*** Tangle
+#+begin_src emacs-lisp :tangle yes
+;;; noweb expansion only when you tangle
+(setq org-babel-default-header-args
+      (cons '(:noweb . "tangle")
+            (assq-delete-all :noweb org-babel-default-header-args))
+      )
+#+end_src
 ** Dashboard
+https://github.com/emacs-dashboard/emacs-dashboard
+An extensible emacs startup screen showing you what’s most important.
 install page-break-lines as it is required for dashboard.
-#+BEGIN_SRC emacs-lisp :tangle yes
+#+BEGIN_SRC emacs-lisp :tangle no
 (use-package page-break-lines)
 (use-package dashboard
   :ensure t
@@ -286,7 +398,7 @@ install page-break-lines as it is required for dashboard.
 
 #+END_SRC
 ** Line number
-#+BEGIN_SRC emacs-lisp :tangle yes
+#+BEGIN_SRC emacs-lisp :tangle no
 (use-package hlinum
   :config
   (hlinum-activate))
@@ -297,7 +409,7 @@ install page-break-lines as it is required for dashboard.
   (global-linum-mode nil))
 #+END_SRC
 ** Gestion projets
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle no
 (use-package projectile
   :config
   (setq projectile-known-projects-file
@@ -318,14 +430,14 @@ install page-break-lines as it is required for dashboard.
   ("C-x <right>" . windmove-right))
 #+end_src
 ** Next key
-#+begin_src emacs-lisp :tangle ye
+#+begin_src emacs-lisp :tangle yes
   (use-package which-key
     :ensure t
     :diminish which-key-mode
     :config
     (add-hook 'after-init-hook 'which-key-mode))
 #+end_src
-** Easier selection
+** Expend selected region
 #+begin_src emacs-lisp :tangle yes
   (use-package expand-region
     :ensure t
@@ -356,7 +468,13 @@ expend parents redondant avec smartparens ?
 #+begin_src emacs-lisp :tangle yes
   (use-package aggressive-indent
       :ensure t)
+  (global-aggressive-indent-mode 1)
+  (add-to-list 'aggressive-indent-excluded-modes 'html-mode)
 #+end_src
+
+#+RESULTS:
+| html-mode | bibtex-mode | cider-repl-mode | coffee-mode | comint-mode | conf-mode | Custom-mode | diff-mode | doc-view-mode | dos-mode | erc-mode | feature-mode | fortran-mode | f90-mode | jabber-chat-mode | haml-mode | haskell-mode | haskell-interactive-mode | image-mode | inf-ruby-mode | makefile-mode | makefile-gmake-mode | minibuffer-inactive-mode | netcmd-mode | python-mode | sass-mode | scala-mode | slim-mode | special-mode | shell-mode | snippet-mode | eshell-mode | tabulated-list-mode | term-mode | TeX-output-mode | text-mode | yaml-mode |
+
 ** Git
 #+begin_src emacs-lisp :tangle yes
   (use-package magit
@@ -396,9 +514,84 @@ ajout du support de company
     :config
     (add-to-list 'company-backends 'company-irony))
 #+end_src
- Ajout du support de flycheck
+Ajout du support de flycheck
 #+begin_src emacs-lisp :tangle yes
 (use-package flycheck-irony
     :ensure t
     :hook (flycheck-mode . flycheck-irony-setup))
 #+end_src
+** Python
+Le mode Anaconda est paraît-il plus complet que le mode intégré :
+#+begin_src emacs-lisp :tangle yes
+    (use-package anaconda-mode
+      :hook
+      (python-mode . anaconda-mode)
+      (python-mode . anaconda-eldoc-mode))
+#+end_src
+#+begin_src bash :tangle install.sh
+sudo pip install pyflakes pep8
+#+end_src
+Pour ce débarasser des problèmes d'indentations mixte et régler
+l'indentation a 4 espace:
+https://www.emacswiki.org/emacs/NoTabs
+#+begin_src emacs-lisp :tangle no
+(add-hook 'python-mode-hook (lambda () (setq python-indent-offset 4)))
+(setq-default indent-tabs-mode nil)  ; use only spaces and no tabs
+#+end_src
+
+#+begin_src emacs-lisp :tangle yes
+(setq org-babel-python-command "python3")
+#+end_src
+
+live py est sympa mais uniquement pour des logiciels simples.
+#+begin_src emacs-lisp :tangle no
+(use-package live-py-mode)
+#+end_src
+
+*** Auto Format
+#+begin_src emacs-lisp :tangle yes
+  (use-package py-autopep8)
+#+end_src
+** External programs
+#+begin_src emacs-lisp :tangle yes
+(use-package openwith)
+(openwith-mode t)
+(setq openwith-associations '(("\\.pdf\\'" "evince" (file))))
+#+end_src
+Spotify.el : je n'arrive pas à le faire fonctionner correctement
+#+begin_src emacs-lisp :tangle no
+  (use-package spotify
+    :init
+    (setq spotify-oauth2-client-secret "5c0f97fd58944fc7b825b1bb108de2b2")
+    (setq spotify-oauth2-client-id "f614782caa124b179dab2e2a4b3ea0f0")
+    (setq spotify-transport 'connect)
+    :bind-keymap
+    ("C-c ." . spotify-keymap-prefix)
+  )
+#+end_src
+
+Counsel-spotify:
+#+begin_src emacs-lisp :tangle no
+  (use-package counsel-spotify
+    :init
+    (setq counsel-spotify-client-secret "5c0f97fd58944fc7b825b1bb108de2b2")
+    (setq counsel-spotify-client-id "f614782caa124b179dab2e2a4b3ea0f0")
+  )
+#+end_src
+** JSON
+#+begin_src emacs-lisp :tangle yes
+  (use-package json-navigator)
+#+end_src
+** Scimax Latex
+#+begin_src emacs-lisp :tangle no
+(use-package scimax-latex
+  :straight (scimax-latex :type git
+                          :host github
+                          :repo "jkitchin/scimax"
+                          :files ("scimax-latex.el"))
+  :commands (scimax-latex-setup
+             kpsewhich
+             texdoc))
+#+end_src
+
+#+RESULTS:

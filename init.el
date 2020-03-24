@@ -63,7 +63,12 @@
 (use-package doom-themes
   :defer t
   :init
-  (load-theme 'doom-one t))
+  (load-theme 'doom-one t)
+  ;; Enable flashing mode-line on errors
+  (doom-themes-visual-bell-config)
+  ;; Enable custom neotree theme (all-the-icons must be installed!)
+  (doom-themes-neotree-config)
+  (doom-themes-org-config))
 
 (use-package all-the-icons)
 
@@ -71,8 +76,30 @@
 (set-fontset-font t 'unicode "STIXGeneral" nil 'prepend)
 
 (setq prettify-symbols-unprettify-at-point 'right-edge)
-(global-prettify-symbols-mode 0)
+(global-prettify-symbols-mode 1)
+(setq-default prettify-symbols-alist '(("#+BEGIN_SRC" . "†")
+                                     ("#+END_SRC" . "†")
+                                     ("#+begin_src" . "†")
+                                     ("#+end_src" . "†")
+                                     (">=" . "≥")
+                                     ("=>" . "⇨")
+                                     ("def" . "𝒇")
+                                     ("class" . "𝑪")
+                                     ("and" . "∧")
+                                     ("or" . "∨")
+                                     ("not" . "￢")
+                                     ("in" . "∈")
+                                     ("not in" . "∉")
+                                     ("return" . "⟼")
+                                     ("yield" . "⟻")
+                                     ("for" . "∀")
+                                     ("!=" . "≠")
+                                     ("==" . "＝")
+                                     (">=" . "≥")
+                                     ("<=" . "≤")))
 
+
+(add-hook 'org-mode-hook 'prettify-symbols-mode)
 (add-hook
  'python-mode-hook
  (lambda ()
@@ -91,7 +118,6 @@
            ("==" . "＝")
            (">=" . "≥")
            ("<=" . "≤")
-           ("[]" . "⃞")
            ("=" . "≝")))))
 
 (use-package company
@@ -114,6 +140,9 @@
 ;; global activation of the unicode symbol completion
 (add-to-list 'company-backends 'company-math-symbols-unicode)
 
+(eval-after-load "company"
+  '(add-to-list 'company-backends 'company-anaconda))
+
 (use-package yasnippet
   :config
   (yas-global-mode 1))
@@ -122,23 +151,35 @@
 
 (use-package org
   :config
-  (setq org-directory "~/org-files"
-        org-default-notes-file (concat org-directory "/todo.org"))
-  :bind
-  ("C-c l" . org-store-link)
-  ("C-c a" . org-agenda))
+  (setq org-src-fontify-natively t)
+  (setq org-src-tab-acts-natively t)
+)
+
+(with-eval-after-load 'org
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '(
+     (ipython . t)
+     (python  . t)
+     (C       . t)
+     (dot     . t)
+     (shell   . t)
+   ))
+    (setq org-confirm-babel-evaluate nil)
+)
+
+(use-package ob-ipython)
 
 (use-package org-bullets
     :ensure t
     :config
-    (setq org-bullets-bullet-list '("∙"))
-    (add-hook 'org-mode-hook 'org-bullets-mode))
+    ;; (setq org-bullets-bullet-list '("∙"))
+    (add-hook 'org-mode-hook 'org-bullets-mode)
+    )
 
-(use-package writegood-mode
-    :ensure t
-    :bind ("C-c g" . writegood-mode)
-    :config
-    (add-to-list 'writegood-weasel-words "actionable"))
+(use-package org-ref)
+
+(setq org-latex-pdf-process (list "latexmk -shell-escape -bibtex -f -pdf %f"))
 
 (use-package ox-pandoc)
 
@@ -146,12 +187,28 @@
     :ensure t)
 
 (use-package ox-ioslide)
+;;(use-package ox-ioslide-helper)
 
-(use-package page-break-lines)
-(use-package dashboard
-  :ensure t
-  :config
-  (dashboard-setup-startup-hook))
+(use-package ox-reveal)
+(setq org-reveal-root "file:///home/virgile/reveal.js")
+(use-package htmlize)
+
+(defadvice htmlize-buffer-1 (around ome-htmlize-buffer-1 disable)
+  (rainbow-delimiters-mode -1)
+  ad-do-it
+  (rainbow-delimiters-mode t))
+
+(defun ome-htmlize-setup ()
+  (if (el-get-read-package-status 'rainbow-delimiters)
+      (progn
+        (ad-enable-advice 'htmlize-buffer-1 'around 'ome-htmlize-buffer-1)
+        (ad-activate 'htmlize-buffer-1))))
+
+;;; noweb expansion only when you tangle
+(setq org-babel-default-header-args
+      (cons '(:noweb . "tangle")
+            (assq-delete-all :noweb org-babel-default-header-args))
+      )
 
 (use-package counsel
   :bind
@@ -180,30 +237,18 @@
 
 (use-package all-the-icons-ivy)
 
-(use-package hlinum
-  :config
-  (hlinum-activate))
-
-(use-package linum
-  :config
-  (setq linum-format " %3d ")
-  (global-linum-mode nil))
-
-(use-package projectile
-  :config
-  (setq projectile-known-projects-file
-        (expand-file-name "projectile-bookmarks.eld" temp-dir))
-
-  (setq projectile-completion-system 'ivy)
-
-  (projectile-global-mode))
-
 (use-package windmove
   :bind
   ("C-x <up>" . windmove-up)
   ("C-x <down>" . windmove-down)
   ("C-x <left>" . windmove-left)
   ("C-x <right>" . windmove-right))
+
+(use-package which-key
+  :ensure t
+  :diminish which-key-mode
+  :config
+  (add-hook 'after-init-hook 'which-key-mode))
 
 (use-package expand-region
   :ensure t
@@ -222,6 +267,8 @@
 
 (use-package aggressive-indent
     :ensure t)
+(global-aggressive-indent-mode 1)
+(add-to-list 'aggressive-indent-excluded-modes 'html-mode)
 
 (use-package magit
   :ensure t
@@ -246,3 +293,18 @@
 (use-package flycheck-irony
     :ensure t
     :hook (flycheck-mode . flycheck-irony-setup))
+
+(use-package anaconda-mode
+  :hook
+  (python-mode . anaconda-mode)
+  (python-mode . anaconda-eldoc-mode))
+
+(setq org-babel-python-command "python3")
+
+(use-package py-autopep8)
+
+(use-package openwith)
+(openwith-mode t)
+(setq openwith-associations '(("\\.pdf\\'" "evince" (file))))
+
+(use-package json-navigator)
