@@ -155,6 +155,8 @@
   (setq org-src-tab-acts-natively t)
 )
 
+(use-package ob-ipython)
+
 (with-eval-after-load 'org
   (org-babel-do-load-languages
    'org-babel-load-languages
@@ -167,8 +169,6 @@
    ))
     (setq org-confirm-babel-evaluate nil)
 )
-
-(use-package ob-ipython)
 
 (use-package org-bullets
     :ensure t
@@ -209,6 +209,14 @@
       (cons '(:noweb . "tangle")
             (assq-delete-all :noweb org-babel-default-header-args))
       )
+
+(use-package page-break-lines)
+(use-package dashboard
+  :ensure t
+  :config
+  (dashboard-setup-startup-hook))
+
+(use-package popup)
 
 (use-package counsel
   :bind
@@ -265,6 +273,8 @@
     :config
     (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 
+(use-package move-text)
+
 (use-package aggressive-indent
     :ensure t)
 (global-aggressive-indent-mode 1)
@@ -277,6 +287,29 @@
 (use-package flycheck
   :ensure t
   :init (global-flycheck-mode))
+
+(use-package flyspell)
+(define-key flyspell-mode-map (kbd "C-;") #'flyspell-correct-wrapper)
+
+(add-hook 'LaTeX-mode-hook 'flyspell-mode)
+(add-hook 'org-mode-hook 'flyspell-mode)
+
+(let ((langs '("english" "francais")))
+  (setq lang-ring (make-ring (length langs)))
+  (dolist (elem langs) (ring-insert lang-ring elem)))
+
+(defun cycle-ispell-languages ()
+  (interactive)
+  (let ((lang (ring-ref lang-ring -1)))
+    (ring-insert lang-ring lang)
+    (ispell-change-dictionary lang)))
+
+(global-set-key [f6] 'cycle-ispell-languages)
+
+(use-package flyspell-correct-ivy
+  :bind ("C-;" . flyspell-correct-wrapper)
+  :init
+  (setq flyspell-correct-interface #'flyspell-correct-ivy))
 
 (use-package irony
     :ensure t

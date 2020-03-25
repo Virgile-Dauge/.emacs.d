@@ -227,6 +227,7 @@ Ajout de snippets personalisés:
     J'ai trouvé un site avec une config sympa :
     https://jamiecollinson.com/blog/my-emacs-config/#org
 
+
 ici, fontify et act natively servent à utiliser le mode majeur
 correspondant dans les blocs source.
 #+begin_src emacs-lisp :tangle yes
@@ -238,6 +239,12 @@ correspondant dans les blocs source.
 #+end_src
 
 *** Blocs source
+
+Afin de pouvoir gérer ipython, il faut installer le package org-babel ipython
+#+begin_src emacs-lisp :tangle yes
+(use-package ob-ipython)
+#+end_src
+
 ajout du support de certains languages dans org-babel
 #+begin_src emacs-lisp :tangle yes
 (with-eval-after-load 'org
@@ -253,10 +260,10 @@ ajout du support de certains languages dans org-babel
     (setq org-confirm-babel-evaluate nil)
 )
 #+end_src
-Afin de pouvoir gérer ipython, il faut installer le package org-babel ipython
-#+begin_src emacs-lisp :tangle yes
-(use-package ob-ipython)
-#+end_src
+
+
+#+RESULTS:
+
 *** Apparence
 #+begin_src emacs-lisp :tangle yes
   (use-package org-bullets
@@ -267,20 +274,13 @@ Afin de pouvoir gérer ipython, il faut installer le package org-babel ipython
       )
 #+end_src
 
-*** Ref
+*** Gestion references et citations
 #+begin_src emacs-lisp :tangle yes
 (use-package org-ref)
 
 (setq org-latex-pdf-process (list "latexmk -shell-escape -bibtex -f -pdf %f"))
 #+end_src
-*** Ecriture
-#+begin_src emacs-lisp :tangle no
-(use-package writegood-mode
-    :ensure t
-    :bind ("C-c g" . writegood-mode)
-    :config
-    (add-to-list 'writegood-weasel-words "actionable"))
-#+end_src
+
 *** Export
 Liste des exporteurs : https://orgmode.org/worg/exporters/index.html
 
@@ -348,6 +348,7 @@ to come arount rainbow delimiter incompatibility issues :
 #+begin_src emacs-lisp :tangle no
 (use-package ox-beamer)
 #+end_src
+
 *** Tangle
 #+begin_src emacs-lisp :tangle yes
 ;;; noweb expansion only when you tangle
@@ -356,17 +357,34 @@ to come arount rainbow delimiter incompatibility issues :
             (assq-delete-all :noweb org-babel-default-header-args))
       )
 #+end_src
+
+** Writegood mode : besoin de tests
+#+begin_src emacs-lisp :tangle no
+(use-package writegood-mode
+    :ensure t
+    :bind ("C-c g" . writegood-mode)
+    :config
+    (add-to-list 'writegood-weasel-words "actionable"))
+#+end_src
 ** Dashboard
 https://github.com/emacs-dashboard/emacs-dashboard
 An extensible emacs startup screen showing you what’s most important.
 install page-break-lines as it is required for dashboard.
-#+BEGIN_SRC emacs-lisp :tangle no
+#+BEGIN_SRC emacs-lisp :tangle yes
 (use-package page-break-lines)
 (use-package dashboard
   :ensure t
   :config
   (dashboard-setup-startup-hook))
 #+END_SRC
+** popup
+popup.el is a visual popup user interface library for Emacs. This
+provides a basic API and common UI widgets such as popup tooltips
+and popup menus.
+#+begin_src emacs-lisp :tangle yes
+(use-package popup)
+#+end_src
+
 ** COunsel ivy swiper
 #+BEGIN_SRC emacs-lisp :tangle yes
 (use-package counsel
@@ -443,6 +461,7 @@ install page-break-lines as it is required for dashboard.
     :ensure t
     :bind ("C-=" . er/expand-region))
 #+end_src
+
 ** Parenthèses et autres
    Automatisation autour des parenthèses
    https://github.com/Fuco1/smartparens
@@ -464,6 +483,13 @@ expend parents redondant avec smartparens ?
 #+begin_src emacs-lisp :tangle no
 (add-hook 'prog-mode-hook 'electric-pair-mode)
 #+end_src
+
+** Move text
+#+begin_src emacs-lisp :tangle yes
+(use-package move-text)
+#+end_src
+
+#+RESULTS:
 ** Indentation
 #+begin_src emacs-lisp :tangle yes
   (use-package aggressive-indent
@@ -475,19 +501,85 @@ expend parents redondant avec smartparens ?
 #+RESULTS:
 | html-mode | bibtex-mode | cider-repl-mode | coffee-mode | comint-mode | conf-mode | Custom-mode | diff-mode | doc-view-mode | dos-mode | erc-mode | feature-mode | fortran-mode | f90-mode | jabber-chat-mode | haml-mode | haskell-mode | haskell-interactive-mode | image-mode | inf-ruby-mode | makefile-mode | makefile-gmake-mode | minibuffer-inactive-mode | netcmd-mode | python-mode | sass-mode | scala-mode | slim-mode | special-mode | shell-mode | snippet-mode | eshell-mode | tabulated-list-mode | term-mode | TeX-output-mode | text-mode | yaml-mode |
 
-** Git
+aggressive indent ne fonctionne pas avec python, on peut l'activer,
+mais cela ne fonctionne pas super bien. J'ai donc retiré le code
+suivant de ma config.
+#+begin_src emacs-lisp :tangle no
+  (add-hook 'after-change-major-mode-hook (lambda() (electric-indent-mode -1)))
+  (setq aggressive-indent-excluded-modes
+	(remove 'python-mode aggressive-indent-excluded-modes))
+#+end_src
+
+#+RESULTS:
+| html-mode | bibtex-mode | cider-repl-mode | coffee-mode | comint-mode | conf-mode | Custom-mode | diff-mode | doc-view-mode | dos-mode | erc-mode | feature-mode | fortran-mode | f90-mode | jabber-chat-mode | haml-mode | haskell-mode | haskell-interactive-mode | image-mode | inf-ruby-mode | makefile-mode | makefile-gmake-mode | minibuffer-inactive-mode | netcmd-mode | sass-mode | scala-mode | slim-mode | special-mode | shell-mode | snippet-mode | eshell-mode | tabulated-list-mode | term-mode | TeX-output-mode | text-mode | yaml-mode |
+
+** magit
 #+begin_src emacs-lisp :tangle yes
   (use-package magit
     :ensure t
     :bind ("C-x g" . magit-status))
 #+end_src
-** Syntaxe
+** Syntaxe (Flycheck)
 J'utilise flycheck pour vérifier la syntaxe à la volée
 #+begin_src emacs-lisp :tangle yes
 (use-package flycheck
   :ensure t
   :init (global-flycheck-mode))
 #+end_src
+
+** Orthographe (Fly Spell)
+
+#+begin_src emacs-lisp :tangle yes
+(use-package flyspell)
+(define-key flyspell-mode-map (kbd "C-;") #'flyspell-correct-wrapper)
+#+end_src
+
+On veut l'activer sur org et Latex :
+#+begin_src emacs-lisp :tangle yes
+
+(add-hook 'LaTeX-mode-hook 'flyspell-mode)
+(add-hook 'org-mode-hook 'flyspell-mode)
+
+#+end_src
+Afin de pouvoir changer de langue facilement, j'ai trouvé la fonction
+suivante :
+#+begin_src emacs-lisp :tangle yes
+    (let ((langs '("english" "francais")))
+      (setq lang-ring (make-ring (length langs)))
+      (dolist (elem langs) (ring-insert lang-ring elem)))
+
+    (defun cycle-ispell-languages ()
+      (interactive)
+      (let ((lang (ring-ref lang-ring -1)))
+        (ring-insert lang-ring lang)
+        (ispell-change-dictionary lang)))
+
+    (global-set-key [f6] 'cycle-ispell-languages)
+#+end_src
+
+Il faut installer aspell ainsi que le dictionnaire français.
+
+#+BEGIN_SRC bash :tangle install.sh
+sudo apt install aspell aspell-fr
+#+END_SRC
+
+Pour appliquer la correction, deux solutions me paraissent valables :
+- Via Ivy
+#+begin_src emacs-lisp :tangle yes
+(use-package flyspell-correct-ivy
+  :bind ("C-;" . flyspell-correct-wrapper)
+  :init
+  (setq flyspell-correct-interface #'flyspell-correct-ivy))
+#+end_src
+
+- Via popup
+#+begin_src emacs-lisp :tangle no
+(use-package flyspell-correct-popup
+  :bind ("C-;" . flyspell-correct-wrapper)
+  :init
+  (setq flyspell-correct-interface #'flyspell-correct-popup))
+#+end_src
+
 ** C/C++
    Le built in est bon, mais j'aimerai tester Irony
    https://github.com/Sarcasm/irony-mode
