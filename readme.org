@@ -1,19 +1,19 @@
 #+TITLE: Ma configuration Emacs
 #+HTML_HEAD_EXTRA: <style>pre { background-color: #282c34 ; color: #bbc2cf }</style>
+#+PROPERTY: header-args+ :tangle "./init.el"
 * DONE Config ShortCut
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
  (defun find-config ()
-    "Edit init.org"
+    "Edit readme.org"
     (interactive)
-    (find-file "~/.emacs.d/init.org"))
+    (find-file "~/.emacs.d/readme.org"))
 
   (global-set-key (kbd "C-c I") 'find-config)
 #+end_src
 * TODO Base
-
 ** Initialisation et use-package
 Initialisation des dépôts d'archives et installation de use-package.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (package-initialize)
 (add-to-list 'package-archives
 	     '("melpa" . "https://melpa.org/packages/")
@@ -32,7 +32,7 @@ Initialisation des dépôts d'archives et installation de use-package.
 #+end_src
 
 ** MAJ automatique
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (use-package auto-package-update
   :config
   (setq auto-package-update-delete-old-versions t)
@@ -41,8 +41,8 @@ Initialisation des dépôts d'archives et installation de use-package.
 #+end_src
 
 ** Sauvegardes
-Gestion des backups :
-#+begin_src emacs-lisp :tangle yes
+   Gestion des backups :
+#+begin_src emacs-lisp
 (setq backup-directory-alist '(("." . "~/.emacs.d/backup"))
     backup-by-copying t    ; Don't delink hardlinks
     version-control t      ; Use version numbers on backups
@@ -52,11 +52,11 @@ Gestion des backups :
     )
 #+end_src
 Désactiver le startup screen :
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (setq inhibit-startup-screen t)
 #+end_src
 Tout passer en utf-8
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 ;; Core settings
 ;; UTF-8 please
 (set-charset-priority 'unicode)
@@ -68,7 +68,7 @@ Tout passer en utf-8
 (setq default-process-coding-system '(utf-8-unix . utf-8-unix))
 #+end_src
 Enlever les barres de menu et d'outils, c'est un minimum :
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 ;; Disable toolbar & menubar
 (menu-bar-mode -1)
 (when (fboundp 'tool-bar-mode)
@@ -78,23 +78,23 @@ Enlever les barres de menu et d'outils, c'est un minimum :
 #+end_src
 
 Montrer les paires de parenthèses : https://www.emacswiki.org/emacs/ShowParenMode
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (setq show-paren-delay 0)
 (show-paren-mode 1)
 #+end_src
 
 Désactiver le curseur dans les fenetres non-actives:
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (setq-default cursor-in-non-selected-windows 'hollow)
 #+end_src
 Suppression des espaces en fin de fichier avant de sauvegarder :
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 ;; Delete trailing whitespace before save
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 #+end_src
 ** TODO Emacs serveur
 https://www.gnu.org/software/emacs/manual/html_node/emacs/Emacs-Server.html
-#+BEGIN_SRC bash
+#+BEGIN_SRC bash :tangle no
 systemctl --user enable emacs
 #+END_SRC
 
@@ -106,7 +106,7 @@ https://github.com/jwiegley/use-package#notes-about-lazy-loading
 Le site https://peach-melpa.org/ propose une galerie des themes Emacs disponibles sur MELPA.
 ** Actuel
 J'ai trouvé le thème doom-one vraiment sympa.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
     (use-package doom-modeline
       :ensure t
       :hook (after-init . doom-modeline-mode))
@@ -132,16 +132,16 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 *** SubAtomic
     https://peach-melpa.org/themes/subatomic-theme/variants/subatomic?lang=rb
 ** Compléments
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (use-package all-the-icons)
 #+end_src
 ** Fonts
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 ;;(set-frame-font "Operator Mono 12" nil t)
 (set-fontset-font t 'unicode "STIXGeneral" nil 'prepend)
 #+end_src
 ** pretty symbols
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
   (setq prettify-symbols-unprettify-at-point 'right-edge)
   (global-prettify-symbols-mode 1)
   (setq-default prettify-symbols-alist '(("#+BEGIN_SRC" . "†")
@@ -191,7 +191,7 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 ** Completion
 *** TODO Text
 **** Company https://company-mode.github.io/
-   #+begin_src emacs-lisp :tangle yes
+   #+begin_src emacs-lisp :tangle no
      (use-package company
        :init
        ;; No delay in showing suggestions.
@@ -207,7 +207,7 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
    #+end_src
    ajout d'une pop-up avec Company quickhelp
    https://github.com/expez/company-quickhelp
-   #+begin_src emacs-lisp :tangle yes
+   #+begin_src emacs-lisp :tangle no
      (use-package company-quickhelp
        :config
        (company-quickhelp-mode 1))
@@ -217,7 +217,7 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
     https://github.com/company-mode/company-mode/wiki/Third-Party-Packages
     backends selectionées:
     - Pour les symboles de Maths : https://github.com/vspinu/company-math
-      #+begin_src emacs-lisp :tangle yes
+      #+begin_src emacs-lisp :tangle no
       ;; global activation of the unicode symbol completion
       (add-to-list 'company-backends 'company-math-symbols-unicode)
       #+end_src
@@ -226,33 +226,33 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
     - Latex : https://github.com/alexeyr/company-auctex/
 
     - Python
-      #+begin_src emacs-lisp :tangle yes
+      #+begin_src emacs-lisp :tangle no
       (eval-after-load "company"
         '(add-to-list 'company-backends 'company-anaconda))
       #+end_src
-*** DONE yasSnipets
+*** TODO yasSnipets
      yasnippet permet d'ajouter des blocs de codes prédéfinis.
-     #+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
        (use-package yasnippet
 	 :config
 	 (yas-global-mode 1))
 #+end_src
      adding a collection of snippets
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (use-package yasnippet-snippets)
 #+end_src
-Ajout de snippets personalisés:
+**** TODO Ajout de snippets personalisés:
 
 ** Org
    https://orgmode.org/worg/org-tutorials/org4beginners.html
-*** ajout d'org-mode et quelques config
+*** Ajout d'org-mode et quelques config
     J'ai trouvé un site avec une config sympa :
     https://jamiecollinson.com/blog/my-emacs-config/#org
 
 
 ici, fontify et act natively servent à utiliser le mode majeur
 correspondant dans les blocs source.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (use-package org
   :config
   (setq org-src-fontify-natively t)
@@ -260,16 +260,15 @@ correspondant dans les blocs source.
 )
 #+end_src
 
-*** Blocs source
-
+*** Blocs source (babel)
 Afin de pouvoir gérer ipython, il faut installer le package org-babel ipython
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
   (use-package ob-ipython
     :after org)
 #+end_src
 
 ajout du support de certains languages dans org-babel
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (with-eval-after-load 'org
   (org-babel-do-load-languages
    'org-babel-load-languages
@@ -284,11 +283,10 @@ ajout du support de certains languages dans org-babel
 )
 #+end_src
 
-
-#+RESULTS:
-
 *** Apparence
-#+begin_src emacs-lisp :tangle yes
+
+Permet d'afficher des symboles utf-8 plutôt que des astérisques.
+#+begin_src emacs-lisp
   (use-package org-bullets
       :ensure t
       :config
@@ -297,14 +295,14 @@ ajout du support de certains languages dans org-babel
       )
 #+end_src
 
-*** Gestion references et citations
-#+begin_src emacs-lisp :tangle yes
+*** TODO Gestion références et citations
+#+begin_src emacs-lisp
 (use-package org-ref)
 
 (setq org-latex-pdf-process (list "latexmk -shell-escape -bibtex -f -pdf %f"))
 #+end_src
 
-*** Dashboard
+*** Tableau de bord
 
 #+begin_src emacs-lisp :tangle no
 (use-package org-dashboard)
@@ -314,39 +312,42 @@ ajout du support de certains languages dans org-babel
 
 *** Export
 Liste des exporteurs : https://orgmode.org/worg/exporters/index.html
-
-**** Pandoc, multi format
+**** TODO problème export _
+piste: TeX-like syntax for sub- and superscripts. If
+you write ‘^:{}’, ‘a_{b}’ is interpreted, but the simple ‘a_b’ is left
+as it is (org-export-with-sub-superscripts).
+**** TODO Pandoc, multi format
      https://github.com/kawabata/ox-pandoc
      We need to install last version of pandoc from https://github.com/jgm/pandoc/releases/
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (use-package ox-pandoc)
 #+end_src
 **** Blog
      https://melpa.org/#/ox-hugo
-**** Export HTML
+**** TODO Export HTML
 
 https://github.com/fniessen/org-html-themes
 
 
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (use-package ox-twbs
     :ensure t)
 #+end_src
-**** Slides
-***** Ioslides
+**** Diapositives
+***** TODO Ioslides
      IOslide, joli et minimaliste
      https://github.com/coldnew/org-ioslide
-     #+begin_src emacs-lisp :tangle yes
+     #+begin_src emacs-lisp :tangle no
 (use-package ox-ioslide)
 ;;(use-package ox-ioslide-helper)
      #+end_src
 ***** Html5slide
       html5slide, pas de maj depuis 6ans, on oublie :
       https://github.com/coldnew/org-html5slide
-***** Reveal js
+***** TODO Reveal js
       https://github.com/hakimel/reveal.js/
       To install reveal js locally :
-      #+begin_src bash
+      #+begin_src bash :tangle no
       cd ~/
       git clone https://github.com/hakimel/reveal.js/
       npm update node-sass
@@ -354,16 +355,14 @@ https://github.com/fniessen/org-html-themes
       #+end_src
       as stated in https://github.com/yjwen/org-reveal: The easiest
       way of getint org-reveal is to instal ox-reveal from melpa
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (use-package ox-reveal)
 (setq org-reveal-root "file:///home/virgile/reveal.js")
 (use-package htmlize)
 #+end_src
 
-#+RESULTS:
-
 to come arount rainbow delimiter incompatibility issues :
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (defadvice htmlize-buffer-1 (around ome-htmlize-buffer-1 disable)
   (rainbow-delimiters-mode -1)
   ad-do-it
@@ -375,18 +374,19 @@ to come arount rainbow delimiter incompatibility issues :
         (ad-enable-advice 'htmlize-buffer-1 'around 'ome-htmlize-buffer-1)
         (ad-activate 'htmlize-buffer-1))))
 #+end_src
-***** Beamer
+***** TODO Beamer
 #+begin_src emacs-lisp :tangle no
 (use-package ox-beamer)
 #+end_src
 
 **** Github Markdown
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
   (use-package ox-gfm
     :after org)
 #+end_src
 *** Tangle
-#+begin_src emacs-lisp :tangle yes
+
+#+begin_src emacs-lisp
 ;;; noweb expansion only when you tangle
 (setq org-babel-default-header-args
       (cons '(:noweb . "tangle")
@@ -394,8 +394,8 @@ to come arount rainbow delimiter incompatibility issues :
       )
 #+end_src
 
-** Writegood mode : besoin de tests
-#+begin_src emacs-lisp :tangle yes
+** TODO Writegood mode : besoin de tests
+#+begin_src emacs-lisp :tangle no
 (use-package writegood-mode
     :ensure t
     :bind ("C-c g" . writegood-mode)
@@ -409,23 +409,23 @@ to come arount rainbow delimiter incompatibility issues :
 https://github.com/emacs-dashboard/emacs-dashboard
 An extensible emacs startup screen showing you what’s most important.
 install page-break-lines as it is required for dashboard.
-#+BEGIN_SRC emacs-lisp :tangle yes
+#+BEGIN_SRC emacs-lisp
 (use-package page-break-lines)
 (use-package dashboard
   :ensure t
   :config
   (dashboard-setup-startup-hook))
 #+END_SRC
-** popup
+** TODO popup
 popup.el is a visual popup user interface library for Emacs. This
 provides a basic API and common UI widgets such as popup tooltips
 and popup menus.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle no
 (use-package popup)
 #+end_src
 
 ** COunsel ivy swiper
-#+BEGIN_SRC emacs-lisp :tangle yes
+#+BEGIN_SRC emacs-lisp
 (use-package counsel
   :bind
   ("M-x" . counsel-M-x)
@@ -454,7 +454,7 @@ and popup menus.
 (use-package all-the-icons-ivy)
 
 #+END_SRC
-** Line number
+** TODO Line number
 #+BEGIN_SRC emacs-lisp :tangle no
 (use-package hlinum
   :config
@@ -465,7 +465,7 @@ and popup menus.
   (setq linum-format " %3d ")
   (global-linum-mode nil))
 #+END_SRC
-** Gestion projets
+** TODO Gestion projets
 #+begin_src emacs-lisp :tangle no
 (use-package projectile
   :config
@@ -478,7 +478,7 @@ and popup menus.
 #+end_src
 
 ** DONE Déplacements entre buffers
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (use-package windmove
   :bind
   ("C-x <up>" . windmove-up)
@@ -487,7 +487,7 @@ and popup menus.
   ("C-x <right>" . windmove-right))
 #+end_src
 ** DONE Next key
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
   (use-package which-key
     :ensure t
     :diminish which-key-mode
@@ -495,7 +495,7 @@ and popup menus.
     (add-hook 'after-init-hook 'which-key-mode))
 #+end_src
 ** DONE Expend selected region
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
   (use-package expand-region
     :ensure t
     :bind ("C-=" . er/expand-region))
@@ -504,7 +504,7 @@ and popup menus.
 ** Parenthèses et autres
    Automatisation autour des parenthèses
    https://github.com/Fuco1/smartparens
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
   (use-package smartparens
     :ensure t
     :diminish smartparens-mode
@@ -512,7 +512,7 @@ and popup menus.
     (add-hook 'prog-mode-hook 'smartparens-mode))
 #+end_src
 Highlight parents
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (use-package rainbow-delimiters
     :ensure t
     :config
@@ -524,13 +524,13 @@ expend parents redondant avec smartparens ?
 #+end_src
 
 ** DONE Move text
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (use-package move-text)
 #+end_src
 
 #+RESULTS:
-** Indentation
-#+begin_src emacs-lisp :tangle yes
+** TODO Indentation
+#+begin_src emacs-lisp :tangle no
   (use-package aggressive-indent
       :ensure t)
   (global-aggressive-indent-mode 1)
@@ -553,14 +553,14 @@ suivant de ma config.
 | html-mode | bibtex-mode | cider-repl-mode | coffee-mode | comint-mode | conf-mode | Custom-mode | diff-mode | doc-view-mode | dos-mode | erc-mode | feature-mode | fortran-mode | f90-mode | jabber-chat-mode | haml-mode | haskell-mode | haskell-interactive-mode | image-mode | inf-ruby-mode | makefile-mode | makefile-gmake-mode | minibuffer-inactive-mode | netcmd-mode | sass-mode | scala-mode | slim-mode | special-mode | shell-mode | snippet-mode | eshell-mode | tabulated-list-mode | term-mode | TeX-output-mode | text-mode | yaml-mode |
 
 ** DONE Gestionnaire de version (Magit)
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
   (use-package magit
     :ensure t
     :bind ("C-x g" . magit-status))
 #+end_src
 ** TODO Syntaxe (Flycheck)
-J'utilise flycheck pour vérifier la syntaxe à la volée
-#+begin_src emacs-lisp :tangle yes
+J'utilise Flycheck pour vérifier la syntaxe à la volée
+#+begin_src emacs-lisp
 (use-package flycheck
   :ensure t
   :init (global-flycheck-mode))
@@ -568,13 +568,13 @@ J'utilise flycheck pour vérifier la syntaxe à la volée
 
 ** DONE Orthographe (Fly Spell)
 
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (use-package flyspell)
 (define-key flyspell-mode-map (kbd "C-;") #'flyspell-correct-wrapper)
 #+end_src
 
 On veut l'activer sur org et Latex :
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 
 (add-hook 'LaTeX-mode-hook 'flyspell-mode)
 (add-hook 'org-mode-hook 'flyspell-mode)
@@ -582,7 +582,7 @@ On veut l'activer sur org et Latex :
 #+end_src
 Afin de pouvoir changer de langue facilement, j'ai trouvé la fonction
 suivante :
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
     (let ((langs '("francais" "english")))
       (setq lang-ring (make-ring (length langs)))
       (dolist (elem langs) (ring-insert lang-ring elem)))
@@ -604,7 +604,7 @@ sudo apt install aspell aspell-fr
 
 Pour appliquer la correction, deux solutions me paraissent valables :
 - Via Ivy
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (use-package flyspell-correct-ivy
   :bind ("C-;" . flyspell-correct-wrapper)
   :init
@@ -619,10 +619,10 @@ Pour appliquer la correction, deux solutions me paraissent valables :
   (setq flyspell-correct-interface #'flyspell-correct-popup))
 #+end_src
 
-** C/C++
+** TODO C/C++
    Le built in est bon, mais j'aimerai tester Irony
    https://github.com/Sarcasm/irony-mode
-   #+begin_src emacs-lisp :tangle yes
+   #+begin_src emacs-lisp :tangle no
      (use-package irony
 	 :ensure t
 	 :hook
@@ -639,21 +639,21 @@ requires the following packages to be installed on your system:
 -libclang
 
 ajout du support de company
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle no
   (use-package company-irony
     :ensure t
     :config
     (add-to-list 'company-backends 'company-irony))
 #+end_src
 Ajout du support de flycheck
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp :tangle no
 (use-package flycheck-irony
     :ensure t
     :hook (flycheck-mode . flycheck-irony-setup))
 #+end_src
 ** Python
 Le mode Anaconda est paraît-il plus complet que le mode intégré :
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
     (use-package anaconda-mode
       :hook
       (python-mode . anaconda-mode)
@@ -665,12 +665,12 @@ sudo pip install pyflakes pep8
 Pour ce débarasser des problèmes d'indentations mixte et régler
 l'indentation a 4 espace:
 https://www.emacswiki.org/emacs/NoTabs
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp
 (add-hook 'python-mode-hook (lambda () (setq python-indent-offset 4)))
 (setq-default indent-tabs-mode nil)  ; use only spaces and no tabs
 #+end_src
 
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (setq org-babel-python-command "python3")
 #+end_src
 
@@ -680,14 +680,14 @@ live py est sympa mais uniquement pour des logiciels simples.
 #+end_src
 
 *** Auto Format
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
   (use-package py-autopep8)
 #+end_src
 ** Contrôle de programmes externes
 
 Openwith permet d'ouvrir certains types de fichiers avec des outils
 externes.
-#+begin_src emacs-lisp :tangle yes
+#+begin_src emacs-lisp
 (use-package openwith)
 (openwith-mode t)
 (setq openwith-associations '(("\\.pdf\\'" "evince" (file))))

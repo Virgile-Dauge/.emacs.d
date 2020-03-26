@@ -1,7 +1,7 @@
 (defun find-config ()
-   "Edit init.org"
+   "Edit readme.org"
    (interactive)
-   (find-file "~/.emacs.d/init.org"))
+   (find-file "~/.emacs.d/readme.org"))
 
  (global-set-key (kbd "C-c I") 'find-config)
 
@@ -126,29 +126,6 @@
            ("<=" . "≤")
            ("=" . "≝")))))
 
-(use-package company
-  :init
-  ;; No delay in showing suggestions.
-  (setq company-idle-delay 0)
-  ;; Show suggestions after entering one character.
-  (setq company-minimum-prefix-length 1)
-  (setq company-selection-wrap-around t)
-  ;; Use tab key to cycle through suggestions.
-  ;; ('tng' means 'tab and go')
-  (company-tng-configure-default)
-  :config
-  (add-hook 'after-init-hook 'global-company-mode))
-
-(use-package company-quickhelp
-  :config
-  (company-quickhelp-mode 1))
-
-;; global activation of the unicode symbol completion
-(add-to-list 'company-backends 'company-math-symbols-unicode)
-
-(eval-after-load "company"
-  '(add-to-list 'company-backends 'company-anaconda))
-
 (use-package yasnippet
   :config
   (yas-global-mode 1))
@@ -193,9 +170,6 @@
 (use-package ox-twbs
     :ensure t)
 
-(use-package ox-ioslide)
-;;(use-package ox-ioslide-helper)
-
 (use-package ox-reveal)
 (setq org-reveal-root "file:///home/virgile/reveal.js")
 (use-package htmlize)
@@ -220,22 +194,11 @@
             (assq-delete-all :noweb org-babel-default-header-args))
       )
 
-(use-package writegood-mode
-    :ensure t
-    :bind ("C-c g" . writegood-mode)
-    :config
-    (add-to-list 'writegood-weasel-words "actionable"))
-
-(global-set-key "\C-c\C-gg" 'writegood-grade-level)
-(global-set-key "\C-c\C-ge" 'writegood-reading-ease)
-
 (use-package page-break-lines)
 (use-package dashboard
   :ensure t
   :config
   (dashboard-setup-startup-hook))
-
-(use-package popup)
 
 (use-package counsel
   :bind
@@ -294,11 +257,6 @@
 
 (use-package move-text)
 
-(use-package aggressive-indent
-    :ensure t)
-(global-aggressive-indent-mode 1)
-(add-to-list 'aggressive-indent-excluded-modes 'html-mode)
-
 (use-package magit
   :ensure t
   :bind ("C-x g" . magit-status))
@@ -330,26 +288,13 @@
   :init
   (setq flyspell-correct-interface #'flyspell-correct-ivy))
 
-(use-package irony
-    :ensure t
-    :hook
-    (c-mode . irony-mode)
-    (c++-mode . irony-mode)
-    (irony-mode . irony-cdb-autosetup-compile-options))
-
-(use-package company-irony
-  :ensure t
-  :config
-  (add-to-list 'company-backends 'company-irony))
-
-(use-package flycheck-irony
-    :ensure t
-    :hook (flycheck-mode . flycheck-irony-setup))
-
 (use-package anaconda-mode
   :hook
   (python-mode . anaconda-mode)
   (python-mode . anaconda-eldoc-mode))
+
+(add-hook 'python-mode-hook (lambda () (setq python-indent-offset 4)))
+(setq-default indent-tabs-mode nil)  ; use only spaces and no tabs
 
 (setq org-babel-python-command "python3")
 
