@@ -155,7 +155,8 @@
   (setq org-src-tab-acts-natively t)
 )
 
-(use-package ob-ipython)
+(use-package ob-ipython
+  :after org)
 
 (with-eval-after-load 'org
   (org-babel-do-load-languages

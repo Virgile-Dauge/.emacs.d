@@ -1,6 +1,6 @@
 #+TITLE: Ma configuration Emacs
 #+HTML_HEAD_EXTRA: <style>pre { background-color: #282c34 ; color: #bbc2cf }</style>
-* Config ShortCut
+* DONE Config ShortCut
 #+begin_src emacs-lisp :tangle yes
  (defun find-config ()
     "Edit init.org"
@@ -9,8 +9,10 @@
 
   (global-set-key (kbd "C-c I") 'find-config)
 #+end_src
-* Base
-Initialisation des dépots d'archives et installation de use-package.
+* TODO Base
+
+** Initialisation et use-package
+Initialisation des dépôts d'archives et installation de use-package.
 #+begin_src emacs-lisp :tangle yes
 (package-initialize)
 (add-to-list 'package-archives
@@ -28,6 +30,11 @@ Initialisation des dépots d'archives et installation de use-package.
   :config (auto-compile-on-load-mode))
 (setq load-prefer-newer t)
 #+end_src
+
+** MAJ automatique
+
+
+** Sauvegardes
 Gestion des backups :
 #+begin_src emacs-lisp :tangle yes
 (setq backup-directory-alist '(("." . "~/.emacs.d/backup"))
@@ -79,8 +86,17 @@ Suppression des espaces en fin de fichier avant de sauvegarder :
 ;; Delete trailing whitespace before save
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 #+end_src
+** TODO Emacs serveur
+https://www.gnu.org/software/emacs/manual/html_node/emacs/Emacs-Server.html
+#+BEGIN_SRC bash
+systemctl --user enable emacs
+#+END_SRC
 
-* Theme
+** TODO Lazy loading
+
+https://github.com/jwiegley/use-package#notes-about-lazy-loading
+
+* DONE Theme
 Le site https://peach-melpa.org/ propose une galerie des themes Emacs disponibles sur MELPA.
 ** Actuel
 J'ai trouvé le thème doom-one vraiment sympa.
@@ -167,7 +183,7 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 #+end_src
 * Packages
 ** Completion
-*** Text
+*** TODO Text
 **** Company https://company-mode.github.io/
    #+begin_src emacs-lisp :tangle yes
      (use-package company
@@ -208,7 +224,7 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
       (eval-after-load "company"
         '(add-to-list 'company-backends 'company-anaconda))
       #+end_src
-*** yasSnipets
+*** DONE yasSnipets
      yasnippet permet d'ajouter des blocs de codes prédéfinis.
      #+begin_src emacs-lisp :tangle yes
        (use-package yasnippet
@@ -242,7 +258,8 @@ correspondant dans les blocs source.
 
 Afin de pouvoir gérer ipython, il faut installer le package org-babel ipython
 #+begin_src emacs-lisp :tangle yes
-(use-package ob-ipython)
+  (use-package ob-ipython
+    :after org)
 #+end_src
 
 ajout du support de certains languages dans org-babel
@@ -377,7 +394,7 @@ to come arount rainbow delimiter incompatibility issues :
 (global-set-key "\C-c\C-gg" 'writegood-grade-level)
 (global-set-key "\C-c\C-ge" 'writegood-reading-ease)
 #+end_src
-** Dashboard
+** DONE Dashboard
 https://github.com/emacs-dashboard/emacs-dashboard
 An extensible emacs startup screen showing you what’s most important.
 install page-break-lines as it is required for dashboard.
@@ -449,7 +466,7 @@ and popup menus.
   (projectile-global-mode))
 #+end_src
 
-** Déplacements entre buffers
+** DONE Déplacements entre buffers
 #+begin_src emacs-lisp :tangle yes
 (use-package windmove
   :bind
@@ -458,7 +475,7 @@ and popup menus.
   ("C-x <left>" . windmove-left)
   ("C-x <right>" . windmove-right))
 #+end_src
-** Next key
+** DONE Next key
 #+begin_src emacs-lisp :tangle yes
   (use-package which-key
     :ensure t
@@ -466,7 +483,7 @@ and popup menus.
     :config
     (add-hook 'after-init-hook 'which-key-mode))
 #+end_src
-** Expend selected region
+** DONE Expend selected region
 #+begin_src emacs-lisp :tangle yes
   (use-package expand-region
     :ensure t
@@ -495,7 +512,7 @@ expend parents redondant avec smartparens ?
 (add-hook 'prog-mode-hook 'electric-pair-mode)
 #+end_src
 
-** Move text
+** DONE Move text
 #+begin_src emacs-lisp :tangle yes
 (use-package move-text)
 #+end_src
@@ -524,13 +541,13 @@ suivant de ma config.
 #+RESULTS:
 | html-mode | bibtex-mode | cider-repl-mode | coffee-mode | comint-mode | conf-mode | Custom-mode | diff-mode | doc-view-mode | dos-mode | erc-mode | feature-mode | fortran-mode | f90-mode | jabber-chat-mode | haml-mode | haskell-mode | haskell-interactive-mode | image-mode | inf-ruby-mode | makefile-mode | makefile-gmake-mode | minibuffer-inactive-mode | netcmd-mode | sass-mode | scala-mode | slim-mode | special-mode | shell-mode | snippet-mode | eshell-mode | tabulated-list-mode | term-mode | TeX-output-mode | text-mode | yaml-mode |
 
-** Gestionnaire de version (Magit)
+** DONE Gestionnaire de version (Magit)
 #+begin_src emacs-lisp :tangle yes
   (use-package magit
     :ensure t
     :bind ("C-x g" . magit-status))
 #+end_src
-** Syntaxe (Flycheck)
+** TODO Syntaxe (Flycheck)
 J'utilise flycheck pour vérifier la syntaxe à la volée
 #+begin_src emacs-lisp :tangle yes
 (use-package flycheck
@@ -538,7 +555,7 @@ J'utilise flycheck pour vérifier la syntaxe à la volée
   :init (global-flycheck-mode))
 #+end_src
 
-** Orthographe (Fly Spell)
+** DONE Orthographe (Fly Spell)
 
 #+begin_src emacs-lisp :tangle yes
 (use-package flyspell)
