@@ -683,6 +683,50 @@ live py est sympa mais uniquement pour des logiciels simples.
 #+begin_src emacs-lisp
   (use-package py-autopep8)
 #+end_src
+** TODO Markdown
+#+begin_src emacs-lisp
+(use-package markdown-mode
+  :ensure t
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "multimarkdown"))
+#+end_src
+
+Ne fonctionne pas sur firefox actuellement.
+#+begin_src emacs-lisp :tangle no
+(use-package flymd)
+#+end_src
+
+*** TODO preview
+vmd-mode
+#+begin_src emacs-lisp :tangle no
+(use-package vmd-mode)
+#+end_src
+
+#+BEGIN_SRC bash :tangle no
+sudo npm install -g vmd
+#+END_SRC
+
+#+RESULTS:
+
+https://github.com/jamcha-aa/auto-org-md/tree/9318338bdb7fe8bd698d88f3af89b2d6413efdd2
+*** TODO Preview (grip)
+
+#+begin_src emacs-lisp :tangle no
+;; Use keybindings
+(use-package grip-mode)
+#+end_src
+
+#+RESULTS:
+
+#+BEGIN_SRC bash :tangle install.sh
+sudo apt install grip
+#+END_SRC
+
+#+RESULTS:
+
 ** Contrôle de programmes externes
 
 Openwith permet d'ouvrir certains types de fichiers avec des outils
@@ -718,3 +762,5 @@ Un simple outil permettant de naviguer plus facilement dans un fichier Json.
 #+begin_src emacs-lisp :tangle no
   (use-package json-navigator)
 #+end_src
+** Blog
+https://github.com/masasam/emacs-easy-hugo
