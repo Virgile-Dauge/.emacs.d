@@ -304,7 +304,7 @@
 (add-hook 'LaTeX-mode-hook 'flyspell-mode)
 (add-hook 'org-mode-hook 'flyspell-mode)
 
-(let ((langs '("english" "francais")))
+(let ((langs '("francais" "english")))
   (setq lang-ring (make-ring (length langs)))
   (dolist (elem langs) (ring-insert lang-ring elem)))
 

@@ -572,7 +572,7 @@ On veut l'activer sur org et Latex :
 Afin de pouvoir changer de langue facilement, j'ai trouvé la fonction
 suivante :
 #+begin_src emacs-lisp :tangle yes
-    (let ((langs '("english" "francais")))
+    (let ((langs '("francais" "english")))
       (setq lang-ring (make-ring (length langs)))
       (dolist (elem langs) (ring-insert lang-ring elem)))
 
