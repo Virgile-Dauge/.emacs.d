@@ -32,7 +32,13 @@ Initialisation des dépôts d'archives et installation de use-package.
 #+end_src
 
 ** MAJ automatique
-
+#+begin_src emacs-lisp :tangle yes
+(use-package auto-package-update
+  :config
+  (setq auto-package-update-delete-old-versions t)
+  (setq auto-package-update-hide-results t)
+  (auto-package-update-maybe))
+#+end_src
 
 ** Sauvegardes
 Gestion des backups :
@@ -374,6 +380,11 @@ to come arount rainbow delimiter incompatibility issues :
 (use-package ox-beamer)
 #+end_src
 
+**** Github Markdown
+#+begin_src emacs-lisp :tangle yes
+  (use-package ox-gfm
+    :after org)
+#+end_src
 *** Tangle
 #+begin_src emacs-lisp :tangle yes
 ;;; noweb expansion only when you tangle

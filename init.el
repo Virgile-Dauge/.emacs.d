@@ -21,6 +21,12 @@
   :config (auto-compile-on-load-mode))
 (setq load-prefer-newer t)
 
+(use-package auto-package-update
+  :config
+  (setq auto-package-update-delete-old-versions t)
+  (setq auto-package-update-hide-results t)
+  (auto-package-update-maybe))
+
 (setq backup-directory-alist '(("." . "~/.emacs.d/backup"))
     backup-by-copying t    ; Don't delink hardlinks
     version-control t      ; Use version numbers on backups
@@ -204,6 +210,9 @@
       (progn
         (ad-enable-advice 'htmlize-buffer-1 'around 'ome-htmlize-buffer-1)
         (ad-activate 'htmlize-buffer-1))))
+
+(use-package ox-gfm
+  :after org)
 
 ;;; noweb expansion only when you tangle
 (setq org-babel-default-header-args
