@@ -210,6 +210,15 @@
             (assq-delete-all :noweb org-babel-default-header-args))
       )
 
+(use-package writegood-mode
+    :ensure t
+    :bind ("C-c g" . writegood-mode)
+    :config
+    (add-to-list 'writegood-weasel-words "actionable"))
+
+(global-set-key "\C-c\C-gg" 'writegood-grade-level)
+(global-set-key "\C-c\C-ge" 'writegood-reading-ease)
+
 (use-package page-break-lines)
 (use-package dashboard
   :ensure t
@@ -339,5 +348,3 @@
 (use-package openwith)
 (openwith-mode t)
 (setq openwith-associations '(("\\.pdf\\'" "evince" (file))))
-
-(use-package json-navigator)

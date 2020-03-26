@@ -281,6 +281,14 @@ ajout du support de certains languages dans org-babel
 (setq org-latex-pdf-process (list "latexmk -shell-escape -bibtex -f -pdf %f"))
 #+end_src
 
+*** Dashboard
+
+#+begin_src emacs-lisp :tangle no
+(use-package org-dashboard)
+#+end_src
+
+#+begin_example
+
 *** Export
 Liste des exporteurs : https://orgmode.org/worg/exporters/index.html
 
@@ -359,12 +367,15 @@ to come arount rainbow delimiter incompatibility issues :
 #+end_src
 
 ** Writegood mode : besoin de tests
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp :tangle yes
 (use-package writegood-mode
     :ensure t
     :bind ("C-c g" . writegood-mode)
     :config
     (add-to-list 'writegood-weasel-words "actionable"))
+
+(global-set-key "\C-c\C-gg" 'writegood-grade-level)
+(global-set-key "\C-c\C-ge" 'writegood-reading-ease)
 #+end_src
 ** Dashboard
 https://github.com/emacs-dashboard/emacs-dashboard
@@ -513,7 +524,7 @@ suivant de ma config.
 #+RESULTS:
 | html-mode | bibtex-mode | cider-repl-mode | coffee-mode | comint-mode | conf-mode | Custom-mode | diff-mode | doc-view-mode | dos-mode | erc-mode | feature-mode | fortran-mode | f90-mode | jabber-chat-mode | haml-mode | haskell-mode | haskell-interactive-mode | image-mode | inf-ruby-mode | makefile-mode | makefile-gmake-mode | minibuffer-inactive-mode | netcmd-mode | sass-mode | scala-mode | slim-mode | special-mode | shell-mode | snippet-mode | eshell-mode | tabulated-list-mode | term-mode | TeX-output-mode | text-mode | yaml-mode |
 
-** magit
+** Gestionnaire de version (Magit)
 #+begin_src emacs-lisp :tangle yes
   (use-package magit
     :ensure t
@@ -644,12 +655,16 @@ live py est sympa mais uniquement pour des logiciels simples.
 #+begin_src emacs-lisp :tangle yes
   (use-package py-autopep8)
 #+end_src
-** External programs
+** Contrôle de programmes externes
+
+Openwith permet d'ouvrir certains types de fichiers avec des outils
+externes.
 #+begin_src emacs-lisp :tangle yes
 (use-package openwith)
 (openwith-mode t)
 (setq openwith-associations '(("\\.pdf\\'" "evince" (file))))
 #+end_src
+
 Spotify.el : je n'arrive pas à le faire fonctionner correctement
 #+begin_src emacs-lisp :tangle no
   (use-package spotify
@@ -671,19 +686,7 @@ Counsel-spotify:
   )
 #+end_src
 ** JSON
-#+begin_src emacs-lisp :tangle yes
+Un simple outil permettant de naviguer plus facilement dans un fichier Json.
+#+begin_src emacs-lisp :tangle no
   (use-package json-navigator)
 #+end_src
-** Scimax Latex
-#+begin_src emacs-lisp :tangle no
-(use-package scimax-latex
-  :straight (scimax-latex :type git
-                          :host github
-                          :repo "jkitchin/scimax"
-                          :files ("scimax-latex.el"))
-  :commands (scimax-latex-setup
-             kpsewhich
-             texdoc))
-#+end_src
-
-#+RESULTS:
