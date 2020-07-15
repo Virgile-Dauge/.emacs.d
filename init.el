@@ -154,6 +154,8 @@
     (setq org-confirm-babel-evaluate nil)
 )
 
+(add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append)
+
 (use-package org-bullets
     :ensure t
     :config

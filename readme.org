@@ -283,6 +283,11 @@ ajout du support de certains languages dans org-babel
 )
 #+end_src
 
+Toujours afficher les images après les avoir générées:
+
+#+begin_src emacs-lisp
+(add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append)
+#+end_src
 *** Apparence
 
 Permet d'afficher des symboles utf-8 plutôt que des astérisques.
