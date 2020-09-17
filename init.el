@@ -126,6 +126,33 @@
            ("<=" . "≤")
            ("=" . "≝")))))
 
+;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+(setq lsp-keymap-prefix "C-l")
+
+(use-package lsp-mode
+    :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+            (python-mode . lsp)
+            ;; if you want which-key integration
+            (lsp-mode . lsp-enable-which-key-integration))
+    :commands lsp)
+
+;; optionally
+(use-package lsp-ui :commands lsp-ui-mode)
+;; if you are helm user
+;;(use-package helm-lsp :commands helm-lsp-workspace-symbol)
+;; if you are ivy user
+(use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
+(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
+
+;; optionally if you want to use debugger
+(use-package dap-mode)
+;; (use-package dap-LANGUAGE) to load the dap adapter for your language
+(use-package dap-PYTHON)
+;; optional if you want which-key integration
+;;(use-package which-key
+;;    :config
+;;    (which-key-mode))
+
 (use-package yasnippet
   :config
   (yas-global-mode 1))
@@ -172,6 +199,16 @@
 (use-package ox-twbs
     :ensure t)
 
+(add-to-list 'org-latex-packages-alist '("" "xcolor"))
+(add-to-list 'org-latex-packages-alist '("" "minted"))
+
+(setq org-latex-listings 'minted)
+
+(setq org-latex-header-extra
+      '(concat
+        org-latex-header-extra
+        "\\usemintedstyle{native}"))
+
 (use-package ox-reveal)
 (setq org-reveal-root "file:///home/virgile/reveal.js")
 (use-package htmlize)
@@ -189,6 +226,21 @@
 
 (use-package ox-gfm
   :after org)
+
+(defun my/org-inline-css-hook (exporter)
+  "Insert custom inline css to automatically set the
+background of code to whatever theme I'm using's background"
+
+  (let* ((my-pre-bg (face-background 'default))
+         (my-pre-fg (face-foreground 'default)))
+    (setq
+     org-html-head-extra
+     (concat
+      org-html-head-extra
+      (format "<style type=\"text/css\">\n pre.src {background-color: %s; color: %s;}</style>\n"
+              my-pre-bg my-pre-fg)))))
+
+(add-hook 'org-export-before-processing-hook 'my/org-inline-css-hook)
 
 ;;; noweb expansion only when you tangle
 (setq org-babel-default-header-args
