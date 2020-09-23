@@ -42,6 +42,10 @@
   (tool-bar-mode -1))
 (when (  fboundp 'scroll-bar-mode)
   (scroll-bar-mode -1))
+(when (  fboundp 'tooltip-mode)
+  (tooltip-mode -1))
+
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 (setq show-paren-delay 0)
 (show-paren-mode 1)
@@ -60,6 +64,13 @@
 (set-selection-coding-system 'utf-8)   ; please
 (prefer-coding-system        'utf-8)   ; with sugar on top
 (setq default-process-coding-system '(utf-8-unix . utf-8-unix))
+
+;;(unbind-key "C-x C-f") ;; find-file-read-only
+;;(unbind-key "C-x C-d") ;; list-directory
+(unbind-key "C-z") ;; suspend-frame
+(unbind-key "M-o") ;; facemenu-mode
+(unbind-key "<mouse-2>") ;; pasting with mouse-wheel click
+(unbind-key "<C-wheel-down>") ;; text scale adjust
 
 (use-package doom-modeline
   :ensure t
@@ -124,6 +135,42 @@
            (">=" . "≥")
            ("<=" . "≤")
            ("=" . "≝")))))
+
+(use-package multiple-cursors
+  :bind (("C-c m m" . #'mc/edit-lines )
+         ("C-c m d" . #'mc/mark-all-dwim )))
+
+(use-package iedit)
+
+(defun iedit-dwim (arg)
+  "Starts iedit but uses \\[narrow-to-defun] to limit its scope."
+  (interactive "P")
+  (if arg
+      (iedit-mode)
+    (save-excursion
+      (save-restriction
+        (widen)
+        ;; this function determines the scope of `iedit-start'.
+        (if iedit-mode
+            (iedit-done)
+          ;; `current-word' can of course be replaced by other
+          ;; functions.
+          (narrow-to-defun)
+          (iedit-start (current-word) (point-min) (point-max)))))))
+
+
+
+(global-set-key (kbd "C-c i") 'iedit-dwim)
+
+(use-package diminish
+  :config (diminish 'eldoc-mode))
+
+(use-package undo-tree
+  :diminish
+  :bind (("C-c _" . undo-tree-visualize))
+  :config
+  (global-undo-tree-mode +1)
+  (unbind-key "M-_" undo-tree-map))
 
 ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
 (setq lsp-keymap-prefix "C-l")
