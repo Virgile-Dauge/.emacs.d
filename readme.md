@@ -1,60 +1,67 @@
-- [Config ShortCut](#org6bbca40)
-- [Base](#orgb60ecf8)
-  - [Initialisation et use-package](#org7cf09d5)
-  - [MAJ automatique](#org46c0886)
-  - [Sauvegardes](#orgdf33671)
-  - [Emacs serveur](#orgfd73c73)
-  - [Lazy loading](#orge662ee6)
-- [Theme](#org4188d39)
-  - [Actuel](#org1924231)
-  - [A tester :](#orgd056226)
-    - [Mood-one](#org51fdbbd)
-    - [Night owl](#orgf461e45)
-    - [SubAtomic](#orgc82792d)
-  - [Compléments](#org3daf950)
-  - [Fonts](#org0453177)
-  - [pretty symbols](#org25251c9)
-- [Packages](#orgbeaac30)
-  - [LSP](#orgae342e7)
-  - [Completion](#orgf3c6cc6)
-    - [Text](#orgc5d88fc)
-    - [yasSnipets](#org75b78c7)
-  - [Org](#orgb753475)
-    - [Ajout d'org-mode et quelques config](#org1a828a9)
-    - [Blocs source (babel)](#org7b31863)
-    - [Apparence](#orgd58cdd0)
-    - [Gestion références et citations](#orgaf7b8e1)
-    - [Tableau de bord](#org2c7dced)
-    - [Export](#orgb32af86)
-    - [Tangle](#org56dc743)
-    - [Tree view](#orge98d32a)
-  - [Writegood mode : besoin de tests](#orgc4b98ce)
-  - [Dashboard](#orga06ef6c)
-  - [COunsel ivy swiper](#orgc118be7)
-  - [Line number](#org2008b70)
-  - [Gestion projets](#orga6cb232)
-  - [Déplacements entre buffers](#orgbd6aca3)
-  - [Next key](#orgde33c88)
-  - [Expend selected region](#org21912c0)
-  - [Parenthèses et autres](#orgc9ffb08)
-  - [Move text](#org0174b18)
-  - [Indentation](#org78513ba)
-  - [Gestionnaire de version (Magit)](#org66694bc)
-  - [Syntaxe (Flycheck)](#org02c346f)
-  - [Orthographe (Fly Spell)](#orgdefe852)
-  - [C/C++](#orgd81b847)
-  - [Python](#org477e721)
-    - [Auto Format](#orgd43a5af)
-  - [Markdown](#org8a039f2)
-    - [preview](#org10b04ea)
-    - [Preview (grip)](#org6f9d42f)
-  - [Contrôle de programmes externes](#org03f6740)
-  - [JSON](#org096c7dd)
-  - [Blog](#orgeafd663)
+- [Config ShortCut](#orgc1626f4)
+- [Base](#orgbcb2863)
+  - [Initialisation et use-package](#org551340c)
+  - [MAJ automatique](#org51c201d)
+  - [Configs simples](#orgd07b952)
+    - [Suppression de la selection](#orgcb62ebe)
+    - [Suppression des backups/autosaves/locks](#org230890d)
+    - [Suppression des menus](#org0dcdd2f)
+    - [Montrer les paires de parenthèses](#org4d94aca)
+    - [Désactivation du curseur hors de la fenêtre sélectionnée](#orgabccf2a)
+    - [Suppression des espaces avant sauvegarde du fichier](#orge31e8c8)
+    - [Encodage Utf8 par défaut](#org4efaeca)
+  - [Emacs serveur](#org0358f5c)
+  - [Lazy loading](#org067dc12)
+- [Theme](#org39959e9)
+  - [Actuel](#org7a19e66)
+  - [A tester :](#org473fea6)
+    - [Mood-one](#org30fd124)
+    - [Night owl](#org3989fb7)
+    - [SubAtomic](#org1a2ecd9)
+  - [Compléments](#org2ad4394)
+  - [Fonts](#orgca579d5)
+  - [pretty symbols](#org684a568)
+- [Packages](#org23906e1)
+  - [LSP](#orgbce6d5c)
+  - [Completion](#orgf90c642)
+    - [Text](#orgbaa862f)
+    - [yasSnipets](#org1b73a62)
+  - [Org](#orgc4676a7)
+    - [Ajout d'org-mode et quelques config](#org4a1b2ca)
+    - [Blocs source (babel)](#org23e70c4)
+    - [Apparence](#org99ac45c)
+    - [Gestion références et citations](#orgb35e12d)
+    - [Tableau de bord](#orgd1512fe)
+    - [Export](#orgedd3219)
+    - [Tangle](#org9123e81)
+    - [Tree view](#org8e7a662)
+  - [Writegood mode : besoin de tests](#orga912bd3)
+  - [Dashboard](#orgd7b4f0d)
+  - [COunsel ivy swiper](#org1cdd1c8)
+  - [Line number](#org47652fe)
+  - [Gestion projets](#org147e51d)
+  - [Déplacements entre buffers](#org58ea4f3)
+  - [Next key](#org12f547f)
+  - [Expend selected region](#org6cd6684)
+  - [Parenthèses et autres](#org48cf7e0)
+  - [Move text](#org5af4505)
+  - [Indentation](#org0538cd9)
+  - [Gestionnaire de version (Magit)](#orgf7f808c)
+  - [Syntaxe (Flycheck)](#org6277c71)
+  - [Orthographe (Fly Spell)](#org09a021a)
+  - [C/C++](#orgee7087e)
+  - [Python](#org5a2409d)
+    - [Auto Format](#org2cd7783)
+  - [Markdown](#org655693f)
+    - [preview](#org8560c32)
+    - [Preview (grip)](#org3d79bae)
+  - [Contrôle de programmes externes](#org2529538)
+  - [JSON](#org9710f85)
+  - [Blog](#org5516581)
 
 
 
-<a id="org6bbca40"></a>
+<a id="orgc1626f4"></a>
 
 # DONE Config ShortCut
 
@@ -68,12 +75,12 @@
 ```
 
 
-<a id="orgb60ecf8"></a>
+<a id="orgbcb2863"></a>
 
 # TODO Base
 
 
-<a id="org7cf09d5"></a>
+<a id="org551340c"></a>
 
 ## Initialisation et use-package
 
@@ -98,7 +105,7 @@ Initialisation des dépôts d'archives et installation de use-package.
 ```
 
 
-<a id="org46c0886"></a>
+<a id="org51c201d"></a>
 
 ## MAJ automatique
 
@@ -111,27 +118,94 @@ Initialisation des dépôts d'archives et installation de use-package.
 ```
 
 
-<a id="orgdf33671"></a>
+<a id="orgd07b952"></a>
 
-## Sauvegardes
+## Configs simples
 
-Gestion des backups :
+
+<a id="orgcb62ebe"></a>
+
+### Suppression de la selection
+
+C'est un comportement dont j'ai l'habitude :
 
 ```emacs-lisp
-(setq backup-directory-alist '(("." . "~/.emacs.d/backup"))
-    backup-by-copying t    ; Don't delink hardlinks
-    version-control t      ; Use version numbers on backups
-    delete-old-versions t  ; Automatically delete excess backups
-    kept-new-versions 20   ; how many of the newest versions to keep
-    kept-old-versions 5    ; and how many of the old
-    )
+(delete-selection-mode t)
 ```
+
+
+<a id="org230890d"></a>
+
+### Suppression des backups/autosaves/locks
+
+```emacs-lisp
+(setq
+ make-backup-files nil
+ auto-save-default nil
+ create-lockfiles nil)
+```
+
+
+<a id="org0dcdd2f"></a>
+
+### Suppression des menus
 
 Désactiver le startup screen :
 
 ```emacs-lisp
 (setq inhibit-startup-screen t)
 ```
+
+Enlever les barres de menu et d'outils, c'est un minimum :
+
+```emacs-lisp
+;; Disable toolbar & menubar
+(menu-bar-mode -1)
+(when (fboundp 'tool-bar-mode)
+  (tool-bar-mode -1))
+(when (  fboundp 'scroll-bar-mode)
+  (scroll-bar-mode -1))
+```
+
+
+<a id="org4d94aca"></a>
+
+### Montrer les paires de parenthèses
+
+Montrer les paires de parenthèses : <https://www.emacswiki.org/emacs/ShowParenMode>
+
+```emacs-lisp
+(setq show-paren-delay 0)
+(show-paren-mode 1)
+```
+
+
+<a id="orgabccf2a"></a>
+
+### Désactivation du curseur hors de la fenêtre sélectionnée
+
+Désactiver le curseur dans les fenetres non-actives:
+
+```emacs-lisp
+(setq-default cursor-in-non-selected-windows 'hollow)
+```
+
+
+<a id="orge31e8c8"></a>
+
+### Suppression des espaces avant sauvegarde du fichier
+
+Suppression des espaces en fin de fichier avant de sauvegarder :
+
+```emacs-lisp
+;; Delete trailing whitespace before save
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+```
+
+
+<a id="org4efaeca"></a>
+
+### Encodage Utf8 par défaut
 
 Tout passer en utf-8
 
@@ -147,39 +221,8 @@ Tout passer en utf-8
 (setq default-process-coding-system '(utf-8-unix . utf-8-unix))
 ```
 
-Enlever les barres de menu et d'outils, c'est un minimum :
 
-```emacs-lisp
-;; Disable toolbar & menubar
-(menu-bar-mode -1)
-(when (fboundp 'tool-bar-mode)
-  (tool-bar-mode -1))
-(when (  fboundp 'scroll-bar-mode)
-  (scroll-bar-mode -1))
-```
-
-Montrer les paires de parenthèses : <https://www.emacswiki.org/emacs/ShowParenMode>
-
-```emacs-lisp
-(setq show-paren-delay 0)
-(show-paren-mode 1)
-```
-
-Désactiver le curseur dans les fenetres non-actives:
-
-```emacs-lisp
-(setq-default cursor-in-non-selected-windows 'hollow)
-```
-
-Suppression des espaces en fin de fichier avant de sauvegarder :
-
-```emacs-lisp
-;; Delete trailing whitespace before save
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
-```
-
-
-<a id="orgfd73c73"></a>
+<a id="org0358f5c"></a>
 
 ## TODO Emacs serveur
 
@@ -190,21 +233,21 @@ systemctl --user enable emacs
 ```
 
 
-<a id="orge662ee6"></a>
+<a id="org067dc12"></a>
 
 ## TODO Lazy loading
 
 <https://github.com/jwiegley/use-package#notes-about-lazy-loading>
 
 
-<a id="org4188d39"></a>
+<a id="org39959e9"></a>
 
 # DONE Theme
 
 Le site <https://peach-melpa.org/> propose une galerie des themes Emacs disponibles sur MELPA.
 
 
-<a id="org1924231"></a>
+<a id="org7a19e66"></a>
 
 ## Actuel
 
@@ -227,33 +270,33 @@ J'ai trouvé le thème doom-one vraiment sympa.
 ```
 
 
-<a id="orgd056226"></a>
+<a id="org473fea6"></a>
 
 ## A tester :
 
 
-<a id="org51fdbbd"></a>
+<a id="org30fd124"></a>
 
 ### Mood-one
 
 Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo est peut-être moins active. <https://gitlab.com/jessieh/mood-one-theme>
 
 
-<a id="orgf461e45"></a>
+<a id="org3989fb7"></a>
 
 ### Night owl
 
 <https://github.com/aaronjensen/night-owl-emacs>
 
 
-<a id="orgc82792d"></a>
+<a id="org1a2ecd9"></a>
 
 ### SubAtomic
 
 <https://peach-melpa.org/themes/subatomic-theme/variants/subatomic?lang=rb>
 
 
-<a id="org3daf950"></a>
+<a id="org2ad4394"></a>
 
 ## Compléments
 
@@ -262,7 +305,7 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 ```
 
 
-<a id="org0453177"></a>
+<a id="orgca579d5"></a>
 
 ## Fonts
 
@@ -272,7 +315,7 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 ```
 
 
-<a id="org25251c9"></a>
+<a id="org684a568"></a>
 
 ## pretty symbols
 
@@ -324,12 +367,12 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 ```
 
 
-<a id="orgbeaac30"></a>
+<a id="org23906e1"></a>
 
 # Packages
 
 
-<a id="orgae342e7"></a>
+<a id="orgbce6d5c"></a>
 
 ## LSP
 
@@ -363,12 +406,12 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 ```
 
 
-<a id="orgf3c6cc6"></a>
+<a id="orgf90c642"></a>
 
 ## Completion
 
 
-<a id="orgc5d88fc"></a>
+<a id="orgbaa862f"></a>
 
 ### TODO Text
 
@@ -419,7 +462,7 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
         ```
 
 
-<a id="org75b78c7"></a>
+<a id="org1b73a62"></a>
 
 ### TODO yasSnipets
 
@@ -440,14 +483,14 @@ adding a collection of snippets
 1.  TODO Ajout de snippets personalisés:
 
 
-<a id="orgb753475"></a>
+<a id="orgc4676a7"></a>
 
 ## Org
 
 <https://orgmode.org/worg/org-tutorials/org4beginners.html>
 
 
-<a id="org1a828a9"></a>
+<a id="org4a1b2ca"></a>
 
 ### Ajout d'org-mode et quelques config
 
@@ -464,7 +507,7 @@ ici, fontify et act natively servent à utiliser le mode majeur correspondant da
 ```
 
 
-<a id="org7b31863"></a>
+<a id="org23e70c4"></a>
 
 ### Blocs source (babel)
 
@@ -499,7 +542,7 @@ Toujours afficher les images après les avoir générées:
 ```
 
 
-<a id="orgd58cdd0"></a>
+<a id="org99ac45c"></a>
 
 ### Apparence
 
@@ -515,7 +558,7 @@ Permet d'afficher des symboles utf-8 plutôt que des astérisques.
 ```
 
 
-<a id="orgaf7b8e1"></a>
+<a id="orgb35e12d"></a>
 
 ### TODO Gestion références et citations
 
@@ -526,7 +569,7 @@ Permet d'afficher des symboles utf-8 plutôt que des astérisques.
 ```
 
 
-<a id="org2c7dced"></a>
+<a id="orgd1512fe"></a>
 
 ### Tableau de bord
 
@@ -537,7 +580,7 @@ Permet d'afficher des symboles utf-8 plutôt que des astérisques.
 \#+begin<sub>example</sub>
 
 
-<a id="orgb32af86"></a>
+<a id="orgedd3219"></a>
 
 ### Export
 
@@ -666,7 +709,7 @@ Liste des exporteurs : <https://orgmode.org/worg/exporters/index.html>
     ```
 
 
-<a id="org56dc743"></a>
+<a id="org9123e81"></a>
 
 ### Tangle
 
@@ -679,7 +722,7 @@ Liste des exporteurs : <https://orgmode.org/worg/exporters/index.html>
 ```
 
 
-<a id="orge98d32a"></a>
+<a id="org8e7a662"></a>
 
 ### Tree view
 
@@ -702,7 +745,7 @@ On va utiliser *org-sidebar*, mais il dépend de :
 ```
 
 
-<a id="orgc4b98ce"></a>
+<a id="orga912bd3"></a>
 
 ## TODO Writegood mode : besoin de tests
 
@@ -718,7 +761,7 @@ On va utiliser *org-sidebar*, mais il dépend de :
 ```
 
 
-<a id="orga06ef6c"></a>
+<a id="orgd7b4f0d"></a>
 
 ## DONE Dashboard
 
@@ -733,7 +776,7 @@ On va utiliser *org-sidebar*, mais il dépend de :
 ```
 
 
-<a id="orgc118be7"></a>
+<a id="org1cdd1c8"></a>
 
 ## COunsel ivy swiper
 
@@ -768,7 +811,7 @@ On va utiliser *org-sidebar*, mais il dépend de :
 ```
 
 
-<a id="org2008b70"></a>
+<a id="org47652fe"></a>
 
 ## TODO Line number
 
@@ -784,7 +827,7 @@ On va utiliser *org-sidebar*, mais il dépend de :
 ```
 
 
-<a id="orga6cb232"></a>
+<a id="org147e51d"></a>
 
 ## TODO Gestion projets
 
@@ -800,7 +843,7 @@ On va utiliser *org-sidebar*, mais il dépend de :
 ```
 
 
-<a id="orgbd6aca3"></a>
+<a id="org58ea4f3"></a>
 
 ## DONE Déplacements entre buffers
 
@@ -814,7 +857,7 @@ On va utiliser *org-sidebar*, mais il dépend de :
 ```
 
 
-<a id="orgde33c88"></a>
+<a id="org12f547f"></a>
 
 ## DONE Next key
 
@@ -827,7 +870,7 @@ On va utiliser *org-sidebar*, mais il dépend de :
 ```
 
 
-<a id="org21912c0"></a>
+<a id="org6cd6684"></a>
 
 ## DONE Expend selected region
 
@@ -838,7 +881,7 @@ On va utiliser *org-sidebar*, mais il dépend de :
 ```
 
 
-<a id="orgc9ffb08"></a>
+<a id="org48cf7e0"></a>
 
 ## Parenthèses et autres
 
@@ -868,7 +911,7 @@ expend parents redondant avec smartparens ?
 ```
 
 
-<a id="org0174b18"></a>
+<a id="org5af4505"></a>
 
 ## DONE Move text
 
@@ -877,7 +920,7 @@ expend parents redondant avec smartparens ?
 ```
 
 
-<a id="org78513ba"></a>
+<a id="org0538cd9"></a>
 
 ## TODO Indentation
 
@@ -897,7 +940,7 @@ aggressive indent ne fonctionne pas avec python, on peut l'activer, mais cela ne
 ```
 
 
-<a id="org66694bc"></a>
+<a id="orgf7f808c"></a>
 
 ## DONE Gestionnaire de version (Magit)
 
@@ -908,7 +951,7 @@ aggressive indent ne fonctionne pas avec python, on peut l'activer, mais cela ne
 ```
 
 
-<a id="org02c346f"></a>
+<a id="org6277c71"></a>
 
 ## TODO Syntaxe (Flycheck)
 
@@ -921,7 +964,7 @@ J'utilise Flycheck pour vérifier la syntaxe à la volée
 ```
 
 
-<a id="orgdefe852"></a>
+<a id="org09a021a"></a>
 
 ## DONE Orthographe (Fly Spell)
 
@@ -982,7 +1025,7 @@ Pour appliquer la correction, deux solutions me paraissent valables :
 ```
 
 
-<a id="orgd81b847"></a>
+<a id="orgee7087e"></a>
 
 ## TODO C/C++
 
@@ -1019,7 +1062,7 @@ Ajout du support de flycheck
 ```
 
 
-<a id="org477e721"></a>
+<a id="org5a2409d"></a>
 
 ## Python
 
@@ -1054,7 +1097,7 @@ live py est sympa mais uniquement pour des logiciels simples.
 ```
 
 
-<a id="orgd43a5af"></a>
+<a id="org2cd7783"></a>
 
 ### Auto Format
 
@@ -1063,7 +1106,7 @@ live py est sympa mais uniquement pour des logiciels simples.
 ```
 
 
-<a id="org8a039f2"></a>
+<a id="org655693f"></a>
 
 ## TODO Markdown
 
@@ -1084,7 +1127,7 @@ Ne fonctionne pas sur firefox actuellement.
 ```
 
 
-<a id="org10b04ea"></a>
+<a id="org8560c32"></a>
 
 ### TODO preview
 
@@ -1101,7 +1144,7 @@ sudo npm install -g vmd
 <https://github.com/jamcha-aa/auto-org-md/tree/9318338bdb7fe8bd698d88f3af89b2d6413efdd2>
 
 
-<a id="org6f9d42f"></a>
+<a id="org3d79bae"></a>
 
 ### TODO Preview (grip)
 
@@ -1115,7 +1158,7 @@ sudo apt install grip
 ```
 
 
-<a id="org03f6740"></a>
+<a id="org2529538"></a>
 
 ## Contrôle de programmes externes
 
@@ -1151,7 +1194,7 @@ Counsel-spotify:
 ```
 
 
-<a id="org096c7dd"></a>
+<a id="org9710f85"></a>
 
 ## JSON
 
@@ -1162,7 +1205,7 @@ Un simple outil permettant de naviguer plus facilement dans un fichier Json.
 ```
 
 
-<a id="orgeafd663"></a>
+<a id="org5516581"></a>
 
 ## Blog
 

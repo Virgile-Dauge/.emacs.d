@@ -27,25 +27,14 @@
   (setq auto-package-update-hide-results t)
   (auto-package-update-maybe))
 
-(setq backup-directory-alist '(("." . "~/.emacs.d/backup"))
-    backup-by-copying t    ; Don't delink hardlinks
-    version-control t      ; Use version numbers on backups
-    delete-old-versions t  ; Automatically delete excess backups
-    kept-new-versions 20   ; how many of the newest versions to keep
-    kept-old-versions 5    ; and how many of the old
-    )
+(delete-selection-mode t)
+
+(setq
+ make-backup-files nil
+ auto-save-default nil
+ create-lockfiles nil)
 
 (setq inhibit-startup-screen t)
-
-;; Core settings
-;; UTF-8 please
-(set-charset-priority 'unicode)
-(setq locale-coding-system   'utf-8)   ; pretty
-(set-terminal-coding-system  'utf-8)   ; pretty
-(set-keyboard-coding-system  'utf-8)   ; pretty
-(set-selection-coding-system 'utf-8)   ; please
-(prefer-coding-system        'utf-8)   ; with sugar on top
-(setq default-process-coding-system '(utf-8-unix . utf-8-unix))
 
 ;; Disable toolbar & menubar
 (menu-bar-mode -1)
@@ -61,6 +50,16 @@
 
 ;; Delete trailing whitespace before save
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+;; Core settings
+;; UTF-8 please
+(set-charset-priority 'unicode)
+(setq locale-coding-system   'utf-8)   ; pretty
+(set-terminal-coding-system  'utf-8)   ; pretty
+(set-keyboard-coding-system  'utf-8)   ; pretty
+(set-selection-coding-system 'utf-8)   ; please
+(prefer-coding-system        'utf-8)   ; with sugar on top
+(setq default-process-coding-system '(utf-8-unix . utf-8-unix))
 
 (use-package doom-modeline
   :ensure t
@@ -371,16 +370,3 @@ background of code to whatever theme I'm using's background"
 (use-package openwith)
 (openwith-mode t)
 (setq openwith-associations '(("\\.pdf\\'" "evince" (file))))
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(dap-PYTHON yasnippet-snippets which-key use-package smex smartparens rainbow-delimiters py-autopep8 ox-twbs ox-reveal ox-pandoc ox-gfm org-sidebar org-ref org-bullets openwith ob-ipython move-text magit lsp-ui lsp-ivy flyspell-correct-ivy flycheck expand-region doom-themes doom-modeline dashboard dap-mode counsel-projectile auto-package-update auto-compile anaconda-mode all-the-icons-ivy)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
