@@ -465,6 +465,22 @@ to come arount rainbow delimiter incompatibility issues :
       )
 #+end_src
 
+*** Tree view
+On va utiliser /org-sidebar/, mais il dépend de :
+
+- /org-ql/ :: provides a query language for Org files
+#+begin_src emacs-lisp
+(use-package org-ql)
+#+end_src
+- /org-super-agenda/ :: group items into sections, rather than having
+  them all in one big list.
+#+begin_src emacs-lisp
+(use-package org-super-agenda)
+#+end_src
+
+#+begin_src emacs-lisp
+(use-package org-sidebar)
+#+end_src
 ** TODO Writegood mode : besoin de tests
 #+begin_src emacs-lisp :tangle no
 (use-package writegood-mode

@@ -1,59 +1,60 @@
-- [Config ShortCut](#org050b3a6)
-- [Base](#org81db02f)
-  - [Initialisation et use-package](#org35a10da)
-  - [MAJ automatique](#orgbaa9f5c)
-  - [Sauvegardes](#org53dbd57)
-  - [Emacs serveur](#org238082f)
-  - [Lazy loading](#orgd3b249b)
-- [Theme](#orgd353675)
-  - [Actuel](#org15cb231)
-  - [A tester :](#orgb73e1cf)
-    - [Mood-one](#orgc55f481)
-    - [Night owl](#org497a88d)
-    - [SubAtomic](#orgf99c513)
-  - [Compléments](#org9a9ce4d)
-  - [Fonts](#org0f22fea)
-  - [pretty symbols](#org3ba68c2)
-- [Packages](#orge23d7a9)
-  - [Completion](#orga074742)
-    - [Text](#org81c8bb6)
-    - [yasSnipets](#org25c0637)
-  - [Org](#org6c66249)
-    - [Ajout d'org-mode et quelques config](#org923ee2b)
-    - [Blocs source (babel)](#orgc8f76d6)
-    - [Apparence](#orga019e2f)
-    - [Gestion références et citations](#orgbccab38)
-    - [Tableau de bord](#org9fba881)
-    - [Export](#orgd410866)
-    - [Tangle](#org317e11f)
-  - [Writegood mode : besoin de tests](#orga81f2d8)
-  - [Dashboard](#orga32d524)
-  - [popup](#org3568f85)
-  - [COunsel ivy swiper](#org1824ad3)
-  - [Line number](#orgd1f721c)
-  - [Gestion projets](#orgb86f10b)
-  - [Déplacements entre buffers](#org736ce5b)
-  - [Next key](#org6d04385)
-  - [Expend selected region](#orgaa824e4)
-  - [Parenthèses et autres](#org8baaaa8)
-  - [Move text](#orgd9b1b1d)
-  - [Indentation](#orgff13654)
-  - [Gestionnaire de version (Magit)](#org2f351ad)
-  - [Syntaxe (Flycheck)](#org4f33387)
-  - [Orthographe (Fly Spell)](#org31a838f)
-  - [C/C++](#orgd0632b2)
-  - [Python](#orgede0e0d)
-    - [Auto Format](#orgdb7d0b7)
-  - [Markdown](#org1d9076f)
-    - [preview](#org47cd58e)
-    - [Preview (grip)](#orgd344ba3)
-  - [Contrôle de programmes externes](#org8dfb8df)
-  - [JSON](#org20ca67d)
-  - [Blog](#org60d2898)
+- [Config ShortCut](#org6bbca40)
+- [Base](#orgb60ecf8)
+  - [Initialisation et use-package](#org7cf09d5)
+  - [MAJ automatique](#org46c0886)
+  - [Sauvegardes](#orgdf33671)
+  - [Emacs serveur](#orgfd73c73)
+  - [Lazy loading](#orge662ee6)
+- [Theme](#org4188d39)
+  - [Actuel](#org1924231)
+  - [A tester :](#orgd056226)
+    - [Mood-one](#org51fdbbd)
+    - [Night owl](#orgf461e45)
+    - [SubAtomic](#orgc82792d)
+  - [Compléments](#org3daf950)
+  - [Fonts](#org0453177)
+  - [pretty symbols](#org25251c9)
+- [Packages](#orgbeaac30)
+  - [LSP](#orgae342e7)
+  - [Completion](#orgf3c6cc6)
+    - [Text](#orgc5d88fc)
+    - [yasSnipets](#org75b78c7)
+  - [Org](#orgb753475)
+    - [Ajout d'org-mode et quelques config](#org1a828a9)
+    - [Blocs source (babel)](#org7b31863)
+    - [Apparence](#orgd58cdd0)
+    - [Gestion références et citations](#orgaf7b8e1)
+    - [Tableau de bord](#org2c7dced)
+    - [Export](#orgb32af86)
+    - [Tangle](#org56dc743)
+    - [Tree view](#orge98d32a)
+  - [Writegood mode : besoin de tests](#orgc4b98ce)
+  - [Dashboard](#orga06ef6c)
+  - [COunsel ivy swiper](#orgc118be7)
+  - [Line number](#org2008b70)
+  - [Gestion projets](#orga6cb232)
+  - [Déplacements entre buffers](#orgbd6aca3)
+  - [Next key](#orgde33c88)
+  - [Expend selected region](#org21912c0)
+  - [Parenthèses et autres](#orgc9ffb08)
+  - [Move text](#org0174b18)
+  - [Indentation](#org78513ba)
+  - [Gestionnaire de version (Magit)](#org66694bc)
+  - [Syntaxe (Flycheck)](#org02c346f)
+  - [Orthographe (Fly Spell)](#orgdefe852)
+  - [C/C++](#orgd81b847)
+  - [Python](#org477e721)
+    - [Auto Format](#orgd43a5af)
+  - [Markdown](#org8a039f2)
+    - [preview](#org10b04ea)
+    - [Preview (grip)](#org6f9d42f)
+  - [Contrôle de programmes externes](#org03f6740)
+  - [JSON](#org096c7dd)
+  - [Blog](#orgeafd663)
 
 
 
-<a id="org050b3a6"></a>
+<a id="org6bbca40"></a>
 
 # DONE Config ShortCut
 
@@ -67,12 +68,12 @@
 ```
 
 
-<a id="org81db02f"></a>
+<a id="orgb60ecf8"></a>
 
 # TODO Base
 
 
-<a id="org35a10da"></a>
+<a id="org7cf09d5"></a>
 
 ## Initialisation et use-package
 
@@ -97,7 +98,7 @@ Initialisation des dépôts d'archives et installation de use-package.
 ```
 
 
-<a id="orgbaa9f5c"></a>
+<a id="org46c0886"></a>
 
 ## MAJ automatique
 
@@ -110,7 +111,7 @@ Initialisation des dépôts d'archives et installation de use-package.
 ```
 
 
-<a id="org53dbd57"></a>
+<a id="orgdf33671"></a>
 
 ## Sauvegardes
 
@@ -178,7 +179,7 @@ Suppression des espaces en fin de fichier avant de sauvegarder :
 ```
 
 
-<a id="org238082f"></a>
+<a id="orgfd73c73"></a>
 
 ## TODO Emacs serveur
 
@@ -189,21 +190,21 @@ systemctl --user enable emacs
 ```
 
 
-<a id="orgd3b249b"></a>
+<a id="orge662ee6"></a>
 
 ## TODO Lazy loading
 
 <https://github.com/jwiegley/use-package#notes-about-lazy-loading>
 
 
-<a id="orgd353675"></a>
+<a id="org4188d39"></a>
 
 # DONE Theme
 
 Le site <https://peach-melpa.org/> propose une galerie des themes Emacs disponibles sur MELPA.
 
 
-<a id="org15cb231"></a>
+<a id="org1924231"></a>
 
 ## Actuel
 
@@ -226,33 +227,33 @@ J'ai trouvé le thème doom-one vraiment sympa.
 ```
 
 
-<a id="orgb73e1cf"></a>
+<a id="orgd056226"></a>
 
 ## A tester :
 
 
-<a id="orgc55f481"></a>
+<a id="org51fdbbd"></a>
 
 ### Mood-one
 
 Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo est peut-être moins active. <https://gitlab.com/jessieh/mood-one-theme>
 
 
-<a id="org497a88d"></a>
+<a id="orgf461e45"></a>
 
 ### Night owl
 
 <https://github.com/aaronjensen/night-owl-emacs>
 
 
-<a id="orgf99c513"></a>
+<a id="orgc82792d"></a>
 
 ### SubAtomic
 
 <https://peach-melpa.org/themes/subatomic-theme/variants/subatomic?lang=rb>
 
 
-<a id="org9a9ce4d"></a>
+<a id="org3daf950"></a>
 
 ## Compléments
 
@@ -261,7 +262,7 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 ```
 
 
-<a id="org0f22fea"></a>
+<a id="org0453177"></a>
 
 ## Fonts
 
@@ -271,7 +272,7 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 ```
 
 
-<a id="org3ba68c2"></a>
+<a id="org25251c9"></a>
 
 ## pretty symbols
 
@@ -323,17 +324,51 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 ```
 
 
-<a id="orge23d7a9"></a>
+<a id="orgbeaac30"></a>
 
 # Packages
 
 
-<a id="orga074742"></a>
+<a id="orgae342e7"></a>
+
+## LSP
+
+```emacs-lisp
+;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+(setq lsp-keymap-prefix "C-l")
+
+(use-package lsp-mode
+    :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+            (python-mode . lsp)
+            ;; if you want which-key integration
+            (lsp-mode . lsp-enable-which-key-integration))
+    :commands lsp)
+
+;; optionally
+(use-package lsp-ui :commands lsp-ui-mode)
+;; if you are helm user
+;;(use-package helm-lsp :commands helm-lsp-workspace-symbol)
+;; if you are ivy user
+(use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
+(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
+
+;; optionally if you want to use debugger
+(use-package dap-mode)
+;; (use-package dap-LANGUAGE) to load the dap adapter for your language
+(use-package dap-PYTHON)
+;; optional if you want which-key integration
+;;(use-package which-key
+;;    :config
+;;    (which-key-mode))
+```
+
+
+<a id="orgf3c6cc6"></a>
 
 ## Completion
 
 
-<a id="org81c8bb6"></a>
+<a id="orgc5d88fc"></a>
 
 ### TODO Text
 
@@ -384,7 +419,7 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
         ```
 
 
-<a id="org25c0637"></a>
+<a id="org75b78c7"></a>
 
 ### TODO yasSnipets
 
@@ -405,14 +440,14 @@ adding a collection of snippets
 1.  TODO Ajout de snippets personalisés:
 
 
-<a id="org6c66249"></a>
+<a id="orgb753475"></a>
 
 ## Org
 
 <https://orgmode.org/worg/org-tutorials/org4beginners.html>
 
 
-<a id="org923ee2b"></a>
+<a id="org1a828a9"></a>
 
 ### Ajout d'org-mode et quelques config
 
@@ -429,7 +464,7 @@ ici, fontify et act natively servent à utiliser le mode majeur correspondant da
 ```
 
 
-<a id="orgc8f76d6"></a>
+<a id="org7b31863"></a>
 
 ### Blocs source (babel)
 
@@ -457,8 +492,14 @@ ajout du support de certains languages dans org-babel
 )
 ```
 
+Toujours afficher les images après les avoir générées:
 
-<a id="orga019e2f"></a>
+```emacs-lisp
+(add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append)
+```
+
+
+<a id="orgd58cdd0"></a>
 
 ### Apparence
 
@@ -474,7 +515,7 @@ Permet d'afficher des symboles utf-8 plutôt que des astérisques.
 ```
 
 
-<a id="orgbccab38"></a>
+<a id="orgaf7b8e1"></a>
 
 ### TODO Gestion références et citations
 
@@ -485,7 +526,7 @@ Permet d'afficher des symboles utf-8 plutôt que des astérisques.
 ```
 
 
-<a id="org9fba881"></a>
+<a id="org2c7dced"></a>
 
 ### Tableau de bord
 
@@ -496,7 +537,7 @@ Permet d'afficher des symboles utf-8 plutôt que des astérisques.
 \#+begin<sub>example</sub>
 
 
-<a id="orgd410866"></a>
+<a id="orgb32af86"></a>
 
 ### Export
 
@@ -527,7 +568,23 @@ Liste des exporteurs : <https://orgmode.org/worg/exporters/index.html>
         :ensure t)
     ```
 
-5.  Diapositives
+5.  Coloration Syntaxique
+
+    ```emacs-lisp
+    (add-to-list 'org-latex-packages-alist '("" "xcolor"))
+    (add-to-list 'org-latex-packages-alist '("" "minted"))
+
+    (setq org-latex-listings 'minted)
+    ```
+
+    ```emacs-lisp
+    (setq org-latex-header-extra
+          '(concat
+            org-latex-header-extra
+            "\\usemintedstyle{native}"))
+    ```
+
+6.  Diapositives
 
     1.  TODO Ioslides
 
@@ -582,15 +639,34 @@ Liste des exporteurs : <https://orgmode.org/worg/exporters/index.html>
         (use-package ox-beamer)
         ```
 
-6.  Github Markdown
+7.  Github Markdown
 
     ```emacs-lisp
     (use-package ox-gfm
       :after org)
     ```
 
+8.  Background color
 
-<a id="org317e11f"></a>
+    ```emacs-lisp
+    (defun my/org-inline-css-hook (exporter)
+      "Insert custom inline css to automatically set the
+    background of code to whatever theme I'm using's background"
+
+      (let* ((my-pre-bg (face-background 'default))
+             (my-pre-fg (face-foreground 'default)))
+        (setq
+         org-html-head-extra
+         (concat
+          org-html-head-extra
+          (format "<style type=\"text/css\">\n pre.src {background-color: %s; color: %s;}</style>\n"
+                  my-pre-bg my-pre-fg)))))
+
+    (add-hook 'org-export-before-processing-hook 'my/org-inline-css-hook)
+    ```
+
+
+<a id="org56dc743"></a>
 
 ### Tangle
 
@@ -603,7 +679,30 @@ Liste des exporteurs : <https://orgmode.org/worg/exporters/index.html>
 ```
 
 
-<a id="orga81f2d8"></a>
+<a id="orge98d32a"></a>
+
+### Tree view
+
+On va utiliser *org-sidebar*, mais il dépend de :
+
+-   ***org-ql*:** provides a query language for Org files
+
+```emacs-lisp
+(use-package org-ql)
+```
+
+-   ***org-super-agenda*:** group items into sections, rather than having them all in one big list.
+
+```emacs-lisp
+(use-package org-super-agenda)
+```
+
+```emacs-lisp
+(use-package org-sidebar)
+```
+
+
+<a id="orgc4b98ce"></a>
 
 ## TODO Writegood mode : besoin de tests
 
@@ -619,7 +718,7 @@ Liste des exporteurs : <https://orgmode.org/worg/exporters/index.html>
 ```
 
 
-<a id="orga32d524"></a>
+<a id="orga06ef6c"></a>
 
 ## DONE Dashboard
 
@@ -634,18 +733,7 @@ Liste des exporteurs : <https://orgmode.org/worg/exporters/index.html>
 ```
 
 
-<a id="org3568f85"></a>
-
-## TODO popup
-
-popup.el is a visual popup user interface library for Emacs. This provides a basic API and common UI widgets such as popup tooltips and popup menus.
-
-```emacs-lisp
-(use-package popup)
-```
-
-
-<a id="org1824ad3"></a>
+<a id="orgc118be7"></a>
 
 ## COunsel ivy swiper
 
@@ -680,7 +768,7 @@ popup.el is a visual popup user interface library for Emacs. This provides a bas
 ```
 
 
-<a id="orgd1f721c"></a>
+<a id="org2008b70"></a>
 
 ## TODO Line number
 
@@ -696,7 +784,7 @@ popup.el is a visual popup user interface library for Emacs. This provides a bas
 ```
 
 
-<a id="orgb86f10b"></a>
+<a id="orga6cb232"></a>
 
 ## TODO Gestion projets
 
@@ -712,7 +800,7 @@ popup.el is a visual popup user interface library for Emacs. This provides a bas
 ```
 
 
-<a id="org736ce5b"></a>
+<a id="orgbd6aca3"></a>
 
 ## DONE Déplacements entre buffers
 
@@ -726,7 +814,7 @@ popup.el is a visual popup user interface library for Emacs. This provides a bas
 ```
 
 
-<a id="org6d04385"></a>
+<a id="orgde33c88"></a>
 
 ## DONE Next key
 
@@ -739,7 +827,7 @@ popup.el is a visual popup user interface library for Emacs. This provides a bas
 ```
 
 
-<a id="orgaa824e4"></a>
+<a id="org21912c0"></a>
 
 ## DONE Expend selected region
 
@@ -750,7 +838,7 @@ popup.el is a visual popup user interface library for Emacs. This provides a bas
 ```
 
 
-<a id="org8baaaa8"></a>
+<a id="orgc9ffb08"></a>
 
 ## Parenthèses et autres
 
@@ -780,7 +868,7 @@ expend parents redondant avec smartparens ?
 ```
 
 
-<a id="orgd9b1b1d"></a>
+<a id="org0174b18"></a>
 
 ## DONE Move text
 
@@ -789,7 +877,7 @@ expend parents redondant avec smartparens ?
 ```
 
 
-<a id="orgff13654"></a>
+<a id="org78513ba"></a>
 
 ## TODO Indentation
 
@@ -809,7 +897,7 @@ aggressive indent ne fonctionne pas avec python, on peut l'activer, mais cela ne
 ```
 
 
-<a id="org2f351ad"></a>
+<a id="org66694bc"></a>
 
 ## DONE Gestionnaire de version (Magit)
 
@@ -820,7 +908,7 @@ aggressive indent ne fonctionne pas avec python, on peut l'activer, mais cela ne
 ```
 
 
-<a id="org4f33387"></a>
+<a id="org02c346f"></a>
 
 ## TODO Syntaxe (Flycheck)
 
@@ -833,7 +921,7 @@ J'utilise Flycheck pour vérifier la syntaxe à la volée
 ```
 
 
-<a id="org31a838f"></a>
+<a id="orgdefe852"></a>
 
 ## DONE Orthographe (Fly Spell)
 
@@ -894,7 +982,7 @@ Pour appliquer la correction, deux solutions me paraissent valables :
 ```
 
 
-<a id="orgd0632b2"></a>
+<a id="orgd81b847"></a>
 
 ## TODO C/C++
 
@@ -931,7 +1019,7 @@ Ajout du support de flycheck
 ```
 
 
-<a id="orgede0e0d"></a>
+<a id="org477e721"></a>
 
 ## Python
 
@@ -966,7 +1054,7 @@ live py est sympa mais uniquement pour des logiciels simples.
 ```
 
 
-<a id="orgdb7d0b7"></a>
+<a id="orgd43a5af"></a>
 
 ### Auto Format
 
@@ -975,7 +1063,7 @@ live py est sympa mais uniquement pour des logiciels simples.
 ```
 
 
-<a id="org1d9076f"></a>
+<a id="org8a039f2"></a>
 
 ## TODO Markdown
 
@@ -996,7 +1084,7 @@ Ne fonctionne pas sur firefox actuellement.
 ```
 
 
-<a id="org47cd58e"></a>
+<a id="org10b04ea"></a>
 
 ### TODO preview
 
@@ -1013,7 +1101,7 @@ sudo npm install -g vmd
 <https://github.com/jamcha-aa/auto-org-md/tree/9318338bdb7fe8bd698d88f3af89b2d6413efdd2>
 
 
-<a id="orgd344ba3"></a>
+<a id="org6f9d42f"></a>
 
 ### TODO Preview (grip)
 
@@ -1027,7 +1115,7 @@ sudo apt install grip
 ```
 
 
-<a id="org8dfb8df"></a>
+<a id="org03f6740"></a>
 
 ## Contrôle de programmes externes
 
@@ -1063,7 +1151,7 @@ Counsel-spotify:
 ```
 
 
-<a id="org20ca67d"></a>
+<a id="org096c7dd"></a>
 
 ## JSON
 
@@ -1074,7 +1162,7 @@ Un simple outil permettant de naviguer plus facilement dans un fichier Json.
 ```
 
 
-<a id="org60d2898"></a>
+<a id="orgeafd663"></a>
 
 ## Blog
 

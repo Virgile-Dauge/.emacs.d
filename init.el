@@ -248,6 +248,12 @@ background of code to whatever theme I'm using's background"
             (assq-delete-all :noweb org-babel-default-header-args))
       )
 
+(use-package org-ql)
+
+(use-package org-super-agenda)
+
+(use-package org-sidebar)
+
 (use-package page-break-lines)
 (use-package dashboard
   :ensure t
@@ -365,3 +371,16 @@ background of code to whatever theme I'm using's background"
 (use-package openwith)
 (openwith-mode t)
 (setq openwith-associations '(("\\.pdf\\'" "evince" (file))))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(dap-PYTHON yasnippet-snippets which-key use-package smex smartparens rainbow-delimiters py-autopep8 ox-twbs ox-reveal ox-pandoc ox-gfm org-sidebar org-ref org-bullets openwith ob-ipython move-text magit lsp-ui lsp-ivy flyspell-correct-ivy flycheck expand-region doom-themes doom-modeline dashboard dap-mode counsel-projectile auto-package-update auto-compile anaconda-mode all-the-icons-ivy)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
