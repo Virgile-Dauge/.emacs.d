@@ -910,6 +910,10 @@ Counsel-spotify:
   )
 #+end_src
 ** JSON
+
+#+begin_src emacs-lisp
+(use-package json-mode)
+#+end_src
 Un simple outil permettant de naviguer plus facilement dans un fichier Json.
 #+begin_src emacs-lisp :tangle no
   (use-package json-navigator)

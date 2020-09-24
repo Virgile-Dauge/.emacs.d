@@ -417,3 +417,5 @@ background of code to whatever theme I'm using's background"
 (use-package openwith)
 (openwith-mode t)
 (setq openwith-associations '(("\\.pdf\\'" "evince" (file))))
+
+(use-package json-mode)
