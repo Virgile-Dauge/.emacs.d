@@ -193,7 +193,7 @@
 ;; optionally if you want to use debugger
 (use-package dap-mode)
 ;; (use-package dap-LANGUAGE) to load the dap adapter for your language
-(use-package dap-PYTHON)
+;;(use-package dap-PYTHON)
 ;; optional if you want which-key integration
 ;;(use-package which-key
 ;;    :config
