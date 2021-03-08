@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2021-03-08 lun. 13:11 -->
+<!-- 2021-03-08 lun. 16:01 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Ma configuration Emacs</title>
@@ -215,6 +215,8 @@
  pre.src {background-color: #0D131B; color: #c6e0f1;}</style>
 <style type="text/css">
  pre.src {background-color: #0D131B; color: #c6e0f1;}</style>
+<style type="text/css">
+ pre.src {background-color: #0D131B; color: #c6e0f1;}</style>
 <script type="text/javascript">
 /*
 @licstart  The following is the entire license notice for the
@@ -269,105 +271,105 @@ for the JavaScript code in this tag.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgeb821cc">1. <span class="done DONE">DONE</span> Config ShortCut</a></li>
-<li><a href="#orgfa5b6f6">2. <span class="todo TODO">TODO</span> Base</a>
+<li><a href="#orgbe16aa6">1. <span class="done DONE">DONE</span> Config ShortCut</a></li>
+<li><a href="#org7171c75">2. <span class="todo TODO">TODO</span> Base</a>
 <ul>
-<li><a href="#orgb6f03a2">2.1. Initialisation et use-package</a></li>
-<li><a href="#orgc65a638">2.2. MAJ automatique</a></li>
-<li><a href="#org7724cb2">2.3. Configs simples</a>
+<li><a href="#org38a0a27">2.1. Initialisation et use-package</a></li>
+<li><a href="#org796c2a5">2.2. MAJ automatique</a></li>
+<li><a href="#org18850dc">2.3. Configs simples</a>
 <ul>
-<li><a href="#orgdf514f9">2.3.1. Suppression de la selection</a></li>
-<li><a href="#org4102e35">2.3.2. Suppression des backups/autosaves/locks</a></li>
-<li><a href="#org5e97414">2.3.3. Suppression des menus</a></li>
-<li><a href="#orgf3911a0">2.3.4. Plein écran par défaut</a></li>
-<li><a href="#orgbd76bec">2.3.5. Montrer les paires de parenthèses</a></li>
-<li><a href="#orgb20b363">2.3.6. Désactivation du curseur hors de la fenêtre sélectionnée</a></li>
-<li><a href="#orgf472808">2.3.7. Suppression des espaces avant sauvegarde du fichier</a></li>
-<li><a href="#org2a21eee">2.3.8. Encodage Utf8 par défaut</a></li>
-<li><a href="#org04cdb41">2.3.9. Unbind de raccourcis chiants</a></li>
+<li><a href="#org1e1e015">2.3.1. Suppression de la selection</a></li>
+<li><a href="#orge9aa80f">2.3.2. Suppression des backups/autosaves/locks</a></li>
+<li><a href="#orga8d7216">2.3.3. Suppression des menus</a></li>
+<li><a href="#orgbabc6e4">2.3.4. Plein écran par défaut</a></li>
+<li><a href="#org968fd65">2.3.5. Montrer les paires de parenthèses</a></li>
+<li><a href="#orgcb5b796">2.3.6. Désactivation du curseur hors de la fenêtre sélectionnée</a></li>
+<li><a href="#orga1478ab">2.3.7. Suppression des espaces avant sauvegarde du fichier</a></li>
+<li><a href="#org7b0c61f">2.3.8. Encodage Utf8 par défaut</a></li>
+<li><a href="#orgddc6520">2.3.9. Unbind de raccourcis chiants</a></li>
 </ul>
 </li>
-<li><a href="#org30d2fcc">2.4. <span class="todo TODO">TODO</span> Emacs serveur</a></li>
-<li><a href="#org363127f">2.5. <span class="todo TODO">TODO</span> Lazy loading</a></li>
+<li><a href="#orgdea11c1">2.4. <span class="todo TODO">TODO</span> Emacs serveur</a></li>
+<li><a href="#org083617f">2.5. <span class="todo TODO">TODO</span> Lazy loading</a></li>
 </ul>
 </li>
-<li><a href="#orgadbca9e">3. <span class="done DONE">DONE</span> Theme</a>
+<li><a href="#org42d33df">3. <span class="done DONE">DONE</span> Theme</a>
 <ul>
-<li><a href="#orgef5ee2e">3.1. Actuel</a></li>
-<li><a href="#orgba7542d">3.2. A tester :</a>
+<li><a href="#org44f2d9d">3.1. Actuel</a></li>
+<li><a href="#org3c1ec9b">3.2. A tester :</a>
 <ul>
-<li><a href="#org7e40365">3.2.1. Mood-one</a></li>
-<li><a href="#org3c3b1b4">3.2.2. Night owl</a></li>
-<li><a href="#orgccca085">3.2.3. SubAtomic</a></li>
+<li><a href="#org9a542c0">3.2.1. Mood-one</a></li>
+<li><a href="#org599d735">3.2.2. Night owl</a></li>
+<li><a href="#org0b350db">3.2.3. SubAtomic</a></li>
 </ul>
 </li>
-<li><a href="#orgdebd648">3.3. Compléments</a></li>
-<li><a href="#org29de168">3.4. Fonts</a></li>
-<li><a href="#orgdde61a3">3.5. pretty symbols</a></li>
+<li><a href="#org41e25cb">3.3. Compléments</a></li>
+<li><a href="#org132d60b">3.4. Fonts</a></li>
+<li><a href="#org12e08fb">3.5. pretty symbols</a></li>
 </ul>
 </li>
-<li><a href="#org670aad2">4. Packages</a>
+<li><a href="#org23ffe87">4. Packages</a>
 <ul>
-<li><a href="#org937f3cf">4.1. Curseurs multiples</a></li>
-<li><a href="#orgacd2bab">4.2. Iedit</a></li>
-<li><a href="#orgd322be8">4.3. Épurer la <i>modeline</i></a></li>
-<li><a href="#org28be29b">4.4. Undo tree</a></li>
-<li><a href="#orgd46a2bb">4.5. LSP</a></li>
-<li><a href="#orgc538ab6">4.6. Completion</a>
+<li><a href="#org88486e9">4.1. Curseurs multiples</a></li>
+<li><a href="#org21c3af7">4.2. Iedit</a></li>
+<li><a href="#org9da769c">4.3. Épurer la <i>modeline</i></a></li>
+<li><a href="#orgda2bb95">4.4. Undo tree</a></li>
+<li><a href="#orgb98eb22">4.5. LSP</a></li>
+<li><a href="#org2a265d2">4.6. Completion</a>
 <ul>
-<li><a href="#org568cb71">4.6.1. <span class="todo TODO">TODO</span> Text</a></li>
-<li><a href="#org30a13a9">4.6.2. <span class="todo TODO">TODO</span> yasSnipets</a></li>
+<li><a href="#orgf7879ef">4.6.1. <span class="todo TODO">TODO</span> Text</a></li>
+<li><a href="#org6a32282">4.6.2. <span class="todo TODO">TODO</span> yasSnipets</a></li>
 </ul>
 </li>
-<li><a href="#orgd516a60">4.7. Org</a>
+<li><a href="#org54767c7">4.7. Org</a>
 <ul>
-<li><a href="#org270d2b0">4.7.1. Ajout d'org-mode et quelques config</a></li>
-<li><a href="#orgd599903">4.7.2. Blocs source (babel)</a></li>
-<li><a href="#org35bcdc1">4.7.3. Apparence</a></li>
-<li><a href="#orgc19a280">4.7.4. <span class="todo TODO">TODO</span> Gestion références et citations</a></li>
-<li><a href="#orge77e251">4.7.5. Tableau de bord</a></li>
-<li><a href="#org56f5998">4.7.6. Export</a></li>
-<li><a href="#orgec40564">4.7.7. Tangle</a></li>
-<li><a href="#org738c173">4.7.8. Tree view</a></li>
-<li><a href="#org26008d7">4.7.9. which app to open file with ?</a></li>
+<li><a href="#orge6761e3">4.7.1. Ajout d'org-mode et quelques config</a></li>
+<li><a href="#org48bf230">4.7.2. Blocs source (babel)</a></li>
+<li><a href="#orge77bb80">4.7.3. Apparence</a></li>
+<li><a href="#org0b2ddc9">4.7.4. <span class="todo TODO">TODO</span> Gestion références et citations</a></li>
+<li><a href="#org9a619e9">4.7.5. Tableau de bord</a></li>
+<li><a href="#orgc38d9f2">4.7.6. Export</a></li>
+<li><a href="#org865ecb2">4.7.7. Tangle</a></li>
+<li><a href="#orge182fe5">4.7.8. Tree view</a></li>
+<li><a href="#org8c9811f">4.7.9. which app to open file with ?</a></li>
 </ul>
 </li>
-<li><a href="#org9656287">4.8. <span class="todo TODO">TODO</span> Writegood mode : besoin de tests</a></li>
-<li><a href="#org81b31c2">4.9. <span class="done DONE">DONE</span> Dashboard</a></li>
-<li><a href="#org2d32fb3">4.10. COunsel ivy swiper</a></li>
-<li><a href="#org14e42c4">4.11. <span class="todo TODO">TODO</span> Line number</a></li>
-<li><a href="#orgf4ac8a7">4.12. <span class="todo TODO">TODO</span> Gestion projets</a></li>
-<li><a href="#org660ccf0">4.13. <span class="done DONE">DONE</span> Déplacements entre buffers</a></li>
-<li><a href="#org3e752b9">4.14. <span class="done DONE">DONE</span> Next key</a></li>
-<li><a href="#org1d8fb7f">4.15. <span class="done DONE">DONE</span> Expend selected region</a></li>
-<li><a href="#orgdcc56f0">4.16. Parenthèses et autres</a></li>
-<li><a href="#orgc22e8f9">4.17. <span class="done DONE">DONE</span> Move text</a></li>
-<li><a href="#org77f0ea2">4.18. <span class="todo TODO">TODO</span> Indentation</a></li>
-<li><a href="#org47d3ec0">4.19. <span class="done DONE">DONE</span> Gestionnaire de version (Magit)</a></li>
-<li><a href="#orga9d5ab8">4.20. <span class="todo TODO">TODO</span> Syntaxe (Flycheck)</a></li>
-<li><a href="#org33e66e4">4.21. <span class="done DONE">DONE</span> Orthographe (Fly Spell)</a></li>
-<li><a href="#org561c555">4.22. <span class="todo TODO">TODO</span> C/C++</a></li>
-<li><a href="#org398a851">4.23. Python</a>
+<li><a href="#org3d55f6d">4.8. <span class="todo TODO">TODO</span> Writegood mode : besoin de tests</a></li>
+<li><a href="#org3f4d3bd">4.9. <span class="done DONE">DONE</span> Dashboard</a></li>
+<li><a href="#orgbe89f45">4.10. COunsel ivy swiper</a></li>
+<li><a href="#orgba33888">4.11. <span class="todo TODO">TODO</span> Line number</a></li>
+<li><a href="#org42a99ca">4.12. <span class="todo TODO">TODO</span> Gestion projets</a></li>
+<li><a href="#org87c485e">4.13. <span class="done DONE">DONE</span> Déplacements entre buffers</a></li>
+<li><a href="#orgc480e8e">4.14. <span class="done DONE">DONE</span> Next key</a></li>
+<li><a href="#orgdbad208">4.15. <span class="done DONE">DONE</span> Expend selected region</a></li>
+<li><a href="#org0ee1951">4.16. Parenthèses et autres</a></li>
+<li><a href="#org735ba4f">4.17. <span class="done DONE">DONE</span> Move text</a></li>
+<li><a href="#org6025826">4.18. <span class="todo TODO">TODO</span> Indentation</a></li>
+<li><a href="#orgef642aa">4.19. <span class="done DONE">DONE</span> Gestionnaire de version (Magit)</a></li>
+<li><a href="#orgee80441">4.20. <span class="todo TODO">TODO</span> Syntaxe (Flycheck)</a></li>
+<li><a href="#orgcb0f360">4.21. <span class="done DONE">DONE</span> Orthographe (Fly Spell)</a></li>
+<li><a href="#orgcfea74f">4.22. <span class="todo TODO">TODO</span> C/C++</a></li>
+<li><a href="#org3a05cb0">4.23. Python</a>
 <ul>
-<li><a href="#org5355944">4.23.1. Auto Format</a></li>
+<li><a href="#org6b30de6">4.23.1. Auto Format</a></li>
 </ul>
 </li>
-<li><a href="#orgd8a057b">4.24. <span class="todo TODO">TODO</span> Markdown</a>
+<li><a href="#orgfbf3fc5">4.24. <span class="todo TODO">TODO</span> Markdown</a>
 <ul>
-<li><a href="#org57b8dd7">4.24.1. <span class="todo TODO">TODO</span> preview</a></li>
-<li><a href="#orgf2ba20a">4.24.2. <span class="todo TODO">TODO</span> Preview (grip)</a></li>
+<li><a href="#orgabde588">4.24.1. <span class="todo TODO">TODO</span> preview</a></li>
+<li><a href="#orgd7bc17f">4.24.2. <span class="todo TODO">TODO</span> Preview (grip)</a></li>
 </ul>
 </li>
-<li><a href="#org6c71a2e">4.25. Contrôle de programmes externes</a></li>
-<li><a href="#org02d9061">4.26. JSON</a></li>
-<li><a href="#org94e46fa">4.27. Blog</a></li>
+<li><a href="#org0feddb7">4.25. Contrôle de programmes externes</a></li>
+<li><a href="#org4ac45ab">4.26. JSON</a></li>
+<li><a href="#orgbb95b21">4.27. Blog</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgeb821cc" class="outline-2">
-<h2 id="orgeb821cc"><span class="section-number-2">1</span> <span class="done DONE">DONE</span> Config ShortCut</h2>
+<div id="outline-container-orgbe16aa6" class="outline-2">
+<h2 id="orgbe16aa6"><span class="section-number-2">1</span> <span class="done DONE">DONE</span> Config ShortCut</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #CF6F45;">(</span><span style="color: #CF6F45;">defun</span> <span style="color: #436A9A;">find-config</span> <span style="color: #436A9A;">()</span>
@@ -380,12 +382,12 @@ for the JavaScript code in this tag.
 </div>
 </div>
 </div>
-<div id="outline-container-orgfa5b6f6" class="outline-2">
-<h2 id="orgfa5b6f6"><span class="section-number-2">2</span> <span class="todo TODO">TODO</span> Base</h2>
+<div id="outline-container-org7171c75" class="outline-2">
+<h2 id="org7171c75"><span class="section-number-2">2</span> <span class="todo TODO">TODO</span> Base</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgb6f03a2" class="outline-3">
-<h3 id="orgb6f03a2"><span class="section-number-3">2.1</span> Initialisation et use-package</h3>
+<div id="outline-container-org38a0a27" class="outline-3">
+<h3 id="org38a0a27"><span class="section-number-3">2.1</span> Initialisation et use-package</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 Initialisation des dépôts d'archives et installation de use-package.
@@ -411,8 +413,8 @@ Initialisation des dépôts d'archives et installation de use-package.
 </div>
 </div>
 
-<div id="outline-container-orgc65a638" class="outline-3">
-<h3 id="orgc65a638"><span class="section-number-3">2.2</span> MAJ automatique</h3>
+<div id="outline-container-org796c2a5" class="outline-3">
+<h3 id="org796c2a5"><span class="section-number-3">2.2</span> MAJ automatique</h3>
 <div class="outline-text-3" id="text-2-2">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #CF6F45;">(</span><span style="color: #CF6F45;">use-package</span> <span style="color: #3f6492;">auto-package-update</span>
@@ -425,12 +427,12 @@ Initialisation des dépôts d'archives et installation de use-package.
 </div>
 </div>
 
-<div id="outline-container-org7724cb2" class="outline-3">
-<h3 id="org7724cb2"><span class="section-number-3">2.3</span> Configs simples</h3>
+<div id="outline-container-org18850dc" class="outline-3">
+<h3 id="org18850dc"><span class="section-number-3">2.3</span> Configs simples</h3>
 <div class="outline-text-3" id="text-2-3">
 </div>
-<div id="outline-container-orgdf514f9" class="outline-4">
-<h4 id="orgdf514f9"><span class="section-number-4">2.3.1</span> Suppression de la selection</h4>
+<div id="outline-container-org1e1e015" class="outline-4">
+<h4 id="org1e1e015"><span class="section-number-4">2.3.1</span> Suppression de la selection</h4>
 <div class="outline-text-4" id="text-2-3-1">
 <p>
 C'est un comportement dont j'ai l'habitude :
@@ -442,8 +444,8 @@ C'est un comportement dont j'ai l'habitude :
 </div>
 </div>
 
-<div id="outline-container-org4102e35" class="outline-4">
-<h4 id="org4102e35"><span class="section-number-4">2.3.2</span> Suppression des backups/autosaves/locks</h4>
+<div id="outline-container-orge9aa80f" class="outline-4">
+<h4 id="orge9aa80f"><span class="section-number-4">2.3.2</span> Suppression des backups/autosaves/locks</h4>
 <div class="outline-text-4" id="text-2-3-2">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #CF6F45;">(</span><span style="color: #CF6F45;">setq</span>
@@ -454,8 +456,8 @@ C'est un comportement dont j'ai l'habitude :
 </div>
 </div>
 </div>
-<div id="outline-container-org5e97414" class="outline-4">
-<h4 id="org5e97414"><span class="section-number-4">2.3.3</span> Suppression des menus</h4>
+<div id="outline-container-orga8d7216" class="outline-4">
+<h4 id="orga8d7216"><span class="section-number-4">2.3.3</span> Suppression des menus</h4>
 <div class="outline-text-4" id="text-2-3-3">
 <p>
 Désactiver le startup screen :
@@ -483,8 +485,8 @@ Enlever les barres de menu et d'outils, c'est un minimum :
 </div>
 
 
-<div id="outline-container-orgf3911a0" class="outline-4">
-<h4 id="orgf3911a0"><span class="section-number-4">2.3.4</span> Plein écran par défaut</h4>
+<div id="outline-container-orgbabc6e4" class="outline-4">
+<h4 id="orgbabc6e4"><span class="section-number-4">2.3.4</span> Plein écran par défaut</h4>
 <div class="outline-text-4" id="text-2-3-4">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #CF6F45;">(</span>add-to-list 'default-frame-alist '<span style="color: #436A9A;">(</span>fullscreen . maximized<span style="color: #436A9A;">)</span><span style="color: #CF6F45;">)</span>
@@ -492,8 +494,8 @@ Enlever les barres de menu et d'outils, c'est un minimum :
 </div>
 </div>
 </div>
-<div id="outline-container-orgbd76bec" class="outline-4">
-<h4 id="orgbd76bec"><span class="section-number-4">2.3.5</span> Montrer les paires de parenthèses</h4>
+<div id="outline-container-org968fd65" class="outline-4">
+<h4 id="org968fd65"><span class="section-number-4">2.3.5</span> Montrer les paires de parenthèses</h4>
 <div class="outline-text-4" id="text-2-3-5">
 <p>
 Montrer les paires de parenthèses : <a href="https://www.emacswiki.org/emacs/ShowParenMode">https://www.emacswiki.org/emacs/ShowParenMode</a>
@@ -506,8 +508,8 @@ Montrer les paires de parenthèses : <a href="https://www.emacswiki.org/emacs/Sh
 </div>
 </div>
 
-<div id="outline-container-orgb20b363" class="outline-4">
-<h4 id="orgb20b363"><span class="section-number-4">2.3.6</span> Désactivation du curseur hors de la fenêtre sélectionnée</h4>
+<div id="outline-container-orgcb5b796" class="outline-4">
+<h4 id="orgcb5b796"><span class="section-number-4">2.3.6</span> Désactivation du curseur hors de la fenêtre sélectionnée</h4>
 <div class="outline-text-4" id="text-2-3-6">
 <p>
 Désactiver le curseur dans les fenetres non-actives:
@@ -519,8 +521,8 @@ Désactiver le curseur dans les fenetres non-actives:
 </div>
 </div>
 
-<div id="outline-container-orgf472808" class="outline-4">
-<h4 id="orgf472808"><span class="section-number-4">2.3.7</span> Suppression des espaces avant sauvegarde du fichier</h4>
+<div id="outline-container-orga1478ab" class="outline-4">
+<h4 id="orga1478ab"><span class="section-number-4">2.3.7</span> Suppression des espaces avant sauvegarde du fichier</h4>
 <div class="outline-text-4" id="text-2-3-7">
 <p>
 Suppression des espaces en fin de fichier avant de sauvegarder :
@@ -533,8 +535,8 @@ Suppression des espaces en fin de fichier avant de sauvegarder :
 </div>
 </div>
 
-<div id="outline-container-org2a21eee" class="outline-4">
-<h4 id="org2a21eee"><span class="section-number-4">2.3.8</span> Encodage Utf8 par défaut</h4>
+<div id="outline-container-org7b0c61f" class="outline-4">
+<h4 id="org7b0c61f"><span class="section-number-4">2.3.8</span> Encodage Utf8 par défaut</h4>
 <div class="outline-text-4" id="text-2-3-8">
 <p>
 Tout passer en utf-8
@@ -553,8 +555,8 @@ Tout passer en utf-8
 </div>
 </div>
 </div>
-<div id="outline-container-org04cdb41" class="outline-4">
-<h4 id="org04cdb41"><span class="section-number-4">2.3.9</span> Unbind de raccourcis chiants</h4>
+<div id="outline-container-orgddc6520" class="outline-4">
+<h4 id="orgddc6520"><span class="section-number-4">2.3.9</span> Unbind de raccourcis chiants</h4>
 <div class="outline-text-4" id="text-2-3-9">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #8a9ca8;">;;</span><span style="color: #8a9ca8;">(unbind-key "C-x C-f") ;; find-file-read-only</span>
@@ -568,8 +570,8 @@ Tout passer en utf-8
 </div>
 </div>
 </div>
-<div id="outline-container-org30d2fcc" class="outline-3">
-<h3 id="org30d2fcc"><span class="section-number-3">2.4</span> <span class="todo TODO">TODO</span> Emacs serveur</h3>
+<div id="outline-container-orgdea11c1" class="outline-3">
+<h3 id="orgdea11c1"><span class="section-number-3">2.4</span> <span class="todo TODO">TODO</span> Emacs serveur</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Emacs-Server.html">https://www.gnu.org/software/emacs/manual/html_node/emacs/Emacs-Server.html</a>
@@ -581,8 +583,8 @@ Tout passer en utf-8
 </div>
 </div>
 
-<div id="outline-container-org363127f" class="outline-3">
-<h3 id="org363127f"><span class="section-number-3">2.5</span> <span class="todo TODO">TODO</span> Lazy loading</h3>
+<div id="outline-container-org083617f" class="outline-3">
+<h3 id="org083617f"><span class="section-number-3">2.5</span> <span class="todo TODO">TODO</span> Lazy loading</h3>
 <div class="outline-text-3" id="text-2-5">
 <p>
 <a href="https://github.com/jwiegley/use-package#notes-about-lazy-loading">https://github.com/jwiegley/use-package#notes-about-lazy-loading</a>
@@ -591,15 +593,15 @@ Tout passer en utf-8
 </div>
 </div>
 
-<div id="outline-container-orgadbca9e" class="outline-2">
-<h2 id="orgadbca9e"><span class="section-number-2">3</span> <span class="done DONE">DONE</span> Theme</h2>
+<div id="outline-container-org42d33df" class="outline-2">
+<h2 id="org42d33df"><span class="section-number-2">3</span> <span class="done DONE">DONE</span> Theme</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 Le site <a href="https://peach-melpa.org/">https://peach-melpa.org/</a> propose une galerie des themes Emacs disponibles sur MELPA.
 </p>
 </div>
-<div id="outline-container-orgef5ee2e" class="outline-3">
-<h3 id="orgef5ee2e"><span class="section-number-3">3.1</span> Actuel</h3>
+<div id="outline-container-org44f2d9d" class="outline-3">
+<h3 id="org44f2d9d"><span class="section-number-3">3.1</span> Actuel</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 J'ai trouvé le thème doom-one vraiment sympa.
@@ -649,12 +651,12 @@ J'ai trouvé le thème doom-one vraiment sympa.
 </div>
 </div>
 </div>
-<div id="outline-container-orgba7542d" class="outline-3">
-<h3 id="orgba7542d"><span class="section-number-3">3.2</span> A tester :</h3>
+<div id="outline-container-org3c1ec9b" class="outline-3">
+<h3 id="org3c1ec9b"><span class="section-number-3">3.2</span> A tester :</h3>
 <div class="outline-text-3" id="text-3-2">
 </div>
-<div id="outline-container-org7e40365" class="outline-4">
-<h4 id="org7e40365"><span class="section-number-4">3.2.1</span> Mood-one</h4>
+<div id="outline-container-org9a542c0" class="outline-4">
+<h4 id="org9a542c0"><span class="section-number-4">3.2.1</span> Mood-one</h4>
 <div class="outline-text-4" id="text-3-2-1">
 <p>
 Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo est
@@ -662,16 +664,16 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 </p>
 </div>
 </div>
-<div id="outline-container-org3c3b1b4" class="outline-4">
-<h4 id="org3c3b1b4"><span class="section-number-4">3.2.2</span> Night owl</h4>
+<div id="outline-container-org599d735" class="outline-4">
+<h4 id="org599d735"><span class="section-number-4">3.2.2</span> Night owl</h4>
 <div class="outline-text-4" id="text-3-2-2">
 <p>
 <a href="https://github.com/aaronjensen/night-owl-emacs">https://github.com/aaronjensen/night-owl-emacs</a>
 </p>
 </div>
 </div>
-<div id="outline-container-orgccca085" class="outline-4">
-<h4 id="orgccca085"><span class="section-number-4">3.2.3</span> SubAtomic</h4>
+<div id="outline-container-org0b350db" class="outline-4">
+<h4 id="org0b350db"><span class="section-number-4">3.2.3</span> SubAtomic</h4>
 <div class="outline-text-4" id="text-3-2-3">
 <p>
 <a href="https://peach-melpa.org/themes/subatomic-theme/variants/subatomic?lang=rb">https://peach-melpa.org/themes/subatomic-theme/variants/subatomic?lang=rb</a>
@@ -679,8 +681,8 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 </div>
 </div>
 </div>
-<div id="outline-container-orgdebd648" class="outline-3">
-<h3 id="orgdebd648"><span class="section-number-3">3.3</span> Compléments</h3>
+<div id="outline-container-org41e25cb" class="outline-3">
+<h3 id="org41e25cb"><span class="section-number-3">3.3</span> Compléments</h3>
 <div class="outline-text-3" id="text-3-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #CF6F45;">(</span><span style="color: #CF6F45;">use-package</span> <span style="color: #3f6492;">all-the-icons</span><span style="color: #CF6F45;">)</span>
@@ -688,8 +690,8 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 </div>
 </div>
 </div>
-<div id="outline-container-org29de168" class="outline-3">
-<h3 id="org29de168"><span class="section-number-3">3.4</span> Fonts</h3>
+<div id="outline-container-org132d60b" class="outline-3">
+<h3 id="org132d60b"><span class="section-number-3">3.4</span> Fonts</h3>
 <div class="outline-text-3" id="text-3-4">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #8a9ca8;">;;</span><span style="color: #8a9ca8;">(set-frame-font "Operator Mono 12" nil t)</span>
@@ -698,8 +700,8 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 </div>
 </div>
 </div>
-<div id="outline-container-orgdde61a3" class="outline-3">
-<h3 id="orgdde61a3"><span class="section-number-3">3.5</span> pretty symbols</h3>
+<div id="outline-container-org12e08fb" class="outline-3">
+<h3 id="org12e08fb"><span class="section-number-3">3.5</span> pretty symbols</h3>
 <div class="outline-text-3" id="text-3-5">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #CF6F45;">(</span><span style="color: #CF6F45;">setq</span> prettify-symbols-unprettify-at-point 'right-edge<span style="color: #CF6F45;">)</span>
@@ -751,12 +753,12 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 </div>
 </div>
 </div>
-<div id="outline-container-org670aad2" class="outline-2">
-<h2 id="org670aad2"><span class="section-number-2">4</span> Packages</h2>
+<div id="outline-container-org23ffe87" class="outline-2">
+<h2 id="org23ffe87"><span class="section-number-2">4</span> Packages</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org937f3cf" class="outline-3">
-<h3 id="org937f3cf"><span class="section-number-3">4.1</span> Curseurs multiples</h3>
+<div id="outline-container-org88486e9" class="outline-3">
+<h3 id="org88486e9"><span class="section-number-3">4.1</span> Curseurs multiples</h3>
 <div class="outline-text-3" id="text-4-1">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #CF6F45;">(</span><span style="color: #CF6F45;">use-package</span> <span style="color: #3f6492;">multiple-cursors</span>
@@ -766,8 +768,8 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 </div>
 </div>
 </div>
-<div id="outline-container-orgacd2bab" class="outline-3">
-<h3 id="orgacd2bab"><span class="section-number-3">4.2</span> Iedit</h3>
+<div id="outline-container-org21c3af7" class="outline-3">
+<h3 id="org21c3af7"><span class="section-number-3">4.2</span> Iedit</h3>
 <div class="outline-text-3" id="text-4-2">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #CF6F45;">(</span><span style="color: #CF6F45;">use-package</span> <span style="color: #3f6492;">iedit</span><span style="color: #CF6F45;">)</span>
@@ -795,8 +797,8 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 </div>
 </div>
 </div>
-<div id="outline-container-orgd322be8" class="outline-3">
-<h3 id="orgd322be8"><span class="section-number-3">4.3</span> Épurer la <i>modeline</i></h3>
+<div id="outline-container-org9da769c" class="outline-3">
+<h3 id="org9da769c"><span class="section-number-3">4.3</span> Épurer la <i>modeline</i></h3>
 <div class="outline-text-3" id="text-4-3">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #CF6F45;">(</span><span style="color: #CF6F45;">use-package</span> <span style="color: #3f6492;">diminish</span>
@@ -805,8 +807,8 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 </div>
 </div>
 </div>
-<div id="outline-container-org28be29b" class="outline-3">
-<h3 id="org28be29b"><span class="section-number-3">4.4</span> Undo tree</h3>
+<div id="outline-container-orgda2bb95" class="outline-3">
+<h3 id="orgda2bb95"><span class="section-number-3">4.4</span> Undo tree</h3>
 <div class="outline-text-3" id="text-4-4">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #CF6F45;">(</span><span style="color: #CF6F45;">use-package</span> <span style="color: #3f6492;">undo-tree</span>
@@ -819,8 +821,8 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 </div>
 </div>
 </div>
-<div id="outline-container-orgd46a2bb" class="outline-3">
-<h3 id="orgd46a2bb"><span class="section-number-3">4.5</span> LSP</h3>
+<div id="outline-container-orgb98eb22" class="outline-3">
+<h3 id="orgb98eb22"><span class="section-number-3">4.5</span> LSP</h3>
 <div class="outline-text-3" id="text-4-5">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #8a9ca8;">;; </span><span style="color: #8a9ca8;">set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")</span>
@@ -854,16 +856,16 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 </div>
 </div>
 
-<div id="outline-container-orgc538ab6" class="outline-3">
-<h3 id="orgc538ab6"><span class="section-number-3">4.6</span> Completion</h3>
+<div id="outline-container-org2a265d2" class="outline-3">
+<h3 id="org2a265d2"><span class="section-number-3">4.6</span> Completion</h3>
 <div class="outline-text-3" id="text-4-6">
 </div>
-<div id="outline-container-org568cb71" class="outline-4">
-<h4 id="org568cb71"><span class="section-number-4">4.6.1</span> <span class="todo TODO">TODO</span> Text</h4>
+<div id="outline-container-orgf7879ef" class="outline-4">
+<h4 id="orgf7879ef"><span class="section-number-4">4.6.1</span> <span class="todo TODO">TODO</span> Text</h4>
 <div class="outline-text-4" id="text-4-6-1">
 </div>
 <ol class="org-ol">
-<li><a id="org5cc3b81"></a>Company <a href="https://company-mode.github.io/">https://company-mode.github.io/</a><br />
+<li><a id="orge3b7b34"></a>Company <a href="https://company-mode.github.io/">https://company-mode.github.io/</a><br />
 <div class="outline-text-5" id="text-4-6-1-1">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #CF6F45;">(</span><span style="color: #CF6F45;">use-package</span> <span style="color: #3f6492;">company</span>
@@ -892,7 +894,7 @@ ajout d'une pop-up avec Company quickhelp
 </div>
 </div>
 </li>
-<li><a id="org2e121ae"></a>Backends company<br />
+<li><a id="org00ac40d"></a>Backends company<br />
 <div class="outline-text-5" id="text-4-6-1-2">
 <p>
 Liste des backends :
@@ -927,8 +929,8 @@ Python
 </li>
 </ol>
 </div>
-<div id="outline-container-org30a13a9" class="outline-4">
-<h4 id="org30a13a9"><span class="section-number-4">4.6.2</span> <span class="todo TODO">TODO</span> yasSnipets</h4>
+<div id="outline-container-org6a32282" class="outline-4">
+<h4 id="org6a32282"><span class="section-number-4">4.6.2</span> <span class="todo TODO">TODO</span> yasSnipets</h4>
 <div class="outline-text-4" id="text-4-6-2">
 <p>
 yasnippet permet d'ajouter des blocs de codes prédéfinis.
@@ -948,20 +950,20 @@ adding a collection of snippets
 </div>
 </div>
 <ol class="org-ol">
-<li><a id="org41121d7"></a><span class="todo TODO">TODO</span> Ajout de snippets personalisés:<br /></li>
+<li><a id="org8f39041"></a><span class="todo TODO">TODO</span> Ajout de snippets personalisés:<br /></li>
 </ol>
 </div>
 </div>
 
-<div id="outline-container-orgd516a60" class="outline-3">
-<h3 id="orgd516a60"><span class="section-number-3">4.7</span> Org</h3>
+<div id="outline-container-org54767c7" class="outline-3">
+<h3 id="org54767c7"><span class="section-number-3">4.7</span> Org</h3>
 <div class="outline-text-3" id="text-4-7">
 <p>
 <a href="https://orgmode.org/worg/org-tutorials/org4beginners.html">https://orgmode.org/worg/org-tutorials/org4beginners.html</a>
 </p>
 </div>
-<div id="outline-container-org270d2b0" class="outline-4">
-<h4 id="org270d2b0"><span class="section-number-4">4.7.1</span> Ajout d'org-mode et quelques config</h4>
+<div id="outline-container-orge6761e3" class="outline-4">
+<h4 id="orge6761e3"><span class="section-number-4">4.7.1</span> Ajout d'org-mode et quelques config</h4>
 <div class="outline-text-4" id="text-4-7-1">
 <p>
 J'ai trouvé un site avec une config sympa :
@@ -984,8 +986,8 @@ correspondant dans les blocs source.
 </div>
 </div>
 
-<div id="outline-container-orgd599903" class="outline-4">
-<h4 id="orgd599903"><span class="section-number-4">4.7.2</span> Blocs source (babel)</h4>
+<div id="outline-container-org48bf230" class="outline-4">
+<h4 id="org48bf230"><span class="section-number-4">4.7.2</span> Blocs source (babel)</h4>
 <div class="outline-text-4" id="text-4-7-2">
 <p>
 Afin de pouvoir gérer ipython, il faut installer le package org-babel ipython
@@ -1025,8 +1027,8 @@ Toujours afficher les images après les avoir générées:
 </div>
 </div>
 </div>
-<div id="outline-container-org35bcdc1" class="outline-4">
-<h4 id="org35bcdc1"><span class="section-number-4">4.7.3</span> Apparence</h4>
+<div id="outline-container-orge77bb80" class="outline-4">
+<h4 id="orge77bb80"><span class="section-number-4">4.7.3</span> Apparence</h4>
 <div class="outline-text-4" id="text-4-7-3">
 <p>
 Permet d'afficher des symboles utf-8 plutôt que des astérisques.
@@ -1043,8 +1045,8 @@ Permet d'afficher des symboles utf-8 plutôt que des astérisques.
 </div>
 </div>
 
-<div id="outline-container-orgc19a280" class="outline-4">
-<h4 id="orgc19a280"><span class="section-number-4">4.7.4</span> <span class="todo TODO">TODO</span> Gestion références et citations</h4>
+<div id="outline-container-org0b2ddc9" class="outline-4">
+<h4 id="org0b2ddc9"><span class="section-number-4">4.7.4</span> <span class="todo TODO">TODO</span> Gestion références et citations</h4>
 <div class="outline-text-4" id="text-4-7-4">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #CF6F45;">(</span><span style="color: #CF6F45;">use-package</span> <span style="color: #3f6492;">org-ref</span><span style="color: #CF6F45;">)</span>
@@ -1055,8 +1057,8 @@ Permet d'afficher des symboles utf-8 plutôt que des astérisques.
 </div>
 </div>
 
-<div id="outline-container-orge77e251" class="outline-4">
-<h4 id="orge77e251"><span class="section-number-4">4.7.5</span> Tableau de bord</h4>
+<div id="outline-container-org9a619e9" class="outline-4">
+<h4 id="org9a619e9"><span class="section-number-4">4.7.5</span> Tableau de bord</h4>
 <div class="outline-text-4" id="text-4-7-5">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #CF6F45;">(</span><span style="color: #CF6F45;">use-package</span> <span style="color: #3f6492;">org-dashboard</span><span style="color: #CF6F45;">)</span>
@@ -1069,15 +1071,15 @@ Permet d'afficher des symboles utf-8 plutôt que des astérisques.
 </div>
 </div>
 
-<div id="outline-container-org56f5998" class="outline-4">
-<h4 id="org56f5998"><span class="section-number-4">4.7.6</span> Export</h4>
+<div id="outline-container-orgc38d9f2" class="outline-4">
+<h4 id="orgc38d9f2"><span class="section-number-4">4.7.6</span> Export</h4>
 <div class="outline-text-4" id="text-4-7-6">
 <p>
 Liste des exporteurs : <a href="https://orgmode.org/worg/exporters/index.html">https://orgmode.org/worg/exporters/index.html</a>
 </p>
 </div>
 <ol class="org-ol">
-<li><a id="org24da471"></a><span class="todo TODO">TODO</span> problème export _<br />
+<li><a id="orga547220"></a><span class="todo TODO">TODO</span> problème export _<br />
 <div class="outline-text-5" id="text-4-7-6-1">
 <p>
 piste: TeX-like syntax for sub- and superscripts. If
@@ -1086,7 +1088,7 @@ as it is (org-export-with-sub-superscripts).
 </p>
 </div>
 </li>
-<li><a id="orge3815d3"></a><span class="todo TODO">TODO</span> Pandoc, multi format<br />
+<li><a id="orgeb535f6"></a><span class="todo TODO">TODO</span> Pandoc, multi format<br />
 <div class="outline-text-5" id="text-4-7-6-2">
 <p>
 <a href="https://github.com/kawabata/ox-pandoc">https://github.com/kawabata/ox-pandoc</a>
@@ -1098,14 +1100,14 @@ We need to install last version of pandoc from <a href="https://github.com/jgm/p
 </div>
 </div>
 </li>
-<li><a id="org965fb34"></a>Blog<br />
+<li><a id="org27a06c0"></a>Blog<br />
 <div class="outline-text-5" id="text-4-7-6-3">
 <p>
 <a href="https://melpa.org/#/ox-hugo">https://melpa.org/#/ox-hugo</a>
 </p>
 </div>
 </li>
-<li><a id="orgb248c6d"></a>Export HTML<br />
+<li><a id="org686490a"></a>Export HTML<br />
 <div class="outline-text-5" id="text-4-7-6-4">
 <p>
 <a href="https://github.com/fniessen/org-html-themes">https://github.com/fniessen/org-html-themes</a>
@@ -1130,13 +1132,58 @@ Then export it with standart latex exporter
 </div>
 </div>
 </li>
-<li><a id="orgfd8c7c0"></a>Coloration Syntaxique<br />
-<div class="outline-text-5" id="text-4-7-6-5">
-<div class="org-src-container">
-<pre class="src src-emacs-lisp"><span style="color: #CF6F45;">(</span>add-to-list 'org-latex-packages-alist '<span style="color: #436A9A;">(</span><span style="color: #4c4450;">""</span> <span style="color: #4c4450;">"xcolor"</span><span style="color: #436A9A;">)</span><span style="color: #CF6F45;">)</span>
-<span style="color: #CF6F45;">(</span>add-to-list 'org-latex-packages-alist '<span style="color: #436A9A;">(</span><span style="color: #4c4450;">""</span> <span style="color: #4c4450;">"minted"</span><span style="color: #436A9A;">)</span><span style="color: #CF6F45;">)</span>
 
-<span style="color: #CF6F45;">(</span><span style="color: #CF6F45;">setq</span> org-latex-listings 'minted<span style="color: #CF6F45;">)</span>
+<li><a id="org25773ef"></a>Latex<br />
+<div class="outline-text-5" id="text-4-7-6-5">
+<p>
+Création d'une classe simple :
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #CF6F45;">(</span><span style="color: #CF6F45;">with-eval-after-load</span> 'ox-latex
+<span style="color: #436A9A;">(</span>add-to-list 'org-latex-classes
+             '<span style="color: #4c4450;">(</span><span style="color: #4c4450;">"org-plain-latex"</span>
+               <span style="color: #4c4450;">"\\documentclass{article}</span>
+<span style="color: #4c4450;">           [NO-DEFAULT-PACKAGES]</span>
+<span style="color: #4c4450;">           [PACKAGES]</span>
+<span style="color: #4c4450;">           [EXTRA]"</span>
+               <span style="color: #304966;">(</span><span style="color: #4c4450;">"\\section{%s}"</span> . <span style="color: #4c4450;">"\\section*{%s}"</span><span style="color: #304966;">)</span>
+               <span style="color: #304966;">(</span><span style="color: #4c4450;">"\\subsection{%s}"</span> . <span style="color: #4c4450;">"\\subsection*{%s}"</span><span style="color: #304966;">)</span>
+               <span style="color: #304966;">(</span><span style="color: #4c4450;">"\\subsubsection{%s}"</span> . <span style="color: #4c4450;">"\\subsubsection*{%s}"</span><span style="color: #304966;">)</span>
+               <span style="color: #304966;">(</span><span style="color: #4c4450;">"\\paragraph{%s}"</span> . <span style="color: #4c4450;">"\\paragraph*{%s}"</span><span style="color: #304966;">)</span>
+               <span style="color: #304966;">(</span><span style="color: #4c4450;">"\\subparagraph{%s}"</span> . <span style="color: #4c4450;">"\\subparagraph*{%s}"</span><span style="color: #304966;">)</span><span style="color: #4c4450;">)</span><span style="color: #436A9A;">)</span><span style="color: #CF6F45;">)</span>
+</pre>
+</div>
+
+<p>
+Création de fichiers de setup:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-org"><span style="color: #8a9ca8;"># -*- mode: org; -*-</span>
+<span style="color: #a7b4bd;">#+LaTeX_CLASS: org-plain-latex</span>
+<span style="color: #a7b4bd;">#+LaTeX_CLASS_OPTIONS: [letter]</span>
+<span style="color: #a7b4bd;">#+LATEX_HEADER: \usepackage{lmodern} % Ensures we have the right font</span>
+
+<span style="color: #a7b4bd;">#+LATEX_HEADER: \usepackage[utf8]{inputenc}</span>
+<span style="color: #a7b4bd;">#+LATEX_HEADER: \usepackage[T1]{fontenc}</span>
+<span style="color: #a7b4bd;">#+LATEX_HEADER: \usepackage{babel}</span>
+<span style="color: #a7b4bd;">#+LATEX_HEADER: \usepackage{graphicx}</span>
+<span style="color: #a7b4bd;">#+LATEX_HEADER: \usepackage{amsmath, amsthm, amssymb}</span>
+<span style="color: #a7b4bd;">#+LATEX_HEADER: \usepackage[table, xcdraw]{xcolor}</span>
+<span style="color: #a7b4bd;">#+LATEX_HEADER: \usepackage[hidelinks]{hyperref}</span>
+<span style="color: #a7b4bd;">#+LATEX_HEADER: \usepackage{framed}</span>
+<span style="color: #a7b4bd;">#+LATEX_HEADER: \usepackage{minted}</span>
+<span style="color: #a7b4bd;">#+LATEX_HEADER: \usemintedstyle{pastie}</span>
+</pre>
+</div>
+</div>
+
+
+<ol class="org-ol">
+<li><a id="orgc135e99"></a>Coloration Syntaxique<br />
+<div class="outline-text-6" id="text-4-7-6-5-1">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #CF6F45;">(</span><span style="color: #CF6F45;">setq</span> org-latex-listings 'minted<span style="color: #CF6F45;">)</span>
 </pre>
 </div>
 
@@ -1149,11 +1196,12 @@ Then export it with standart latex exporter
 </div>
 </div>
 </li>
+</ol>
+</li>
 
-
-<li><a id="org8183461"></a>Diapositives<br />
+<li><a id="orge23bf6b"></a>Diapositives<br />
 <ol class="org-ol">
-<li><a id="org884f858"></a><span class="todo TODO">TODO</span> Ioslides<br />
+<li><a id="orgbae93bf"></a><span class="todo TODO">TODO</span> Ioslides<br />
 <div class="outline-text-6" id="text-4-7-6-6-1">
 <p>
 IOslide, joli et minimaliste
@@ -1166,7 +1214,7 @@ IOslide, joli et minimaliste
 </div>
 </div>
 </li>
-<li><a id="org592393c"></a>Html5slide<br />
+<li><a id="orgda415c1"></a>Html5slide<br />
 <div class="outline-text-6" id="text-4-7-6-6-2">
 <p>
 html5slide, pas de maj depuis 6ans, on oublie :
@@ -1174,7 +1222,7 @@ html5slide, pas de maj depuis 6ans, on oublie :
 </p>
 </div>
 </li>
-<li><a id="org9bb8126"></a><span class="todo TODO">TODO</span> Reveal js<br />
+<li><a id="org07b5717"></a><span class="todo TODO">TODO</span> Reveal js<br />
 <div class="outline-text-6" id="text-4-7-6-6-3">
 <p>
 <a href="https://github.com/hakimel/reveal.js/">https://github.com/hakimel/reveal.js/</a>
@@ -1216,7 +1264,7 @@ to come arount rainbow delimiter incompatibility issues :
 </div>
 </div>
 </li>
-<li><a id="org193565b"></a><span class="todo TODO">TODO</span> Beamer<br />
+<li><a id="orgd798081"></a><span class="todo TODO">TODO</span> Beamer<br />
 <div class="outline-text-6" id="text-4-7-6-6-4">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #CF6F45;">(</span><span style="color: #CF6F45;">use-package</span> <span style="color: #3f6492;">ox-beamer</span><span style="color: #CF6F45;">)</span>
@@ -1227,7 +1275,7 @@ to come arount rainbow delimiter incompatibility issues :
 </ol>
 </li>
 
-<li><a id="orgb7f360c"></a>Github Markdown<br />
+<li><a id="org15b3eed"></a>Github Markdown<br />
 <div class="outline-text-5" id="text-4-7-6-7">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #CF6F45;">(</span><span style="color: #CF6F45;">use-package</span> <span style="color: #3f6492;">ox-gfm</span>
@@ -1236,7 +1284,7 @@ to come arount rainbow delimiter incompatibility issues :
 </div>
 </div>
 </li>
-<li><a id="org3a430d8"></a>Background color<br />
+<li><a id="org1533af9"></a>Background color<br />
 <div class="outline-text-5" id="text-4-7-6-8">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #CF6F45;">(</span><span style="color: #CF6F45;">defun</span> <span style="color: #436A9A;">my/org-inline-css-hook</span> <span style="color: #436A9A;">(</span>exporter<span style="color: #436A9A;">)</span>
@@ -1259,8 +1307,8 @@ to come arount rainbow delimiter incompatibility issues :
 </li>
 </ol>
 </div>
-<div id="outline-container-orgec40564" class="outline-4">
-<h4 id="orgec40564"><span class="section-number-4">4.7.7</span> Tangle</h4>
+<div id="outline-container-org865ecb2" class="outline-4">
+<h4 id="org865ecb2"><span class="section-number-4">4.7.7</span> Tangle</h4>
 <div class="outline-text-4" id="text-4-7-7">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #8a9ca8;">;;; </span><span style="color: #8a9ca8;">noweb expansion only when you tangle</span>
@@ -1273,8 +1321,8 @@ to come arount rainbow delimiter incompatibility issues :
 </div>
 </div>
 
-<div id="outline-container-org738c173" class="outline-4">
-<h4 id="org738c173"><span class="section-number-4">4.7.8</span> Tree view</h4>
+<div id="outline-container-orge182fe5" class="outline-4">
+<h4 id="orge182fe5"><span class="section-number-4">4.7.8</span> Tree view</h4>
 <div class="outline-text-4" id="text-4-7-8">
 <p>
 On va utiliser <i>org-sidebar</i>, mais il dépend de :
@@ -1302,8 +1350,8 @@ them all in one big list.</dd>
 </div>
 </div>
 </div>
-<div id="outline-container-org26008d7" class="outline-4">
-<h4 id="org26008d7"><span class="section-number-4">4.7.9</span> which app to open file with ?</h4>
+<div id="outline-container-org8c9811f" class="outline-4">
+<h4 id="org8c9811f"><span class="section-number-4">4.7.9</span> which app to open file with ?</h4>
 <div class="outline-text-4" id="text-4-7-9">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #CF6F45;">(</span><span style="color: #CF6F45;">setq</span> org-file-apps
@@ -1314,8 +1362,8 @@ them all in one big list.</dd>
 </div>
 </div>
 </div>
-<div id="outline-container-org9656287" class="outline-3">
-<h3 id="org9656287"><span class="section-number-3">4.8</span> <span class="todo TODO">TODO</span> Writegood mode : besoin de tests</h3>
+<div id="outline-container-org3d55f6d" class="outline-3">
+<h3 id="org3d55f6d"><span class="section-number-3">4.8</span> <span class="todo TODO">TODO</span> Writegood mode : besoin de tests</h3>
 <div class="outline-text-3" id="text-4-8">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #CF6F45;">(</span><span style="color: #CF6F45;">use-package</span> <span style="color: #3f6492;">writegood-mode</span>
@@ -1330,8 +1378,8 @@ them all in one big list.</dd>
 </div>
 </div>
 </div>
-<div id="outline-container-org81b31c2" class="outline-3">
-<h3 id="org81b31c2"><span class="section-number-3">4.9</span> <span class="done DONE">DONE</span> Dashboard</h3>
+<div id="outline-container-org3f4d3bd" class="outline-3">
+<h3 id="org3f4d3bd"><span class="section-number-3">4.9</span> <span class="done DONE">DONE</span> Dashboard</h3>
 <div class="outline-text-3" id="text-4-9">
 <p>
 <a href="https://github.com/emacs-dashboard/emacs-dashboard">https://github.com/emacs-dashboard/emacs-dashboard</a>
@@ -1348,8 +1396,8 @@ install page-break-lines as it is required for dashboard.
 </div>
 </div>
 </div>
-<div id="outline-container-org2d32fb3" class="outline-3">
-<h3 id="org2d32fb3"><span class="section-number-3">4.10</span> COunsel ivy swiper</h3>
+<div id="outline-container-orgbe89f45" class="outline-3">
+<h3 id="orgbe89f45"><span class="section-number-3">4.10</span> COunsel ivy swiper</h3>
 <div class="outline-text-3" id="text-4-10">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #CF6F45;">(</span><span style="color: #CF6F45;">use-package</span> <span style="color: #3f6492;">counsel</span>
@@ -1383,8 +1431,8 @@ install page-break-lines as it is required for dashboard.
 </div>
 </div>
 </div>
-<div id="outline-container-org14e42c4" class="outline-3">
-<h3 id="org14e42c4"><span class="section-number-3">4.11</span> <span class="todo TODO">TODO</span> Line number</h3>
+<div id="outline-container-orgba33888" class="outline-3">
+<h3 id="orgba33888"><span class="section-number-3">4.11</span> <span class="todo TODO">TODO</span> Line number</h3>
 <div class="outline-text-3" id="text-4-11">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #CF6F45;">(</span><span style="color: #CF6F45;">use-package</span> <span style="color: #3f6492;">hlinum</span>
@@ -1399,8 +1447,8 @@ install page-break-lines as it is required for dashboard.
 </div>
 </div>
 </div>
-<div id="outline-container-orgf4ac8a7" class="outline-3">
-<h3 id="orgf4ac8a7"><span class="section-number-3">4.12</span> <span class="todo TODO">TODO</span> Gestion projets</h3>
+<div id="outline-container-org42a99ca" class="outline-3">
+<h3 id="org42a99ca"><span class="section-number-3">4.12</span> <span class="todo TODO">TODO</span> Gestion projets</h3>
 <div class="outline-text-3" id="text-4-12">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #CF6F45;">(</span><span style="color: #CF6F45;">use-package</span> <span style="color: #3f6492;">projectile</span>
@@ -1416,8 +1464,8 @@ install page-break-lines as it is required for dashboard.
 </div>
 </div>
 
-<div id="outline-container-org660ccf0" class="outline-3">
-<h3 id="org660ccf0"><span class="section-number-3">4.13</span> <span class="done DONE">DONE</span> Déplacements entre buffers</h3>
+<div id="outline-container-org87c485e" class="outline-3">
+<h3 id="org87c485e"><span class="section-number-3">4.13</span> <span class="done DONE">DONE</span> Déplacements entre buffers</h3>
 <div class="outline-text-3" id="text-4-13">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #CF6F45;">(</span><span style="color: #CF6F45;">use-package</span> <span style="color: #3f6492;">windmove</span>
@@ -1430,8 +1478,8 @@ install page-break-lines as it is required for dashboard.
 </div>
 </div>
 </div>
-<div id="outline-container-org3e752b9" class="outline-3">
-<h3 id="org3e752b9"><span class="section-number-3">4.14</span> <span class="done DONE">DONE</span> Next key</h3>
+<div id="outline-container-orgc480e8e" class="outline-3">
+<h3 id="orgc480e8e"><span class="section-number-3">4.14</span> <span class="done DONE">DONE</span> Next key</h3>
 <div class="outline-text-3" id="text-4-14">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #CF6F45;">(</span><span style="color: #CF6F45;">use-package</span> <span style="color: #3f6492;">which-key</span>
@@ -1443,8 +1491,8 @@ install page-break-lines as it is required for dashboard.
 </div>
 </div>
 </div>
-<div id="outline-container-org1d8fb7f" class="outline-3">
-<h3 id="org1d8fb7f"><span class="section-number-3">4.15</span> <span class="done DONE">DONE</span> Expend selected region</h3>
+<div id="outline-container-orgdbad208" class="outline-3">
+<h3 id="orgdbad208"><span class="section-number-3">4.15</span> <span class="done DONE">DONE</span> Expend selected region</h3>
 <div class="outline-text-3" id="text-4-15">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #CF6F45;">(</span><span style="color: #CF6F45;">use-package</span> <span style="color: #3f6492;">expand-region</span>
@@ -1455,8 +1503,8 @@ install page-break-lines as it is required for dashboard.
 </div>
 </div>
 
-<div id="outline-container-orgdcc56f0" class="outline-3">
-<h3 id="orgdcc56f0"><span class="section-number-3">4.16</span> Parenthèses et autres</h3>
+<div id="outline-container-org0ee1951" class="outline-3">
+<h3 id="org0ee1951"><span class="section-number-3">4.16</span> Parenthèses et autres</h3>
 <div class="outline-text-3" id="text-4-16">
 <p>
 Automatisation autour des parenthèses
@@ -1490,8 +1538,8 @@ expend parents redondant avec smartparens ?
 </div>
 </div>
 
-<div id="outline-container-orgc22e8f9" class="outline-3">
-<h3 id="orgc22e8f9"><span class="section-number-3">4.17</span> <span class="done DONE">DONE</span> Move text</h3>
+<div id="outline-container-org735ba4f" class="outline-3">
+<h3 id="org735ba4f"><span class="section-number-3">4.17</span> <span class="done DONE">DONE</span> Move text</h3>
 <div class="outline-text-3" id="text-4-17">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #CF6F45;">(</span><span style="color: #CF6F45;">use-package</span> <span style="color: #3f6492;">move-text</span><span style="color: #CF6F45;">)</span>
@@ -1499,8 +1547,8 @@ expend parents redondant avec smartparens ?
 </div>
 </div>
 </div>
-<div id="outline-container-org77f0ea2" class="outline-3">
-<h3 id="org77f0ea2"><span class="section-number-3">4.18</span> <span class="todo TODO">TODO</span> Indentation</h3>
+<div id="outline-container-org6025826" class="outline-3">
+<h3 id="org6025826"><span class="section-number-3">4.18</span> <span class="todo TODO">TODO</span> Indentation</h3>
 <div class="outline-text-3" id="text-4-18">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #CF6F45;">(</span><span style="color: #CF6F45;">use-package</span> <span style="color: #3f6492;">aggressive-indent</span>
@@ -1524,8 +1572,8 @@ suivant de ma config.
 </div>
 </div>
 
-<div id="outline-container-org47d3ec0" class="outline-3">
-<h3 id="org47d3ec0"><span class="section-number-3">4.19</span> <span class="done DONE">DONE</span> Gestionnaire de version (Magit)</h3>
+<div id="outline-container-orgef642aa" class="outline-3">
+<h3 id="orgef642aa"><span class="section-number-3">4.19</span> <span class="done DONE">DONE</span> Gestionnaire de version (Magit)</h3>
 <div class="outline-text-3" id="text-4-19">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #CF6F45;">(</span><span style="color: #CF6F45;">use-package</span> <span style="color: #3f6492;">magit</span>
@@ -1535,8 +1583,8 @@ suivant de ma config.
 </div>
 </div>
 </div>
-<div id="outline-container-orga9d5ab8" class="outline-3">
-<h3 id="orga9d5ab8"><span class="section-number-3">4.20</span> <span class="todo TODO">TODO</span> Syntaxe (Flycheck)</h3>
+<div id="outline-container-orgee80441" class="outline-3">
+<h3 id="orgee80441"><span class="section-number-3">4.20</span> <span class="todo TODO">TODO</span> Syntaxe (Flycheck)</h3>
 <div class="outline-text-3" id="text-4-20">
 <p>
 J'utilise Flycheck pour vérifier la syntaxe à la volée
@@ -1550,8 +1598,8 @@ J'utilise Flycheck pour vérifier la syntaxe à la volée
 </div>
 </div>
 
-<div id="outline-container-org33e66e4" class="outline-3">
-<h3 id="org33e66e4"><span class="section-number-3">4.21</span> <span class="done DONE">DONE</span> Orthographe (Fly Spell)</h3>
+<div id="outline-container-orgcb0f360" class="outline-3">
+<h3 id="orgcb0f360"><span class="section-number-3">4.21</span> <span class="done DONE">DONE</span> Orthographe (Fly Spell)</h3>
 <div class="outline-text-3" id="text-4-21">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #CF6F45;">(</span><span style="color: #CF6F45;">use-package</span> <span style="color: #3f6492;">flyspell</span><span style="color: #CF6F45;">)</span>
@@ -1624,8 +1672,8 @@ Pour appliquer la correction, deux solutions me paraissent valables :
 </div>
 </div>
 
-<div id="outline-container-org561c555" class="outline-3">
-<h3 id="org561c555"><span class="section-number-3">4.22</span> <span class="todo TODO">TODO</span> C/C++</h3>
+<div id="outline-container-orgcfea74f" class="outline-3">
+<h3 id="orgcfea74f"><span class="section-number-3">4.22</span> <span class="todo TODO">TODO</span> C/C++</h3>
 <div class="outline-text-3" id="text-4-22">
 <p>
 Le built in est bon, mais j'aimerai tester Irony
@@ -1673,8 +1721,8 @@ Ajout du support de flycheck
 </div>
 </div>
 </div>
-<div id="outline-container-org398a851" class="outline-3">
-<h3 id="org398a851"><span class="section-number-3">4.23</span> Python</h3>
+<div id="outline-container-org3a05cb0" class="outline-3">
+<h3 id="org3a05cb0"><span class="section-number-3">4.23</span> Python</h3>
 <div class="outline-text-3" id="text-4-23">
 <p>
 Le mode Anaconda est paraît-il plus complet que le mode intégré :
@@ -1715,8 +1763,8 @@ live py est sympa mais uniquement pour des logiciels simples.
 </div>
 </div>
 
-<div id="outline-container-org5355944" class="outline-4">
-<h4 id="org5355944"><span class="section-number-4">4.23.1</span> Auto Format</h4>
+<div id="outline-container-org6b30de6" class="outline-4">
+<h4 id="org6b30de6"><span class="section-number-4">4.23.1</span> Auto Format</h4>
 <div class="outline-text-4" id="text-4-23-1">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #CF6F45;">(</span><span style="color: #CF6F45;">use-package</span> <span style="color: #3f6492;">py-autopep8</span><span style="color: #CF6F45;">)</span>
@@ -1725,8 +1773,8 @@ live py est sympa mais uniquement pour des logiciels simples.
 </div>
 </div>
 </div>
-<div id="outline-container-orgd8a057b" class="outline-3">
-<h3 id="orgd8a057b"><span class="section-number-3">4.24</span> <span class="todo TODO">TODO</span> Markdown</h3>
+<div id="outline-container-orgfbf3fc5" class="outline-3">
+<h3 id="orgfbf3fc5"><span class="section-number-3">4.24</span> <span class="todo TODO">TODO</span> Markdown</h3>
 <div class="outline-text-3" id="text-4-24">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #CF6F45;">(</span><span style="color: #CF6F45;">use-package</span> <span style="color: #3f6492;">markdown-mode</span>
@@ -1748,8 +1796,8 @@ Ne fonctionne pas sur firefox actuellement.
 </div>
 </div>
 
-<div id="outline-container-org57b8dd7" class="outline-4">
-<h4 id="org57b8dd7"><span class="section-number-4">4.24.1</span> <span class="todo TODO">TODO</span> preview</h4>
+<div id="outline-container-orgabde588" class="outline-4">
+<h4 id="orgabde588"><span class="section-number-4">4.24.1</span> <span class="todo TODO">TODO</span> preview</h4>
 <div class="outline-text-4" id="text-4-24-1">
 <p>
 vmd-mode
@@ -1769,8 +1817,8 @@ vmd-mode
 </p>
 </div>
 </div>
-<div id="outline-container-orgf2ba20a" class="outline-4">
-<h4 id="orgf2ba20a"><span class="section-number-4">4.24.2</span> <span class="todo TODO">TODO</span> Preview (grip)</h4>
+<div id="outline-container-orgd7bc17f" class="outline-4">
+<h4 id="orgd7bc17f"><span class="section-number-4">4.24.2</span> <span class="todo TODO">TODO</span> Preview (grip)</h4>
 <div class="outline-text-4" id="text-4-24-2">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #8a9ca8;">;; </span><span style="color: #8a9ca8;">Use keybindings</span>
@@ -1786,8 +1834,8 @@ vmd-mode
 </div>
 </div>
 
-<div id="outline-container-org6c71a2e" class="outline-3">
-<h3 id="org6c71a2e"><span class="section-number-3">4.25</span> Contrôle de programmes externes</h3>
+<div id="outline-container-org0feddb7" class="outline-3">
+<h3 id="org0feddb7"><span class="section-number-3">4.25</span> Contrôle de programmes externes</h3>
 <div class="outline-text-3" id="text-4-25">
 <p>
 Openwith permet d'ouvrir certains types de fichiers avec des outils
@@ -1828,8 +1876,8 @@ Counsel-spotify:
 </div>
 </div>
 </div>
-<div id="outline-container-org02d9061" class="outline-3">
-<h3 id="org02d9061"><span class="section-number-3">4.26</span> JSON</h3>
+<div id="outline-container-org4ac45ab" class="outline-3">
+<h3 id="org4ac45ab"><span class="section-number-3">4.26</span> JSON</h3>
 <div class="outline-text-3" id="text-4-26">
 <div class="org-src-container">
 <pre class="src src-emacs-lisp"><span style="color: #CF6F45;">(</span><span style="color: #CF6F45;">use-package</span> <span style="color: #3f6492;">json-mode</span><span style="color: #CF6F45;">)</span>
@@ -1844,8 +1892,8 @@ Un simple outil permettant de naviguer plus facilement dans un fichier Json.
 </div>
 </div>
 </div>
-<div id="outline-container-org94e46fa" class="outline-3">
-<h3 id="org94e46fa"><span class="section-number-3">4.27</span> Blog</h3>
+<div id="outline-container-orgbb95b21" class="outline-3">
+<h3 id="orgbb95b21"><span class="section-number-3">4.27</span> Blog</h3>
 <div class="outline-text-3" id="text-4-27">
 <p>
 <a href="https://github.com/masasam/emacs-easy-hugo">https://github.com/masasam/emacs-easy-hugo</a>
@@ -1856,7 +1904,7 @@ Un simple outil permettant de naviguer plus facilement dans un fichier Json.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Virgile Daugé</p>
-<p class="date">Created: 2021-03-08 lun. 13:11</p>
+<p class="date">Created: 2021-03-08 lun. 16:01</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
