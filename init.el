@@ -253,15 +253,20 @@
 (use-package ox-twbs
     :ensure t)
 
-(add-to-list 'org-latex-packages-alist '("" "xcolor"))
-(add-to-list 'org-latex-packages-alist '("" "minted"))
+(with-eval-after-load 'ox-latex
+(add-to-list 'org-latex-classes
+             '("org-plain-latex"
+               "\\documentclass{article}
+           [NO-DEFAULT-PACKAGES]
+           [PACKAGES]
+           [EXTRA]"
+               ("\\section{%s}" . "\\section*{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+               ("\\paragraph{%s}" . "\\paragraph*{%s}")
+               ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
 
 (setq org-latex-listings 'minted)
-
-(setq org-latex-header-extra
-      '(concat
-        org-latex-header-extra
-        "\\usemintedstyle{native}"))
 
 (use-package ox-reveal)
 (setq org-reveal-root "file:///home/virgile/reveal.js")
