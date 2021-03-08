@@ -45,8 +45,6 @@
 (when (  fboundp 'tooltip-mode)
   (tooltip-mode -1))
 
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
-
 (setq show-paren-delay 0)
 (show-paren-mode 1)
 
@@ -72,19 +70,29 @@
 (unbind-key "<mouse-2>") ;; pasting with mouse-wheel click
 (unbind-key "<C-wheel-down>") ;; text scale adjust
 
-(use-package doom-modeline
-  :ensure t
-  :hook (after-init . doom-modeline-mode))
+(use-package ewal
+  :init (setq ewal-use-built-in-always-p nil
+              ewal-use-built-in-on-failure-p t
+              ewal-built-in-palette "sexy-material"))
+(use-package ewal-doom-themes
+  :init (progn
+          (setq doom-theme-underline-parens t
+                my:rice:font (font-spec
+                              :family "Source Code Pro"
+                              :weight 'semi-bold
+                              :size 11.0))
+          (show-paren-mode +1)
+          (global-hl-line-mode)
+          (set-frame-font my:rice:font nil t)
+          (add-to-list  'default-frame-alist
+                        `(font . ,(font-xlfd-name my:rice:font))))
+  :config (progn
+            (load-theme 'ewal-doom-one t)
+            (enable-theme 'ewal-doom-one)))
 
-(use-package doom-themes
-  :defer t
-  :init
-  (load-theme 'doom-one t)
-  ;; Enable flashing mode-line on errors
-  (doom-themes-visual-bell-config)
-  ;; Enable custom neotree theme (all-the-icons must be installed!)
-  (doom-themes-neotree-config)
-  (doom-themes-org-config))
+(use-package doom-modeline
+    :ensure t
+    :hook (after-init . doom-modeline-mode))
 
 (use-package all-the-icons)
 
@@ -299,6 +307,10 @@ background of code to whatever theme I'm using's background"
 (use-package org-super-agenda)
 
 (use-package org-sidebar)
+
+(setq org-file-apps
+  '(("\\.pdf\\'" . org.gnome.Evince.desktop)
+    (auto-mode . emacs)))
 
 (use-package page-break-lines)
 (use-package dashboard
