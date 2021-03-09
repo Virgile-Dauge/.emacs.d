@@ -2,17 +2,11 @@
 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
 #+SETUPFILE: ~/.emacs.d/article-latex.setup
 #+PROPERTY: header-args+ :tangle "./init.el"
-* DONE Config ShortCut
-#+begin_src emacs-lisp
- (defun find-config ()
-    "Edit readme.org"
-    (interactive)
-    (find-file "~/.emacs.d/readme.org"))
+#+TAGS: @Activated(a) @Desactivated(d) @Testing(t) @Futur(f)
+#+TODO: Desactivated Futur Testing Activated
 
-  (global-set-key (kbd "C-c I") 'find-config)
-#+end_src
-* TODO Base
-** Initialisation et use-package
+* Gestionnaire de packages
+** Activated Initialisation et use-package
 Initialisation des dépôts d'archives et installation de use-package.
 #+begin_src emacs-lisp
 (package-initialize)
@@ -32,7 +26,7 @@ Initialisation des dépôts d'archives et installation de use-package.
 (setq load-prefer-newer t)
 #+end_src
 
-** MAJ automatique
+** Activated MAJ automatique
 #+begin_src emacs-lisp
 (use-package auto-package-update
   :config
@@ -41,21 +35,40 @@ Initialisation des dépôts d'archives et installation de use-package.
   (auto-package-update-maybe))
 #+end_src
 
-** Configs simples
-*** Suppression de la selection
+** Futur Emacs serveur
+https://www.gnu.org/software/emacs/manual/html_node/emacs/Emacs-Server.html
+#+BEGIN_SRC bash :tangle no
+systemctl --user enable emacs
+#+END_SRC
+
+** Futur Lazy loading
+
+https://github.com/jwiegley/use-package#notes-about-lazy-loading
+
+* Configs simples
+** Activated init.el ShortCut                                  :@Activated:a:
+#+begin_src emacs-lisp
+ (defun find-config ()
+    "Edit readme.org"
+    (interactive)
+    (find-file "~/.emacs.d/readme.org"))
+
+  (global-set-key (kbd "C-c I") 'find-config)
+#+end_src
+** Activated Suppression de la selection
 C'est un comportement dont j'ai l'habitude :
 #+begin_src emacs-lisp
 (delete-selection-mode t)
 #+end_src
 
-*** Suppression des backups/autosaves/locks
+** Testing Suppression des backups/autosaves/locks
 #+begin_src emacs-lisp
 (setq
  make-backup-files nil
  auto-save-default nil
  create-lockfiles nil)
 #+end_src
-*** Suppression des menus
+** Activated Suppression des menus
 Désactiver le startup screen :
 #+begin_src emacs-lisp
 (setq inhibit-startup-screen t)
@@ -73,33 +86,32 @@ Enlever les barres de menu et d'outils, c'est un minimum :
   (tooltip-mode -1))
 #+end_src
 
-
-*** Plein écran par défaut
+** Desactivated Plein écran par défaut
 
 #+begin_src emacs-lisp :tangle no
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 #+end_src
-*** Montrer les paires de parenthèses
+** Activated Montrer les paires de parenthèses
 Montrer les paires de parenthèses : https://www.emacswiki.org/emacs/ShowParenMode
 #+begin_src emacs-lisp
 (setq show-paren-delay 0)
 (show-paren-mode 1)
 #+end_src
 
-*** Désactivation du curseur hors de la fenêtre sélectionnée
+** Activated Désactivation du curseur hors de la fenêtre sélectionnée
 Désactiver le curseur dans les fenetres non-actives:
 #+begin_src emacs-lisp
 (setq-default cursor-in-non-selected-windows 'hollow)
 #+end_src
 
-*** Suppression des espaces avant sauvegarde du fichier
+** Activated Suppression des espaces avant sauvegarde du fichier
 Suppression des espaces en fin de fichier avant de sauvegarder :
 #+begin_src emacs-lisp
 ;; Delete trailing whitespace before save
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 #+end_src
 
-*** Encodage Utf8 par défaut
+** Activated Encodage Utf8 par défaut
 Tout passer en utf-8
 #+begin_src emacs-lisp
 ;; Core settings
@@ -112,7 +124,7 @@ Tout passer en utf-8
 (prefer-coding-system        'utf-8)   ; with sugar on top
 (setq default-process-coding-system '(utf-8-unix . utf-8-unix))
 #+end_src
-*** Unbind de raccourcis chiants
+** Activated Unbind de raccourcis chiants
 
 #+begin_src emacs-lisp
 ;;(unbind-key "C-x C-f") ;; find-file-read-only
@@ -122,25 +134,15 @@ Tout passer en utf-8
 (unbind-key "<mouse-2>") ;; pasting with mouse-wheel click
 (unbind-key "<C-wheel-down>") ;; text scale adjust
 #+end_src
-** TODO Emacs serveur
-https://www.gnu.org/software/emacs/manual/html_node/emacs/Emacs-Server.html
-#+BEGIN_SRC bash :tangle no
-systemctl --user enable emacs
-#+END_SRC
 
-** TODO Lazy loading
+* Visuals
 
-https://github.com/jwiegley/use-package#notes-about-lazy-loading
-
-* DONE Theme
-Le site https://peach-melpa.org/ propose une galerie des themes Emacs disponibles sur MELPA.
-** Actuel
+** Theme
+  Le site https://peach-melpa.org/ propose une galerie des themes
+  Emacs disponibles sur MELPA.
+*** Desactivated Doom One
 J'ai trouvé le thème doom-one vraiment sympa.
 #+begin_src emacs-lisp :tangle no
-    (use-package doom-modeline
-      :ensure t
-      :hook (after-init . doom-modeline-mode))
-
     (use-package doom-themes
       :defer t
       :init
@@ -152,6 +154,7 @@ J'ai trouvé le thème doom-one vraiment sympa.
       (doom-themes-org-config))
 #+end_src
 
+*** Activated Ewal (copie terminal)
 #+begin_src emacs-lisp
 (use-package ewal
   :init (setq ewal-use-built-in-always-p nil
@@ -172,30 +175,36 @@ J'ai trouvé le thème doom-one vraiment sympa.
   :config (progn
             (load-theme 'ewal-doom-one t)
             (enable-theme 'ewal-doom-one)))
+#+end_src
 
+*** Futur Mood-one
+
+Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo est
+    peut-être moins active. https://gitlab.com/jessieh/mood-one-theme
+*** Futur Night owl
+    https://github.com/aaronjensen/night-owl-emacs
+*** Futur SubAtomic
+    https://peach-melpa.org/themes/subatomic-theme/variants/subatomic?lang=rb
+** Modeline
+*** Activated Doom
+#+begin_src emacs-lisp
 (use-package doom-modeline
     :ensure t
     :hook (after-init . doom-modeline-mode))
 #+end_src
-** A tester :
-*** Mood-one
 
-Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo est
-    peut-être moins active. https://gitlab.com/jessieh/mood-one-theme
-*** Night owl
-    https://github.com/aaronjensen/night-owl-emacs
-*** SubAtomic
-    https://peach-melpa.org/themes/subatomic-theme/variants/subatomic?lang=rb
-** Compléments
+** Icons
+*** Activated All-the-icons
 #+begin_src emacs-lisp
 (use-package all-the-icons)
 #+end_src
-** Fonts
+** Testing Fonts
 #+begin_src emacs-lisp
 ;;(set-frame-font "Operator Mono 12" nil t)
 (set-fontset-font t 'unicode "STIXGeneral" nil 'prepend)
 #+end_src
-** pretty symbols
+** Pretty symbols
+*** Activated Global prettify
 #+begin_src emacs-lisp
   (setq prettify-symbols-unprettify-at-point 'right-edge)
   (global-prettify-symbols-mode 1)
@@ -242,6 +251,8 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
              ("<=" . "≤")
              ("=" . "≝")))))
 #+end_src
+
+*** Futur Prettyfy only inside org babel blocs
 * Packages
 ** Curseurs multiples
 #+begin_src emacs-lisp
@@ -375,261 +386,6 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 #+end_src
 **** TODO Ajout de snippets personalisés:
 
-** Org
-   https://orgmode.org/worg/org-tutorials/org4beginners.html
-*** Ajout d'org-mode et quelques config
-    J'ai trouvé un site avec une config sympa :
-    https://jamiecollinson.com/blog/my-emacs-config/#org
-
-
-ici, fontify et act natively servent à utiliser le mode majeur
-correspondant dans les blocs source.
-#+begin_src emacs-lisp
-(use-package org
-  :config
-  (setq org-src-fontify-natively t)
-  (setq org-src-tab-acts-natively t)
-)
-#+end_src
-
-*** Blocs source (babel)
-Afin de pouvoir gérer ipython, il faut installer le package org-babel ipython
-#+begin_src emacs-lisp
-  (use-package ob-ipython
-    :after org)
-#+end_src
-
-ajout du support de certains languages dans org-babel
-#+begin_src emacs-lisp
-(with-eval-after-load 'org
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '(
-     (ipython . t)
-     (python  . t)
-     (C       . t)
-     (dot     . t)
-     (shell   . t)
-   ))
-    (setq org-confirm-babel-evaluate nil)
-)
-#+end_src
-
-Toujours afficher les images après les avoir générées:
-
-#+begin_src emacs-lisp
-(add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append)
-#+end_src
-*** Apparence
-
-Permet d'afficher des symboles utf-8 plutôt que des astérisques.
-#+begin_src emacs-lisp
-  (use-package org-bullets
-      :ensure t
-      :config
-      ;; (setq org-bullets-bullet-list '("∙"))
-      (add-hook 'org-mode-hook 'org-bullets-mode)
-      )
-#+end_src
-
-*** TODO Gestion références et citations
-#+begin_src emacs-lisp
-(use-package org-ref)
-
-(setq org-latex-pdf-process (list "latexmk -shell-escape -bibtex -f -pdf %f"))
-#+end_src
-
-*** Tableau de bord
-
-#+begin_src emacs-lisp :tangle no
-(use-package org-dashboard)
-#+end_src
-
-#+begin_example
-
-*** Export
-Liste des exporteurs : https://orgmode.org/worg/exporters/index.html
-**** TODO problème export _
-piste: TeX-like syntax for sub- and superscripts. If
-you write ‘^:{}’, ‘a_{b}’ is interpreted, but the simple ‘a_b’ is left
-as it is (org-export-with-sub-superscripts).
-**** TODO Pandoc, multi format
-     https://github.com/kawabata/ox-pandoc
-     We need to install last version of pandoc from https://github.com/jgm/pandoc/releases/
-#+begin_src emacs-lisp
-(use-package ox-pandoc)
-#+end_src
-**** Blog
-     https://melpa.org/#/ox-hugo
-**** Export HTML
-https://github.com/fniessen/org-html-themes
-To use this, just add the following in your .org file
-#+begin_src emacs-lisp :tangle no
-#+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
-#+end_src
-Then export it with standart latex exporter
-#+begin_src emacs-lisp :tangle no
-C-c C-e h h
-#+end_src
-
-#+begin_src emacs-lisp
-(use-package ox-twbs
-    :ensure t)
-#+end_src
-
-**** Latex
-
-Création d'une classe simple :
-#+begin_src emacs-lisp
-(with-eval-after-load 'ox-latex
-(add-to-list 'org-latex-classes
-             '("org-plain-latex"
-               "\\documentclass{article}
-           [NO-DEFAULT-PACKAGES]
-           [PACKAGES]
-           [EXTRA]"
-               ("\\section{%s}" . "\\section*{%s}")
-               ("\\subsection{%s}" . "\\subsection*{%s}")
-               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-               ("\\paragraph{%s}" . "\\paragraph*{%s}")
-               ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
-#+end_src
-
-Création de fichiers de setup:
-
-#+begin_src org :tangle ./article-latex.setup
-# -*- mode: org; -*-
-#+LaTeX_CLASS: org-plain-latex
-#+LaTeX_CLASS_OPTIONS: [letter]
-#+LATEX_HEADER: \usepackage{lmodern} % Ensures we have the right font
-
-#+LATEX_HEADER: \usepackage[utf8]{inputenc}
-#+LATEX_HEADER: \usepackage[T1]{fontenc}
-#+LATEX_HEADER: \usepackage{babel}
-#+LATEX_HEADER: \usepackage{graphicx}
-#+LATEX_HEADER: \usepackage{amsmath, amsthm, amssymb}
-#+LATEX_HEADER: \usepackage[table, xcdraw]{xcolor}
-#+LATEX_HEADER: \usepackage[hidelinks]{hyperref}
-#+LATEX_HEADER: \usepackage{framed}
-#+LATEX_HEADER: \usepackage{minted}
-#+LATEX_HEADER: \usemintedstyle{pastie}
-#+end_src
-
-
-***** Coloration Syntaxique
-# (add-to-list 'org-latex-packages-alist '("" "xcolor"))
-# (add-to-list 'org-latex-packages-alist '("" "minted"))
-#+begin_src emacs-lisp
-  (setq org-latex-listings 'minted)
-#+end_src
-
-#+begin_src emacs-lisp :tangle no
-  (setq org-latex-header-extra
-        '(concat
-          org-latex-header-extra
-          "\\usemintedstyle{native}"))
-#+end_src
-
-**** Diapositives
-***** TODO Ioslides
-     IOslide, joli et minimaliste
-     https://github.com/coldnew/org-ioslide
-     #+begin_src emacs-lisp :tangle no
-(use-package ox-ioslide)
-;;(use-package ox-ioslide-helper)
-     #+end_src
-***** Html5slide
-      html5slide, pas de maj depuis 6ans, on oublie :
-      https://github.com/coldnew/org-html5slide
-***** TODO Reveal js
-      https://github.com/hakimel/reveal.js/
-      To install reveal js locally :
-      #+begin_src bash :tangle no
-      cd ~/
-      git clone https://github.com/hakimel/reveal.js/
-      npm update node-sass
-      npm install
-      #+end_src
-      as stated in https://github.com/yjwen/org-reveal: The easiest
-      way of getint org-reveal is to instal ox-reveal from melpa
-#+begin_src emacs-lisp
-(use-package ox-reveal)
-(setq org-reveal-root "file:///home/virgile/reveal.js")
-(use-package htmlize)
-#+end_src
-
-to come arount rainbow delimiter incompatibility issues :
-#+begin_src emacs-lisp
-(defadvice htmlize-buffer-1 (around ome-htmlize-buffer-1 disable)
-  (rainbow-delimiters-mode -1)
-  ad-do-it
-  (rainbow-delimiters-mode t))
-
-(defun ome-htmlize-setup ()
-  (if (el-get-read-package-status 'rainbow-delimiters)
-      (progn
-        (ad-enable-advice 'htmlize-buffer-1 'around 'ome-htmlize-buffer-1)
-        (ad-activate 'htmlize-buffer-1))))
-#+end_src
-***** TODO Beamer
-#+begin_src emacs-lisp :tangle no
-(use-package ox-beamer)
-#+end_src
-
-**** Github Markdown
-#+begin_src emacs-lisp
-  (use-package ox-gfm
-    :after org)
-#+end_src
-**** Background color
-#+begin_src emacs-lisp
-  (defun my/org-inline-css-hook (exporter)
-    "Insert custom inline css to automatically set the
-  background of code to whatever theme I'm using's background"
-
-    (let* ((my-pre-bg (face-background 'default))
-           (my-pre-fg (face-foreground 'default)))
-      (setq
-       org-html-head-extra
-       (concat
-        org-html-head-extra
-        (format "<style type=\"text/css\">\n pre.src {background-color: %s; color: %s;}</style>\n"
-                my-pre-bg my-pre-fg)))))
-
-  (add-hook 'org-export-before-processing-hook 'my/org-inline-css-hook)
-#+end_src
-*** Tangle
-
-#+begin_src emacs-lisp
-;;; noweb expansion only when you tangle
-(setq org-babel-default-header-args
-      (cons '(:noweb . "tangle")
-            (assq-delete-all :noweb org-babel-default-header-args))
-      )
-#+end_src
-
-*** Tree view
-On va utiliser /org-sidebar/, mais il dépend de :
-
-- /org-ql/ :: provides a query language for Org files
-#+begin_src emacs-lisp
-(use-package org-ql)
-#+end_src
-- /org-super-agenda/ :: group items into sections, rather than having
-  them all in one big list.
-#+begin_src emacs-lisp
-(use-package org-super-agenda)
-#+end_src
-
-#+begin_src emacs-lisp
-(use-package org-sidebar)
-#+end_src
-*** which app to open file with ?
-#+begin_src emacs-lisp
-  (setq org-file-apps
-    '(("\\.pdf\\'" . org.gnome.Evince.desktop)
-      (auto-mode . emacs)))
-#+end_src
 ** TODO Writegood mode : besoin de tests
 #+begin_src emacs-lisp :tangle no
 (use-package writegood-mode
@@ -996,3 +752,261 @@ Un simple outil permettant de naviguer plus facilement dans un fichier Json.
 #+end_src
 ** Blog
 https://github.com/masasam/emacs-easy-hugo
+* Org
+  https://orgmode.org/worg/org-tutorials/org4beginners.html
+** Ajout d'org-mode et quelques config
+    J'ai trouvé un site avec une config sympa :
+    https://jamiecollinson.com/blog/my-emacs-config/#org
+
+*** Activated Package org
+ici, fontify et act natively servent à utiliser le mode majeur
+correspondant dans les blocs source.
+#+begin_src emacs-lisp
+(use-package org
+  :config
+  (setq org-src-fontify-natively t)
+  (setq org-src-tab-acts-natively t)
+)
+#+end_src
+
+** Blocs source (babel)
+
+*** Activated package babel python
+Afin de pouvoir gérer ipython, il faut installer le package org-babel ipython
+#+begin_src emacs-lisp
+  (use-package ob-ipython
+    :after org)
+#+end_src
+
+*** Activated Liste des languages activés
+Ajout du support de certains languages dans org-babel
+#+begin_src emacs-lisp
+(with-eval-after-load 'org
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '(
+     (ipython . t)
+     (python  . t)
+     (C       . t)
+     (dot     . t)
+     (shell   . t)
+   ))
+    (setq org-confirm-babel-evaluate nil)
+)
+#+end_src
+*** Activated Affichage des images générées par défault
+Toujours afficher les images après les avoir générées:
+
+#+begin_src emacs-lisp
+(add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append)
+#+end_src
+** Apparence
+
+Permet d'afficher des symboles utf-8 plutôt que des astérisques.
+#+begin_src emacs-lisp
+  (use-package org-bullets
+      :ensure t
+      :config
+      ;; (setq org-bullets-bullet-list '("∙"))
+      (add-hook 'org-mode-hook 'org-bullets-mode)
+      )
+#+end_src
+
+** TODO Gestion références et citations
+#+begin_src emacs-lisp
+(use-package org-ref)
+
+(setq org-latex-pdf-process (list "latexmk -shell-escape -bibtex -f -pdf %f"))
+#+end_src
+
+** Tableau de bord
+
+#+begin_src emacs-lisp :tangle no
+(use-package org-dashboard)
+#+end_src
+
+#+begin_example
+
+** Export
+Liste des exporteurs : https://orgmode.org/worg/exporters/index.html
+*** TODO problème export _
+piste: TeX-like syntax for sub- and superscripts. If
+you write ‘^:{}’, ‘a_{b}’ is interpreted, but the simple ‘a_b’ is left
+as it is (org-export-with-sub-superscripts).
+*** TODO Pandoc, multi format
+     https://github.com/kawabata/ox-pandoc
+     We need to install last version of pandoc from https://github.com/jgm/pandoc/releases/
+#+begin_src emacs-lisp
+(use-package ox-pandoc)
+#+end_src
+*** Blog
+    https://melpa.org/#/ox-hugo
+*** Export HTML
+https://github.com/fniessen/org-html-themes
+To use this, just add the following in your .org file
+#+begin_src emacs-lisp :tangle no
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
+#+end_src
+Then export it with standart latex exporter
+#+begin_src emacs-lisp :tangle no
+C-c C-e h h
+#+end_src
+
+#+begin_src emacs-lisp
+(use-package ox-twbs
+    :ensure t)
+#+end_src
+
+*** Latex
+
+Création d'une classe simple :
+#+begin_src emacs-lisp
+(with-eval-after-load 'ox-latex
+(add-to-list 'org-latex-classes
+             '("org-plain-latex"
+               "\\documentclass{article}
+           [NO-DEFAULT-PACKAGES]
+           [PACKAGES]
+           [EXTRA]"
+               ("\\section{%s}" . "\\section*{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+               ("\\paragraph{%s}" . "\\paragraph*{%s}")
+               ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
+#+end_src
+
+Création de fichiers de setup:
+
+#+begin_src org :tangle ./article-latex.setup
+# -*- mode: org; -*-
+#+LaTeX_CLASS: org-plain-latex
+#+LaTeX_CLASS_OPTIONS: [letter]
+#+LATEX_HEADER: \usepackage{lmodern} % Ensures we have the right font
+
+#+LATEX_HEADER: \usepackage[utf8]{inputenc}
+#+LATEX_HEADER: \usepackage[T1]{fontenc}
+#+LATEX_HEADER: \usepackage{babel}
+#+LATEX_HEADER: \usepackage{graphicx}
+#+LATEX_HEADER: \usepackage{amsmath, amsthm, amssymb}
+#+LATEX_HEADER: \usepackage[table, xcdraw]{xcolor}
+#+LATEX_HEADER: \usepackage[hidelinks]{hyperref}
+#+LATEX_HEADER: \usepackage{framed}
+#+LATEX_HEADER: \usepackage{minted}
+#+LATEX_HEADER: \usemintedstyle{pastie}
+#+end_src
+
+
+**** Coloration Syntaxique
+# (add-to-list 'org-latex-packages-alist '("" "xcolor"))
+# (add-to-list 'org-latex-packages-alist '("" "minted"))
+#+begin_src emacs-lisp
+  (setq org-latex-listings 'minted)
+#+end_src
+
+#+begin_src emacs-lisp :tangle no
+  (setq org-latex-header-extra
+        '(concat
+          org-latex-header-extra
+          "\\usemintedstyle{native}"))
+#+end_src
+
+*** Diapositives
+**** TODO Ioslides
+     IOslide, joli et minimaliste
+     https://github.com/coldnew/org-ioslide
+     #+begin_src emacs-lisp :tangle no
+(use-package ox-ioslide)
+;;(use-package ox-ioslide-helper)
+     #+end_src
+**** Html5slide
+     html5slide, pas de maj depuis 6ans, on oublie :
+     https://github.com/coldnew/org-html5slide
+**** TODO Reveal js
+      https://github.com/hakimel/reveal.js/
+      To install reveal js locally :
+      #+begin_src bash :tangle no
+      cd ~/
+      git clone https://github.com/hakimel/reveal.js/
+      npm update node-sass
+      npm install
+      #+end_src
+      as stated in https://github.com/yjwen/org-reveal: The easiest
+      way of getint org-reveal is to instal ox-reveal from melpa
+#+begin_src emacs-lisp
+(use-package ox-reveal)
+(setq org-reveal-root "file:///home/virgile/reveal.js")
+(use-package htmlize)
+#+end_src
+
+to come arount rainbow delimiter incompatibility issues :
+#+begin_src emacs-lisp
+(defadvice htmlize-buffer-1 (around ome-htmlize-buffer-1 disable)
+  (rainbow-delimiters-mode -1)
+  ad-do-it
+  (rainbow-delimiters-mode t))
+
+(defun ome-htmlize-setup ()
+  (if (el-get-read-package-status 'rainbow-delimiters)
+      (progn
+        (ad-enable-advice 'htmlize-buffer-1 'around 'ome-htmlize-buffer-1)
+        (ad-activate 'htmlize-buffer-1))))
+#+end_src
+**** TODO Beamer
+#+begin_src emacs-lisp :tangle no
+(use-package ox-beamer)
+#+end_src
+
+*** Github Markdown
+#+begin_src emacs-lisp
+  (use-package ox-gfm
+    :after org)
+#+end_src
+*** Background color
+#+begin_src emacs-lisp
+  (defun my/org-inline-css-hook (exporter)
+    "Insert custom inline css to automatically set the
+  background of code to whatever theme I'm using's background"
+
+    (let* ((my-pre-bg (face-background 'default))
+           (my-pre-fg (face-foreground 'default)))
+      (setq
+       org-html-head-extra
+       (concat
+        org-html-head-extra
+        (format "<style type=\"text/css\">\n pre.src {background-color: %s; color: %s;}</style>\n"
+                my-pre-bg my-pre-fg)))))
+
+  (add-hook 'org-export-before-processing-hook 'my/org-inline-css-hook)
+#+end_src
+** Tangle
+
+#+begin_src emacs-lisp
+;;; noweb expansion only when you tangle
+(setq org-babel-default-header-args
+      (cons '(:noweb . "tangle")
+            (assq-delete-all :noweb org-babel-default-header-args))
+      )
+#+end_src
+
+** Tree view
+On va utiliser /org-sidebar/, mais il dépend de :
+
+- /org-ql/ :: provides a query language for Org files
+#+begin_src emacs-lisp
+(use-package org-ql)
+#+end_src
+- /org-super-agenda/ :: group items into sections, rather than having
+  them all in one big list.
+#+begin_src emacs-lisp
+(use-package org-super-agenda)
+#+end_src
+
+#+begin_src emacs-lisp
+(use-package org-sidebar)
+#+end_src
+** which app to open file with ?
+#+begin_src emacs-lisp
+  (setq org-file-apps
+    '(("\\.pdf\\'" . org.gnome.Evince.desktop)
+      (auto-mode . emacs)))
+#+end_src

@@ -1,10 +1,3 @@
-(defun find-config ()
-   "Edit readme.org"
-   (interactive)
-   (find-file "~/.emacs.d/readme.org"))
-
- (global-set-key (kbd "C-c I") 'find-config)
-
 (package-initialize)
 (add-to-list 'package-archives
 	     '("melpa" . "https://melpa.org/packages/")
@@ -26,6 +19,13 @@
   (setq auto-package-update-delete-old-versions t)
   (setq auto-package-update-hide-results t)
   (auto-package-update-maybe))
+
+(defun find-config ()
+   "Edit readme.org"
+   (interactive)
+   (find-file "~/.emacs.d/readme.org"))
+
+ (global-set-key (kbd "C-c I") 'find-config)
 
 (delete-selection-mode t)
 
@@ -213,110 +213,6 @@
 
 (use-package yasnippet-snippets)
 
-(use-package org
-  :config
-  (setq org-src-fontify-natively t)
-  (setq org-src-tab-acts-natively t)
-)
-
-(use-package ob-ipython
-  :after org)
-
-(with-eval-after-load 'org
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '(
-     (ipython . t)
-     (python  . t)
-     (C       . t)
-     (dot     . t)
-     (shell   . t)
-   ))
-    (setq org-confirm-babel-evaluate nil)
-)
-
-(add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append)
-
-(use-package org-bullets
-    :ensure t
-    :config
-    ;; (setq org-bullets-bullet-list '("∙"))
-    (add-hook 'org-mode-hook 'org-bullets-mode)
-    )
-
-(use-package org-ref)
-
-(setq org-latex-pdf-process (list "latexmk -shell-escape -bibtex -f -pdf %f"))
-
-(use-package ox-pandoc)
-
-(use-package ox-twbs
-    :ensure t)
-
-(with-eval-after-load 'ox-latex
-(add-to-list 'org-latex-classes
-             '("org-plain-latex"
-               "\\documentclass{article}
-           [NO-DEFAULT-PACKAGES]
-           [PACKAGES]
-           [EXTRA]"
-               ("\\section{%s}" . "\\section*{%s}")
-               ("\\subsection{%s}" . "\\subsection*{%s}")
-               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-               ("\\paragraph{%s}" . "\\paragraph*{%s}")
-               ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
-
-(setq org-latex-listings 'minted)
-
-(use-package ox-reveal)
-(setq org-reveal-root "file:///home/virgile/reveal.js")
-(use-package htmlize)
-
-(defadvice htmlize-buffer-1 (around ome-htmlize-buffer-1 disable)
-  (rainbow-delimiters-mode -1)
-  ad-do-it
-  (rainbow-delimiters-mode t))
-
-(defun ome-htmlize-setup ()
-  (if (el-get-read-package-status 'rainbow-delimiters)
-      (progn
-        (ad-enable-advice 'htmlize-buffer-1 'around 'ome-htmlize-buffer-1)
-        (ad-activate 'htmlize-buffer-1))))
-
-(use-package ox-gfm
-  :after org)
-
-(defun my/org-inline-css-hook (exporter)
-  "Insert custom inline css to automatically set the
-background of code to whatever theme I'm using's background"
-
-  (let* ((my-pre-bg (face-background 'default))
-         (my-pre-fg (face-foreground 'default)))
-    (setq
-     org-html-head-extra
-     (concat
-      org-html-head-extra
-      (format "<style type=\"text/css\">\n pre.src {background-color: %s; color: %s;}</style>\n"
-              my-pre-bg my-pre-fg)))))
-
-(add-hook 'org-export-before-processing-hook 'my/org-inline-css-hook)
-
-;;; noweb expansion only when you tangle
-(setq org-babel-default-header-args
-      (cons '(:noweb . "tangle")
-            (assq-delete-all :noweb org-babel-default-header-args))
-      )
-
-(use-package org-ql)
-
-(use-package org-super-agenda)
-
-(use-package org-sidebar)
-
-(setq org-file-apps
-  '(("\\.pdf\\'" . org.gnome.Evince.desktop)
-    (auto-mode . emacs)))
-
 (use-package page-break-lines)
 (use-package dashboard
   :ensure t
@@ -436,3 +332,107 @@ background of code to whatever theme I'm using's background"
 (setq openwith-associations '(("\\.pdf\\'" "evince" (file))))
 
 (use-package json-mode)
+
+(use-package org
+  :config
+  (setq org-src-fontify-natively t)
+  (setq org-src-tab-acts-natively t)
+)
+
+(use-package ob-ipython
+  :after org)
+
+(with-eval-after-load 'org
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '(
+     (ipython . t)
+     (python  . t)
+     (C       . t)
+     (dot     . t)
+     (shell   . t)
+   ))
+    (setq org-confirm-babel-evaluate nil)
+)
+
+(add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append)
+
+(use-package org-bullets
+    :ensure t
+    :config
+    ;; (setq org-bullets-bullet-list '("∙"))
+    (add-hook 'org-mode-hook 'org-bullets-mode)
+    )
+
+(use-package org-ref)
+
+(setq org-latex-pdf-process (list "latexmk -shell-escape -bibtex -f -pdf %f"))
+
+(use-package ox-pandoc)
+
+(use-package ox-twbs
+    :ensure t)
+
+(with-eval-after-load 'ox-latex
+(add-to-list 'org-latex-classes
+             '("org-plain-latex"
+               "\\documentclass{article}
+           [NO-DEFAULT-PACKAGES]
+           [PACKAGES]
+           [EXTRA]"
+               ("\\section{%s}" . "\\section*{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+               ("\\paragraph{%s}" . "\\paragraph*{%s}")
+               ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
+
+(setq org-latex-listings 'minted)
+
+(use-package ox-reveal)
+(setq org-reveal-root "file:///home/virgile/reveal.js")
+(use-package htmlize)
+
+(defadvice htmlize-buffer-1 (around ome-htmlize-buffer-1 disable)
+  (rainbow-delimiters-mode -1)
+  ad-do-it
+  (rainbow-delimiters-mode t))
+
+(defun ome-htmlize-setup ()
+  (if (el-get-read-package-status 'rainbow-delimiters)
+      (progn
+        (ad-enable-advice 'htmlize-buffer-1 'around 'ome-htmlize-buffer-1)
+        (ad-activate 'htmlize-buffer-1))))
+
+(use-package ox-gfm
+  :after org)
+
+(defun my/org-inline-css-hook (exporter)
+  "Insert custom inline css to automatically set the
+background of code to whatever theme I'm using's background"
+
+  (let* ((my-pre-bg (face-background 'default))
+         (my-pre-fg (face-foreground 'default)))
+    (setq
+     org-html-head-extra
+     (concat
+      org-html-head-extra
+      (format "<style type=\"text/css\">\n pre.src {background-color: %s; color: %s;}</style>\n"
+              my-pre-bg my-pre-fg)))))
+
+(add-hook 'org-export-before-processing-hook 'my/org-inline-css-hook)
+
+;;; noweb expansion only when you tangle
+(setq org-babel-default-header-args
+      (cons '(:noweb . "tangle")
+            (assq-delete-all :noweb org-babel-default-header-args))
+      )
+
+(use-package org-ql)
+
+(use-package org-super-agenda)
+
+(use-package org-sidebar)
+
+(setq org-file-apps
+  '(("\\.pdf\\'" . org.gnome.Evince.desktop)
+    (auto-mode . emacs)))
