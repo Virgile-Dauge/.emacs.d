@@ -87,7 +87,6 @@ Enlever les barres de menu et d'outils, c'est un minimum :
 #+end_src
 
 ** Desactivated Plein écran par défaut
-
 #+begin_src emacs-lisp :tangle no
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 #+end_src
@@ -193,6 +192,12 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
     :hook (after-init . doom-modeline-mode))
 #+end_src
 
+*** Activated Épurer la /modeline/
+#+begin_src emacs-lisp
+(use-package diminish
+  :config (diminish 'eldoc-mode))
+#+end_src
+
 ** Icons
 *** Activated All-the-icons
 #+begin_src emacs-lisp
@@ -253,7 +258,38 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 #+end_src
 
 *** Futur Prettyfy only inside org babel blocs
-* Packages
+
+** Desactivated Line number
+#+BEGIN_SRC emacs-lisp :tangle no
+(use-package hlinum
+  :config
+  (hlinum-activate))
+
+(use-package linum
+  :config
+  (setq linum-format " %3d ")
+  (global-linum-mode nil))
+#+END_SRC
+
+* Gestion projets
+** Desactivated projectile
+#+begin_src emacs-lisp :tangle no
+(use-package projectile
+  :config
+  (setq projectile-known-projects-file
+        (expand-file-name "projectile-bookmarks.eld" temp-dir))
+
+  (setq projectile-completion-system 'ivy)
+
+  (projectile-global-mode))
+#+end_src
+** Activated Gestionnaire de version (Magit)
+#+begin_src emacs-lisp
+  (use-package magit
+    :ensure t
+    :bind ("C-x g" . magit-status))
+#+end_src
+* Aide à l'édition
 ** Curseurs multiples
 #+begin_src emacs-lisp
 (use-package multiple-cursors
@@ -284,11 +320,6 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 
 (global-set-key (kbd "C-c i") 'iedit-dwim)
 #+end_src
-** Épurer la /modeline/
-#+begin_src emacs-lisp
-(use-package diminish
-  :config (diminish 'eldoc-mode))
-#+end_src
 ** Undo tree
 #+begin_src emacs-lisp
 (use-package undo-tree
@@ -298,39 +329,6 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
   (global-undo-tree-mode +1)
   (unbind-key "M-_" undo-tree-map))
 #+end_src
-** LSP
-
-#+begin_src emacs-lisp
-;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
-(setq lsp-keymap-prefix "C-l")
-
-(use-package lsp-mode
-    :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
-            (python-mode . lsp)
-            ;; if you want which-key integration
-            (lsp-mode . lsp-enable-which-key-integration))
-    :commands lsp)
-
-;; optionally
-(use-package lsp-ui :commands lsp-ui-mode)
-;; if you are helm user
-;;(use-package helm-lsp :commands helm-lsp-workspace-symbol)
-;; if you are ivy user
-(use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
-(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
-
-;; optionally if you want to use debugger
-(use-package dap-mode)
-;; (use-package dap-LANGUAGE) to load the dap adapter for your language
-;;(use-package dap-PYTHON)
-;; optional if you want which-key integration
-;;(use-package which-key
-;;    :config
-;;    (which-key-mode))
-#+end_src
-
-#+RESULTS:
-
 ** Completion
 *** TODO Text
 **** Company https://company-mode.github.io/
@@ -397,116 +395,6 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 (global-set-key "\C-c\C-gg" 'writegood-grade-level)
 (global-set-key "\C-c\C-ge" 'writegood-reading-ease)
 #+end_src
-** DONE Dashboard
-https://github.com/emacs-dashboard/emacs-dashboard
-An extensible emacs startup screen showing you what’s most important.
-install page-break-lines as it is required for dashboard.
-#+BEGIN_SRC emacs-lisp
-(use-package page-break-lines)
-(use-package dashboard
-  :ensure t
-  :config
-  (dashboard-setup-startup-hook))
-#+END_SRC
-** COunsel ivy swiper
-#+BEGIN_SRC emacs-lisp
-(use-package counsel
-  :bind
-  ("M-x" . counsel-M-x)
-  ("C-x C-m" . counsel-M-x)
-  ("C-x C-f" . counsel-find-file)
-  ("C-x c k" . counsel-yank-pop))
-
-(use-package counsel-projectile
-  :bind
-  ("C-x v" . counsel-projectile)
-  ("C-x c p" . counsel-projectile-ag)
-  :config
-  (counsel-projectile-on))
-
-(use-package ivy
-  :bind
-  ("C-x s" . swiper)
-  ("C-x C-r" . ivy-resume)
-  :config
-  (ivy-mode 1)
-  (setq ivy-use-virtual-buffers nil)
-  (define-key read-expression-map (kbd "C-r") 'counsel-expression-history))
-
-(use-package smex)
-
-(use-package all-the-icons-ivy)
-
-#+END_SRC
-** TODO Line number
-#+BEGIN_SRC emacs-lisp :tangle no
-(use-package hlinum
-  :config
-  (hlinum-activate))
-
-(use-package linum
-  :config
-  (setq linum-format " %3d ")
-  (global-linum-mode nil))
-#+END_SRC
-** TODO Gestion projets
-#+begin_src emacs-lisp :tangle no
-(use-package projectile
-  :config
-  (setq projectile-known-projects-file
-        (expand-file-name "projectile-bookmarks.eld" temp-dir))
-
-  (setq projectile-completion-system 'ivy)
-
-  (projectile-global-mode))
-#+end_src
-
-** DONE Déplacements entre buffers
-#+begin_src emacs-lisp
-(use-package windmove
-  :bind
-  ("C-x <up>" . windmove-up)
-  ("C-x <down>" . windmove-down)
-  ("C-x <left>" . windmove-left)
-  ("C-x <right>" . windmove-right))
-#+end_src
-** DONE Next key
-#+begin_src emacs-lisp
-  (use-package which-key
-    :ensure t
-    :diminish which-key-mode
-    :config
-    (add-hook 'after-init-hook 'which-key-mode))
-#+end_src
-** DONE Expend selected region
-#+begin_src emacs-lisp
-  (use-package expand-region
-    :ensure t
-    :bind ("C-=" . er/expand-region))
-#+end_src
-
-** Parenthèses et autres
-   Automatisation autour des parenthèses
-   https://github.com/Fuco1/smartparens
-#+begin_src emacs-lisp
-  (use-package smartparens
-    :ensure t
-    :diminish smartparens-mode
-    :config
-    (add-hook 'prog-mode-hook 'smartparens-mode))
-#+end_src
-Highlight parents
-#+begin_src emacs-lisp
-(use-package rainbow-delimiters
-    :ensure t
-    :config
-    (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
-#+end_src
-expend parents redondant avec smartparens ?
-#+begin_src emacs-lisp :tangle no
-(add-hook 'prog-mode-hook 'electric-pair-mode)
-#+end_src
-
 ** DONE Move text
 #+begin_src emacs-lisp
 (use-package move-text)
@@ -536,12 +424,7 @@ suivant de ma config.
 #+RESULTS:
 | html-mode | bibtex-mode | cider-repl-mode | coffee-mode | comint-mode | conf-mode | Custom-mode | diff-mode | doc-view-mode | dos-mode | erc-mode | feature-mode | fortran-mode | f90-mode | jabber-chat-mode | haml-mode | haskell-mode | haskell-interactive-mode | image-mode | inf-ruby-mode | makefile-mode | makefile-gmake-mode | minibuffer-inactive-mode | netcmd-mode | sass-mode | scala-mode | slim-mode | special-mode | shell-mode | snippet-mode | eshell-mode | tabulated-list-mode | term-mode | TeX-output-mode | text-mode | yaml-mode |
 
-** DONE Gestionnaire de version (Magit)
-#+begin_src emacs-lisp
-  (use-package magit
-    :ensure t
-    :bind ("C-x g" . magit-status))
-#+end_src
+
 ** TODO Syntaxe (Flycheck)
 J'utilise Flycheck pour vérifier la syntaxe à la volée
 #+begin_src emacs-lisp
@@ -603,7 +486,136 @@ Pour appliquer la correction, deux solutions me paraissent valables :
   (setq flyspell-correct-interface #'flyspell-correct-popup))
 #+end_src
 
-** TODO C/C++
+
+* Packages
+
+** LSP
+
+#+begin_src emacs-lisp
+;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+(setq lsp-keymap-prefix "C-l")
+
+(use-package lsp-mode
+    :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+            (python-mode . lsp)
+            ;; if you want which-key integration
+            (lsp-mode . lsp-enable-which-key-integration))
+    :commands lsp)
+
+;; optionally
+(use-package lsp-ui :commands lsp-ui-mode)
+;; if you are helm user
+;;(use-package helm-lsp :commands helm-lsp-workspace-symbol)
+;; if you are ivy user
+(use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
+(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
+
+;; optionally if you want to use debugger
+;;(use-package dap-mode)
+;; (use-package dap-LANGUAGE) to load the dap adapter for your language
+;;(use-package dap-PYTHON)
+;; optional if you want which-key integration
+;;(use-package which-key
+;;    :config
+;;    (which-key-mode))
+#+end_src
+
+#+RESULTS:
+
+
+
+** Desactivated Dashboard
+https://github.com/emacs-dashboard/emacs-dashboard
+An extensible emacs startup screen showing you what’s most important.
+install page-break-lines as it is required for dashboard.
+#+BEGIN_SRC emacs-lisp :tangle no
+(use-package page-break-lines)
+(use-package dashboard
+  :ensure t
+  :config
+  (dashboard-setup-startup-hook))
+#+END_SRC
+** COunsel ivy swiper
+#+BEGIN_SRC emacs-lisp
+(use-package counsel
+  :bind
+  ("M-x" . counsel-M-x)
+  ("C-x C-m" . counsel-M-x)
+  ("C-x C-f" . counsel-find-file)
+  ("C-x c k" . counsel-yank-pop))
+
+(use-package counsel-projectile
+  :bind
+  ("C-x v" . counsel-projectile)
+  ("C-x c p" . counsel-projectile-ag)
+  :config
+  (counsel-projectile-on))
+
+(use-package ivy
+  :bind
+  ("C-x s" . swiper)
+  ("C-x C-r" . ivy-resume)
+  :config
+  (ivy-mode 1)
+  (setq ivy-use-virtual-buffers nil)
+  (define-key read-expression-map (kbd "C-r") 'counsel-expression-history))
+
+(use-package smex)
+
+(use-package all-the-icons-ivy)
+
+#+END_SRC
+
+** DONE Déplacements entre buffers
+#+begin_src emacs-lisp
+(use-package windmove
+  :bind
+  ("C-x <up>" . windmove-up)
+  ("C-x <down>" . windmove-down)
+  ("C-x <left>" . windmove-left)
+  ("C-x <right>" . windmove-right))
+#+end_src
+** DONE Next key
+#+begin_src emacs-lisp
+  (use-package which-key
+    :ensure t
+    :diminish which-key-mode
+    :config
+    (add-hook 'after-init-hook 'which-key-mode))
+#+end_src
+** DONE Expend selected region
+#+begin_src emacs-lisp
+  (use-package expand-region
+    :ensure t
+    :bind ("C-=" . er/expand-region))
+#+end_src
+
+** Parenthèses et autres
+   Automatisation autour des parenthèses
+   https://github.com/Fuco1/smartparens
+#+begin_src emacs-lisp
+  (use-package smartparens
+    :ensure t
+    :diminish smartparens-mode
+    :config
+    (add-hook 'prog-mode-hook 'smartparens-mode))
+#+end_src
+Highlight parents
+#+begin_src emacs-lisp
+(use-package rainbow-delimiters
+    :ensure t
+    :config
+    (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+#+end_src
+expend parents redondant avec smartparens ?
+#+begin_src emacs-lisp :tangle no
+(add-hook 'prog-mode-hook 'electric-pair-mode)
+#+end_src
+
+
+* Programming modes
+** C/C++
+*** Futur Irony
    Le built in est bon, mais j'aimerai tester Irony
    https://github.com/Sarcasm/irony-mode
    #+begin_src emacs-lisp :tangle no
@@ -636,6 +648,7 @@ Ajout du support de flycheck
     :hook (flycheck-mode . flycheck-irony-setup))
 #+end_src
 ** Python
+*** Testing Anaconda mode
 Le mode Anaconda est paraît-il plus complet que le mode intégré :
 #+begin_src emacs-lisp
     (use-package anaconda-mode
@@ -654,21 +667,22 @@ https://www.emacswiki.org/emacs/NoTabs
 (setq-default indent-tabs-mode nil)  ; use only spaces and no tabs
 #+end_src
 
-#+begin_src emacs-lisp
-(setq org-babel-python-command "python3")
-#+end_src
+*** Desactivated Live python
 
 live py est sympa mais uniquement pour des logiciels simples.
 #+begin_src emacs-lisp :tangle no
 (use-package live-py-mode)
 #+end_src
 
-*** Auto Format
-#+begin_src emacs-lisp
+*** Futur Auto Format on save
+https://github.com/paetzke/py-autopep8.el
+#+begin_src emacs-lisp :tangle no
   (use-package py-autopep8)
+  (add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
 #+end_src
-** TODO Markdown
-#+begin_src emacs-lisp
+** Markdown
+*** Desactivated Setup markdown mode
+#+begin_src emacs-lisp :tangle no
 (use-package markdown-mode
   :ensure t
   :commands (markdown-mode gfm-mode)
@@ -677,13 +691,13 @@ live py est sympa mais uniquement pour des logiciels simples.
          ("\\.markdown\\'" . markdown-mode))
   :init (setq markdown-command "multimarkdown"))
 #+end_src
-
-Ne fonctionne pas sur firefox actuellement.
+*** Futur Live preview on web browser
+https://github.com/mola-T/flymd
 #+begin_src emacs-lisp :tangle no
 (use-package flymd)
 #+end_src
 
-*** TODO preview
+*** Desactivated TODO preview
 vmd-mode
 #+begin_src emacs-lisp :tangle no
 (use-package vmd-mode)
@@ -696,7 +710,7 @@ sudo npm install -g vmd
 #+RESULTS:
 
 https://github.com/jamcha-aa/auto-org-md/tree/9318338bdb7fe8bd698d88f3af89b2d6413efdd2
-*** TODO Preview (grip)
+*** Desactivated TODO Preview (grip)
 
 #+begin_src emacs-lisp :tangle no
 ;; Use keybindings
@@ -705,53 +719,22 @@ https://github.com/jamcha-aa/auto-org-md/tree/9318338bdb7fe8bd698d88f3af89b2d641
 
 #+RESULTS:
 
-#+BEGIN_SRC bash :tangle install.sh
+#+BEGIN_SRC bash :tangle no
 sudo apt install grip
 #+END_SRC
 
 #+RESULTS:
 
-** Contrôle de programmes externes
-
-Openwith permet d'ouvrir certains types de fichiers avec des outils
-externes.
-#+begin_src emacs-lisp
-(use-package openwith)
-(openwith-mode t)
-(setq openwith-associations '(("\\.pdf\\'" "evince" (file))))
-#+end_src
-
-Spotify.el : je n'arrive pas à le faire fonctionner correctement
-#+begin_src emacs-lisp :tangle no
-  (use-package spotify
-    :init
-    (setq spotify-oauth2-client-secret "5c0f97fd58944fc7b825b1bb108de2b2")
-    (setq spotify-oauth2-client-id "f614782caa124b179dab2e2a4b3ea0f0")
-    (setq spotify-transport 'connect)
-    :bind-keymap
-    ("C-c ." . spotify-keymap-prefix)
-  )
-#+end_src
-
-Counsel-spotify:
-#+begin_src emacs-lisp :tangle no
-  (use-package counsel-spotify
-    :init
-    (setq counsel-spotify-client-secret "5c0f97fd58944fc7b825b1bb108de2b2")
-    (setq counsel-spotify-client-id "f614782caa124b179dab2e2a4b3ea0f0")
-  )
-#+end_src
 ** JSON
-
+*** Activated Json mode
 #+begin_src emacs-lisp
 (use-package json-mode)
 #+end_src
+*** Desactivated json navigator
 Un simple outil permettant de naviguer plus facilement dans un fichier Json.
 #+begin_src emacs-lisp :tangle no
   (use-package json-navigator)
 #+end_src
-** Blog
-https://github.com/masasam/emacs-easy-hugo
 * Org
   https://orgmode.org/worg/org-tutorials/org4beginners.html
 ** Ajout d'org-mode et quelques config
@@ -771,8 +754,13 @@ correspondant dans les blocs source.
 
 ** Blocs source (babel)
 
-*** Activated package babel python
-Afin de pouvoir gérer ipython, il faut installer le package org-babel ipython
+*** Activated python3 par défaut
+#+begin_src emacs-lisp
+  (setq org-babel-python-command "python3")
+#+end_src
+*** Activated package babel ipython
+Afin de pouvoir gérer ipython, il faut installer le package org-babel
+ipython. On en profite pour utiliser python3 par défaut.
 #+begin_src emacs-lisp
   (use-package ob-ipython
     :after org)
@@ -802,6 +790,7 @@ Toujours afficher les images après les avoir générées:
 #+end_src
 ** Apparence
 
+*** Activated Bullets
 Permet d'afficher des symboles utf-8 plutôt que des astérisques.
 #+begin_src emacs-lisp
   (use-package org-bullets
@@ -812,8 +801,9 @@ Permet d'afficher des symboles utf-8 plutôt que des astérisques.
       )
 #+end_src
 
-** TODO Gestion références et citations
-#+begin_src emacs-lisp
+** Gestion références et citations
+*** Futur Org ref
+#+begin_src emacs-lisp :tangle no
 (use-package org-ref)
 
 (setq org-latex-pdf-process (list "latexmk -shell-escape -bibtex -f -pdf %f"))
@@ -833,15 +823,17 @@ Liste des exporteurs : https://orgmode.org/worg/exporters/index.html
 piste: TeX-like syntax for sub- and superscripts. If
 you write ‘^:{}’, ‘a_{b}’ is interpreted, but the simple ‘a_b’ is left
 as it is (org-export-with-sub-superscripts).
-*** TODO Pandoc, multi format
+*** Testing Pandoc, multi format
      https://github.com/kawabata/ox-pandoc
      We need to install last version of pandoc from https://github.com/jgm/pandoc/releases/
 #+begin_src emacs-lisp
 (use-package ox-pandoc)
 #+end_src
-*** Blog
+*** Futur Blog
     https://melpa.org/#/ox-hugo
-*** Export HTML
+*** HTML
+
+**** Activated readthedocs theme
 https://github.com/fniessen/org-html-themes
 To use this, just add the following in your .org file
 #+begin_src emacs-lisp :tangle no
@@ -852,12 +844,30 @@ Then export it with standart latex exporter
 C-c C-e h h
 #+end_src
 
-#+begin_src emacs-lisp
+**** Desactivated Bootstrap theme
+#+begin_src emacs-lisp :tangle no
 (use-package ox-twbs
     :ensure t)
 #+end_src
 
-*** Latex
+**** Desactivated Background color
+ #+begin_src emacs-lisp :tangle no
+   (defun my/org-inline-css-hook (exporter)
+     "Insert custom inline css to automatically set the
+   background of code to whatever theme I'm using's background"
+
+     (let* ((my-pre-bg (face-background 'default))
+            (my-pre-fg (face-foreground 'default)))
+       (setq
+        org-html-head-extra
+        (concat
+         org-html-head-extra
+         (format "<style type=\"text/css\">\n pre.src {background-color: %s; color: %s;}</style>\n"
+                 my-pre-bg my-pre-fg)))))
+
+   (add-hook 'org-export-before-processing-hook 'my/org-inline-css-hook)
+ #+end_src
+*** Activated Export Latex
 
 Création d'une classe simple :
 #+begin_src emacs-lisp
@@ -876,7 +886,6 @@ Création d'une classe simple :
 #+end_src
 
 Création de fichiers de setup:
-
 #+begin_src org :tangle ./article-latex.setup
 # -*- mode: org; -*-
 #+LaTeX_CLASS: org-plain-latex
@@ -895,8 +904,7 @@ Création de fichiers de setup:
 #+LATEX_HEADER: \usemintedstyle{pastie}
 #+end_src
 
-
-**** Coloration Syntaxique
+**** Testing Coloration Syntaxique
 # (add-to-list 'org-latex-packages-alist '("" "xcolor"))
 # (add-to-list 'org-latex-packages-alist '("" "minted"))
 #+begin_src emacs-lisp
@@ -911,17 +919,17 @@ Création de fichiers de setup:
 #+end_src
 
 *** Diapositives
-**** TODO Ioslides
+**** Futur Ioslides
      IOslide, joli et minimaliste
      https://github.com/coldnew/org-ioslide
      #+begin_src emacs-lisp :tangle no
 (use-package ox-ioslide)
 ;;(use-package ox-ioslide-helper)
      #+end_src
-**** Html5slide
+**** Futur Html5slide
      html5slide, pas de maj depuis 6ans, on oublie :
      https://github.com/coldnew/org-html5slide
-**** TODO Reveal js
+**** Futur Reveal js
       https://github.com/hakimel/reveal.js/
       To install reveal js locally :
       #+begin_src bash :tangle no
@@ -932,14 +940,14 @@ Création de fichiers de setup:
       #+end_src
       as stated in https://github.com/yjwen/org-reveal: The easiest
       way of getint org-reveal is to instal ox-reveal from melpa
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
 (use-package ox-reveal)
 (setq org-reveal-root "file:///home/virgile/reveal.js")
 (use-package htmlize)
 #+end_src
 
 to come arount rainbow delimiter incompatibility issues :
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
 (defadvice htmlize-buffer-1 (around ome-htmlize-buffer-1 disable)
   (rainbow-delimiters-mode -1)
   ad-do-it
@@ -951,33 +959,17 @@ to come arount rainbow delimiter incompatibility issues :
         (ad-enable-advice 'htmlize-buffer-1 'around 'ome-htmlize-buffer-1)
         (ad-activate 'htmlize-buffer-1))))
 #+end_src
-**** TODO Beamer
+**** Futur Beamer
 #+begin_src emacs-lisp :tangle no
 (use-package ox-beamer)
 #+end_src
 
-*** Github Markdown
+*** Activated Github Markdown
 #+begin_src emacs-lisp
   (use-package ox-gfm
     :after org)
 #+end_src
-*** Background color
-#+begin_src emacs-lisp
-  (defun my/org-inline-css-hook (exporter)
-    "Insert custom inline css to automatically set the
-  background of code to whatever theme I'm using's background"
 
-    (let* ((my-pre-bg (face-background 'default))
-           (my-pre-fg (face-foreground 'default)))
-      (setq
-       org-html-head-extra
-       (concat
-        org-html-head-extra
-        (format "<style type=\"text/css\">\n pre.src {background-color: %s; color: %s;}</style>\n"
-                my-pre-bg my-pre-fg)))))
-
-  (add-hook 'org-export-before-processing-hook 'my/org-inline-css-hook)
-#+end_src
 ** Tangle
 
 #+begin_src emacs-lisp
@@ -988,25 +980,57 @@ to come arount rainbow delimiter incompatibility issues :
       )
 #+end_src
 
-** Tree view
+** Desactivated Tree view
 On va utiliser /org-sidebar/, mais il dépend de :
 
 - /org-ql/ :: provides a query language for Org files
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
 (use-package org-ql)
 #+end_src
 - /org-super-agenda/ :: group items into sections, rather than having
   them all in one big list.
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
 (use-package org-super-agenda)
 #+end_src
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
 (use-package org-sidebar)
 #+end_src
-** which app to open file with ?
+** Testing which app to open file with ?
+org was opening produced pdf files with gimp despite the system
+settings. I had to force evince by adding the following :
 #+begin_src emacs-lisp
   (setq org-file-apps
     '(("\\.pdf\\'" . org.gnome.Evince.desktop)
       (auto-mode . emacs)))
+#+end_src
+* Contrôle de programmes externes
+
+Openwith permet d'ouvrir certains types de fichiers avec des outils
+externes.
+#+begin_src emacs-lisp
+(use-package openwith)
+(openwith-mode t)
+(setq openwith-associations '(("\\.pdf\\'" "evince" (file))))
+#+end_src
+
+Spotify.el : je n'arrive pas à le faire fonctionner correctement
+#+begin_src emacs-lisp :tangle no
+  (use-package spotify
+    :init
+    (setq spotify-oauth2-client-secret "5c0f97fd58944fc7b825b1bb108de2b2")
+    (setq spotify-oauth2-client-id "f614782caa124b179dab2e2a4b3ea0f0")
+    (setq spotify-transport 'connect)
+    :bind-keymap
+    ("C-c ." . spotify-keymap-prefix)
+  )
+#+end_src
+
+Counsel-spotify:
+#+begin_src emacs-lisp :tangle no
+  (use-package counsel-spotify
+    :init
+    (setq counsel-spotify-client-secret "5c0f97fd58944fc7b825b1bb108de2b2")
+    (setq counsel-spotify-client-id "f614782caa124b179dab2e2a4b3ea0f0")
+  )
 #+end_src

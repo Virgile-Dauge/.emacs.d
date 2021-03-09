@@ -94,6 +94,9 @@
     :ensure t
     :hook (after-init . doom-modeline-mode))
 
+(use-package diminish
+  :config (diminish 'eldoc-mode))
+
 (use-package all-the-icons)
 
 ;;(set-frame-font "Operator Mono 12" nil t)
@@ -144,6 +147,10 @@
            ("<=" . "≤")
            ("=" . "≝")))))
 
+(use-package magit
+  :ensure t
+  :bind ("C-x g" . magit-status))
+
 (use-package multiple-cursors
   :bind (("C-c m m" . #'mc/edit-lines )
          ("C-c m d" . #'mc/mark-all-dwim )))
@@ -170,15 +177,47 @@
 
 (global-set-key (kbd "C-c i") 'iedit-dwim)
 
-(use-package diminish
-  :config (diminish 'eldoc-mode))
-
 (use-package undo-tree
   :diminish
   :bind (("C-c _" . undo-tree-visualize))
   :config
   (global-undo-tree-mode +1)
   (unbind-key "M-_" undo-tree-map))
+
+(use-package yasnippet
+  :config
+  (yas-global-mode 1))
+
+(use-package yasnippet-snippets)
+
+(use-package move-text)
+
+(use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode))
+
+(use-package flyspell)
+(define-key flyspell-mode-map (kbd "C-;") #'flyspell-correct-wrapper)
+
+(add-hook 'LaTeX-mode-hook 'flyspell-mode)
+(add-hook 'org-mode-hook 'flyspell-mode)
+
+(let ((langs '("francais" "english")))
+  (setq lang-ring (make-ring (length langs)))
+  (dolist (elem langs) (ring-insert lang-ring elem)))
+
+(defun cycle-ispell-languages ()
+  (interactive)
+  (let ((lang (ring-ref lang-ring -1)))
+    (ring-insert lang-ring lang)
+    (ispell-change-dictionary lang)))
+
+(global-set-key [f6] 'cycle-ispell-languages)
+
+(use-package flyspell-correct-ivy
+  :bind ("C-;" . flyspell-correct-wrapper)
+  :init
+  (setq flyspell-correct-interface #'flyspell-correct-ivy))
 
 ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
 (setq lsp-keymap-prefix "C-l")
@@ -199,25 +238,13 @@
 (use-package lsp-treemacs :commands lsp-treemacs-errors-list)
 
 ;; optionally if you want to use debugger
-(use-package dap-mode)
+;;(use-package dap-mode)
 ;; (use-package dap-LANGUAGE) to load the dap adapter for your language
 ;;(use-package dap-PYTHON)
 ;; optional if you want which-key integration
 ;;(use-package which-key
 ;;    :config
 ;;    (which-key-mode))
-
-(use-package yasnippet
-  :config
-  (yas-global-mode 1))
-
-(use-package yasnippet-snippets)
-
-(use-package page-break-lines)
-(use-package dashboard
-  :ensure t
-  :config
-  (dashboard-setup-startup-hook))
 
 (use-package counsel
   :bind
@@ -274,39 +301,6 @@
     :config
     (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 
-(use-package move-text)
-
-(use-package magit
-  :ensure t
-  :bind ("C-x g" . magit-status))
-
-(use-package flycheck
-  :ensure t
-  :init (global-flycheck-mode))
-
-(use-package flyspell)
-(define-key flyspell-mode-map (kbd "C-;") #'flyspell-correct-wrapper)
-
-(add-hook 'LaTeX-mode-hook 'flyspell-mode)
-(add-hook 'org-mode-hook 'flyspell-mode)
-
-(let ((langs '("francais" "english")))
-  (setq lang-ring (make-ring (length langs)))
-  (dolist (elem langs) (ring-insert lang-ring elem)))
-
-(defun cycle-ispell-languages ()
-  (interactive)
-  (let ((lang (ring-ref lang-ring -1)))
-    (ring-insert lang-ring lang)
-    (ispell-change-dictionary lang)))
-
-(global-set-key [f6] 'cycle-ispell-languages)
-
-(use-package flyspell-correct-ivy
-  :bind ("C-;" . flyspell-correct-wrapper)
-  :init
-  (setq flyspell-correct-interface #'flyspell-correct-ivy))
-
 (use-package anaconda-mode
   :hook
   (python-mode . anaconda-mode)
@@ -315,22 +309,6 @@
 (add-hook 'python-mode-hook (lambda () (setq python-indent-offset 4)))
 (setq-default indent-tabs-mode nil)  ; use only spaces and no tabs
 
-(setq org-babel-python-command "python3")
-
-(use-package py-autopep8)
-
-(use-package markdown-mode
-  :ensure t
-  :commands (markdown-mode gfm-mode)
-  :mode (("README\\.md\\'" . gfm-mode)
-         ("\\.md\\'" . markdown-mode)
-         ("\\.markdown\\'" . markdown-mode))
-  :init (setq markdown-command "multimarkdown"))
-
-(use-package openwith)
-(openwith-mode t)
-(setq openwith-associations '(("\\.pdf\\'" "evince" (file))))
-
 (use-package json-mode)
 
 (use-package org
@@ -338,6 +316,8 @@
   (setq org-src-fontify-natively t)
   (setq org-src-tab-acts-natively t)
 )
+
+(setq org-babel-python-command "python3")
 
 (use-package ob-ipython
   :after org)
@@ -364,14 +344,7 @@
     (add-hook 'org-mode-hook 'org-bullets-mode)
     )
 
-(use-package org-ref)
-
-(setq org-latex-pdf-process (list "latexmk -shell-escape -bibtex -f -pdf %f"))
-
 (use-package ox-pandoc)
-
-(use-package ox-twbs
-    :ensure t)
 
 (with-eval-after-load 'ox-latex
 (add-to-list 'org-latex-classes
@@ -388,38 +361,8 @@
 
 (setq org-latex-listings 'minted)
 
-(use-package ox-reveal)
-(setq org-reveal-root "file:///home/virgile/reveal.js")
-(use-package htmlize)
-
-(defadvice htmlize-buffer-1 (around ome-htmlize-buffer-1 disable)
-  (rainbow-delimiters-mode -1)
-  ad-do-it
-  (rainbow-delimiters-mode t))
-
-(defun ome-htmlize-setup ()
-  (if (el-get-read-package-status 'rainbow-delimiters)
-      (progn
-        (ad-enable-advice 'htmlize-buffer-1 'around 'ome-htmlize-buffer-1)
-        (ad-activate 'htmlize-buffer-1))))
-
 (use-package ox-gfm
   :after org)
-
-(defun my/org-inline-css-hook (exporter)
-  "Insert custom inline css to automatically set the
-background of code to whatever theme I'm using's background"
-
-  (let* ((my-pre-bg (face-background 'default))
-         (my-pre-fg (face-foreground 'default)))
-    (setq
-     org-html-head-extra
-     (concat
-      org-html-head-extra
-      (format "<style type=\"text/css\">\n pre.src {background-color: %s; color: %s;}</style>\n"
-              my-pre-bg my-pre-fg)))))
-
-(add-hook 'org-export-before-processing-hook 'my/org-inline-css-hook)
 
 ;;; noweb expansion only when you tangle
 (setq org-babel-default-header-args
@@ -427,12 +370,10 @@ background of code to whatever theme I'm using's background"
             (assq-delete-all :noweb org-babel-default-header-args))
       )
 
-(use-package org-ql)
-
-(use-package org-super-agenda)
-
-(use-package org-sidebar)
-
 (setq org-file-apps
   '(("\\.pdf\\'" . org.gnome.Evince.desktop)
     (auto-mode . emacs)))
+
+(use-package openwith)
+(openwith-mode t)
+(setq openwith-associations '(("\\.pdf\\'" "evince" (file))))
