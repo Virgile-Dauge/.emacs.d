@@ -850,8 +850,8 @@ C-c C-e h h
     :ensure t)
 #+end_src
 
-**** Desactivated Background color
- #+begin_src emacs-lisp :tangle no
+**** Testing Background color
+ #+begin_src emacs-lisp
    (defun my/org-inline-css-hook (exporter)
      "Insert custom inline css to automatically set the
    background of code to whatever theme I'm using's background"
