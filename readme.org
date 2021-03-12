@@ -819,10 +819,14 @@ Permet d'afficher des symboles utf-8 plutôt que des astérisques.
 
 ** Export
 Liste des exporteurs : https://orgmode.org/worg/exporters/index.html
-*** TODO problème export _
+*** Activated correction problème export _
 piste: TeX-like syntax for sub- and superscripts. If
 you write ‘^:{}’, ‘a_{b}’ is interpreted, but the simple ‘a_b’ is left
 as it is (org-export-with-sub-superscripts).
+
+#+begin_src emacs-lisp
+(setq org-export-with-sub-superscripts '{})
+#+end_src
 *** Testing Pandoc, multi format
      https://github.com/kawabata/ox-pandoc
      We need to install last version of pandoc from https://github.com/jgm/pandoc/releases/

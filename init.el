@@ -344,6 +344,8 @@
     (add-hook 'org-mode-hook 'org-bullets-mode)
     )
 
+(setq org-export-with-sub-superscripts '{})
+
 (use-package ox-pandoc)
 
 (defun my/org-inline-css-hook (exporter)
