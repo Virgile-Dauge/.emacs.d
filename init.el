@@ -71,20 +71,23 @@
 (unbind-key "<C-wheel-down>") ;; text scale adjust
 
 (use-package doom-themes
-  :defer t
-  :init
+  :config
+  ;; Global settings (defaults)
+  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+        doom-themes-enable-italic t) ; if nil, italics is universally disabled
   (load-theme 'doom-material t)
+
   ;; Enable flashing mode-line on errors
   (doom-themes-visual-bell-config)
+
   ;; Enable custom neotree theme (all-the-icons must be installed!)
   (doom-themes-neotree-config)
-  (doom-themes-org-config))
+  ;; or for treemacs users
+  (setq doom-themes-treemacs-theme "doom-colors") ; use the colorful treemacs theme
+  (doom-themes-treemacs-config)
 
-(use-package ewal
-;;  :init (setq ewal-use-built-in-always-p nil
-;;              ewal-use-built-in-on-failure-p t
-;;              ewal-built-in-palette "sexy-material")
-)
+  ;; Corrects (and improves) org-mode's native fontification.
+  (doom-themes-org-config))
 
 (use-package doom-modeline
     :ensure t
@@ -147,50 +150,11 @@
   :ensure t
   :bind ("C-x g" . magit-status))
 
-(use-package multiple-cursors
-  :bind (("C-c m m" . #'mc/edit-lines )
-         ("C-c m d" . #'mc/mark-all-dwim )))
-
-(use-package iedit)
-
-(defun iedit-dwim (arg)
-  "Starts iedit but uses \\[narrow-to-defun] to limit its scope."
-  (interactive "P")
-  (if arg
-      (iedit-mode)
-    (save-excursion
-      (save-restriction
-        (widen)
-        ;; this function determines the scope of `iedit-start'.
-        (if iedit-mode
-            (iedit-done)
-          ;; `current-word' can of course be replaced by other
-          ;; functions.
-          (narrow-to-defun)
-          (iedit-start (current-word) (point-min) (point-max)))))))
-
-
-
-(global-set-key (kbd "C-c i") 'iedit-dwim)
-
-(use-package undo-tree
-  :diminish
-  :bind (("C-c _" . undo-tree-visualize))
-  :config
-  (global-undo-tree-mode +1)
-  (unbind-key "M-_" undo-tree-map))
-
 (use-package yasnippet
   :config
   (yas-global-mode 1))
 
 (use-package yasnippet-snippets)
-
-(use-package move-text)
-
-(use-package flycheck
-  :ensure t
-  :init (global-flycheck-mode))
 
 (use-package flyspell)
 (define-key flyspell-mode-map (kbd "C-;") #'flyspell-correct-wrapper)
@@ -312,12 +276,6 @@
   (setq org-src-fontify-natively t)
   (setq org-src-tab-acts-natively t)
 )
-  ;;(setq org-src-fontify-natively t)
-
-(require 'color)
-(set-face-attribute 'org-block nil :background
-                    (color-darken-name
-                     (face-attribute 'default :background) 3))
 
 (setq org-babel-python-command "python3")
 
@@ -335,8 +293,8 @@
      (shell   . t)
    ))
     (setq org-confirm-babel-evaluate nil)
-    ;;(setq org-src-fontify-natively t)
-    ;;(setq org-src-tab-acts-natively t)
+    (setq org-src-fontify-natively t)
+    (setq org-src-tab-acts-natively t)
 )
 
 (add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append)
@@ -351,6 +309,18 @@
 (setq org-export-with-sub-superscripts '{})
 
 (use-package ox-pandoc)
+
+(use-package htmlize)
+(defadvice htmlize-buffer-1 (around ome-htmlize-buffer-1 disable)
+  (rainbow-delimiters-mode -1)
+  ad-do-it
+  (rainbow-delimiters-mode t))
+
+(defun ome-htmlize-setup ()
+  (if (el-get-read-package-status 'rainbow-delimiters)
+      (progn
+        (ad-enable-advice 'htmlize-buffer-1 'around 'ome-htmlize-buffer-1)
+        (ad-activate 'htmlize-buffer-1))))
 
 (defun my/org-inline-css-hook (exporter)
   "Insert custom inline css to automatically set the

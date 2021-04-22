@@ -147,19 +147,28 @@ Alternatives :
 - doom-palenight :: cool
 - doom-nord :: trop fade
 #+begin_src emacs-lisp
-    (use-package doom-themes
-      :defer t
-      :init
-      (load-theme 'doom-material t)
-      ;; Enable flashing mode-line on errors
-      (doom-themes-visual-bell-config)
-      ;; Enable custom neotree theme (all-the-icons must be installed!)
-      (doom-themes-neotree-config)
-      (doom-themes-org-config))
+(use-package doom-themes
+  :config
+  ;; Global settings (defaults)
+  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+        doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  (load-theme 'doom-material t)
+
+  ;; Enable flashing mode-line on errors
+  (doom-themes-visual-bell-config)
+
+  ;; Enable custom neotree theme (all-the-icons must be installed!)
+  (doom-themes-neotree-config)
+  ;; or for treemacs users
+  (setq doom-themes-treemacs-theme "doom-colors") ; use the colorful treemacs theme
+  (doom-themes-treemacs-config)
+
+  ;; Corrects (and improves) org-mode's native fontification.
+  (doom-themes-org-config))
 #+end_src
 
 *** Desactivated Ewal (copie terminal)
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
 (use-package ewal
 ;;  :init (setq ewal-use-built-in-always-p nil
 ;;              ewal-use-built-in-on-failure-p t
@@ -331,14 +340,14 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
     :bind ("C-x g" . magit-status))
 #+end_src
 * Aide à l'édition
-** Curseurs multiples
-#+begin_src emacs-lisp
+** Futur Curseurs multiples
+#+begin_src emacs-lisp :tangle no
 (use-package multiple-cursors
   :bind (("C-c m m" . #'mc/edit-lines )
          ("C-c m d" . #'mc/mark-all-dwim )))
 #+end_src
-** Iedit
-#+begin_src emacs-lisp
+** Futur Iedit
+#+begin_src emacs-lisp :tangle no
 (use-package iedit)
 
 (defun iedit-dwim (arg)
@@ -361,8 +370,8 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 
 (global-set-key (kbd "C-c i") 'iedit-dwim)
 #+end_src
-** Undo tree
-#+begin_src emacs-lisp
+** Futur Undo tree
+#+begin_src emacs-lisp :tangle no
 (use-package undo-tree
   :diminish
   :bind (("C-c _" . undo-tree-visualize))
@@ -371,7 +380,7 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
   (unbind-key "M-_" undo-tree-map))
 #+end_src
 ** Completion
-*** TODO Text
+*** Futur Text
 **** Company https://company-mode.github.io/
    #+begin_src emacs-lisp :tangle no
      (use-package company
@@ -415,9 +424,9 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 *** TODO yasSnipets
      yasnippet permet d'ajouter des blocs de codes prédéfinis.
 #+begin_src emacs-lisp
-       (use-package yasnippet
-	 :config
-	 (yas-global-mode 1))
+  (use-package yasnippet
+    :config
+    (yas-global-mode 1))
 #+end_src
      adding a collection of snippets
 #+begin_src emacs-lisp
@@ -425,7 +434,7 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 #+end_src
 **** TODO Ajout de snippets personalisés:
 
-** TODO Writegood mode : besoin de tests
+** Futur Writegood mode : besoin de tests
 #+begin_src emacs-lisp :tangle no
 (use-package writegood-mode
     :ensure t
@@ -436,13 +445,13 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 (global-set-key "\C-c\C-gg" 'writegood-grade-level)
 (global-set-key "\C-c\C-ge" 'writegood-reading-ease)
 #+end_src
-** DONE Move text
-#+begin_src emacs-lisp
+** Futur Move text
+#+begin_src emacs-lisp :tangle no
 (use-package move-text)
 #+end_src
 
 #+RESULTS:
-** TODO Indentation
+** Futur Indentation
 #+begin_src emacs-lisp :tangle no
   (use-package aggressive-indent
       :ensure t)
@@ -466,15 +475,15 @@ suivant de ma config.
 | html-mode | bibtex-mode | cider-repl-mode | coffee-mode | comint-mode | conf-mode | Custom-mode | diff-mode | doc-view-mode | dos-mode | erc-mode | feature-mode | fortran-mode | f90-mode | jabber-chat-mode | haml-mode | haskell-mode | haskell-interactive-mode | image-mode | inf-ruby-mode | makefile-mode | makefile-gmake-mode | minibuffer-inactive-mode | netcmd-mode | sass-mode | scala-mode | slim-mode | special-mode | shell-mode | snippet-mode | eshell-mode | tabulated-list-mode | term-mode | TeX-output-mode | text-mode | yaml-mode |
 
 
-** TODO Syntaxe (Flycheck)
+** Futur Syntaxe (Flycheck)
 J'utilise Flycheck pour vérifier la syntaxe à la volée
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
 (use-package flycheck
   :ensure t
   :init (global-flycheck-mode))
 #+end_src
 
-** DONE Orthographe (Fly Spell)
+** Activated Orthographe (Fly Spell)
 
 #+begin_src emacs-lisp
 (use-package flyspell)
@@ -483,7 +492,6 @@ J'utilise Flycheck pour vérifier la syntaxe à la volée
 
 On veut l'activer sur org et Latex :
 #+begin_src emacs-lisp
-
 (add-hook 'LaTeX-mode-hook 'flyspell-mode)
 (add-hook 'org-mode-hook 'flyspell-mode)
 
@@ -526,7 +534,6 @@ Pour appliquer la correction, deux solutions me paraissent valables :
   :init
   (setq flyspell-correct-interface #'flyspell-correct-popup))
 #+end_src
-
 
 * Packages
 
@@ -790,15 +797,6 @@ correspondant dans les blocs source.
     (setq org-src-fontify-natively t)
     (setq org-src-tab-acts-natively t)
   )
-    ;;(setq org-src-fontify-natively t)
-#+end_src
-
-Fix to wrong color.
-#+begin_src emacs-lisp
-(require 'color)
-(set-face-attribute 'org-block nil :background
-                    (color-darken-name
-                     (face-attribute 'default :background) 3))
 #+end_src
 ** Blocs source (babel)
 
@@ -828,8 +826,8 @@ Ajout du support de certains languages dans org-babel
        (shell   . t)
      ))
       (setq org-confirm-babel-evaluate nil)
-      ;;(setq org-src-fontify-natively t)
-      ;;(setq org-src-tab-acts-natively t)
+      (setq org-src-fontify-natively t)
+      (setq org-src-tab-acts-natively t)
   )
 #+end_src
 *** Activated Affichage des images générées par défault
@@ -886,7 +884,20 @@ as it is (org-export-with-sub-superscripts).
 *** Futur Blog
     https://melpa.org/#/ox-hugo
 *** HTML
+**** Activated HTMLIZE
+#+begin_src emacs-lisp
+(use-package htmlize)
+(defadvice htmlize-buffer-1 (around ome-htmlize-buffer-1 disable)
+  (rainbow-delimiters-mode -1)
+  ad-do-it
+  (rainbow-delimiters-mode t))
 
+(defun ome-htmlize-setup ()
+  (if (el-get-read-package-status 'rainbow-delimiters)
+      (progn
+        (ad-enable-advice 'htmlize-buffer-1 'around 'ome-htmlize-buffer-1)
+        (ad-activate 'htmlize-buffer-1))))
+#+end_src
 **** Activated readthedocs theme
 https://github.com/fniessen/org-html-themes
 To use this, just add the following in your .org file
@@ -904,7 +915,7 @@ C-c C-e h h
     :ensure t)
 #+end_src
 
-**** Testing Background color
+**** Activated Background color
  #+begin_src emacs-lisp
    (defun my/org-inline-css-hook (exporter)
      "Insert custom inline css to automatically set the
@@ -1031,19 +1042,7 @@ Création de fichiers de setup:
 (use-package htmlize)
 #+end_src
 
-to come arount rainbow delimiter incompatibility issues :
-#+begin_src emacs-lisp :tangle no
-(defadvice htmlize-buffer-1 (around ome-htmlize-buffer-1 disable)
-  (rainbow-delimiters-mode -1)
-  ad-do-it
-  (rainbow-delimiters-mode t))
-
-(defun ome-htmlize-setup ()
-  (if (el-get-read-package-status 'rainbow-delimiters)
-      (progn
-        (ad-enable-advice 'htmlize-buffer-1 'around 'ome-htmlize-buffer-1)
-        (ad-activate 'htmlize-buffer-1))))
-#+end_src
+t
 **** Futur Beamer
 #+begin_src emacs-lisp :tangle no
 (use-package ox-beamer)
