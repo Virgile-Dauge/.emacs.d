@@ -70,10 +70,21 @@
 (unbind-key "<mouse-2>") ;; pasting with mouse-wheel click
 (unbind-key "<C-wheel-down>") ;; text scale adjust
 
-(use-package base16-theme
-  :ensure t
-  :config
-  (load-theme 'base16-nord t))
+(use-package doom-themes
+  :defer t
+  :init
+  (load-theme 'doom-material t)
+  ;; Enable flashing mode-line on errors
+  (doom-themes-visual-bell-config)
+  ;; Enable custom neotree theme (all-the-icons must be installed!)
+  (doom-themes-neotree-config)
+  (doom-themes-org-config))
+
+(use-package ewal
+;;  :init (setq ewal-use-built-in-always-p nil
+;;              ewal-use-built-in-on-failure-p t
+;;              ewal-built-in-palette "sexy-material")
+)
 
 (use-package doom-modeline
     :ensure t
@@ -296,12 +307,17 @@
 
 (use-package json-mode)
 
-(use-package org)
-  ;;:config
+(use-package org
+  :config
+  (setq org-src-fontify-natively t)
+  (setq org-src-tab-acts-natively t)
+)
   ;;(setq org-src-fontify-natively t)
-  ;;(setq org-src-tab-acts-natively t)
-;;)
-;;(setq org-src-fontify-natively t)
+
+(require 'color)
+(set-face-attribute 'org-block nil :background
+                    (color-darken-name
+                     (face-attribute 'default :background) 3))
 
 (setq org-babel-python-command "python3")
 
