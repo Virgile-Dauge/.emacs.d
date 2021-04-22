@@ -70,25 +70,10 @@
 (unbind-key "<mouse-2>") ;; pasting with mouse-wheel click
 (unbind-key "<C-wheel-down>") ;; text scale adjust
 
-(use-package ewal
-  :init (setq ewal-use-built-in-always-p nil
-              ewal-use-built-in-on-failure-p t
-              ewal-built-in-palette "sexy-material"))
-(use-package ewal-doom-themes
-  :init (progn
-          (setq doom-theme-underline-parens t
-                my:rice:font (font-spec
-                              :family "Source Code Pro"
-                              :weight 'semi-bold
-                              :size 11.0))
-          (show-paren-mode +1)
-          (global-hl-line-mode)
-          (set-frame-font my:rice:font nil t)
-          (add-to-list  'default-frame-alist
-                        `(font . ,(font-xlfd-name my:rice:font))))
-  :config (progn
-            (load-theme 'ewal-doom-one t)
-            (enable-theme 'ewal-doom-one)))
+(use-package base16-theme
+  :ensure t
+  :config
+  (load-theme 'base16-nord t))
 
 (use-package doom-modeline
     :ensure t
@@ -311,11 +296,12 @@
 
 (use-package json-mode)
 
-(use-package org
-  :config
-  (setq org-src-fontify-natively t)
-  (setq org-src-tab-acts-natively t)
-)
+(use-package org)
+  ;;:config
+  ;;(setq org-src-fontify-natively t)
+  ;;(setq org-src-tab-acts-natively t)
+;;)
+;;(setq org-src-fontify-natively t)
 
 (setq org-babel-python-command "python3")
 
@@ -333,6 +319,8 @@
      (shell   . t)
    ))
     (setq org-confirm-babel-evaluate nil)
+    ;;(setq org-src-fontify-natively t)
+    ;;(setq org-src-tab-acts-natively t)
 )
 
 (add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append)
@@ -362,6 +350,35 @@ background of code to whatever theme I'm using's background"
               my-pre-bg my-pre-fg)))))
 
 (add-hook 'org-export-before-processing-hook 'my/org-inline-css-hook)
+
+(defun replace-in-string (what with in)
+  (replace-regexp-in-string (regexp-quote what) with in nil 'literal))
+
+(defun format-image-inline (source attributes info)
+  (progn
+    (setq source (replace-in-string "%20" " " source))
+    (format "<img src=\"data:image/%s;base64,%s\"%s />"
+            (or (file-name-extension source) "")
+            (base64-encode-string
+             (with-temp-buffer
+               (insert-file-contents-literally source)
+              (buffer-string)))
+            (file-name-nondirectory source))
+    ))
+;;(defun format-image-inline (source attributes info)
+;;  (let* ((ext (file-name-extension source))
+;;         (prefix (if (string= "svg" ext) "data:image/svg+xml;base64," "data:;base64,"))
+;;         (data (with-temp-buffer (url-insert-file-contents source) (buffer-string)))
+;;         (data-url (concat prefix (base64-encode-string data)))
+;;         (attributes (org-combine-plists `(:src ,data-url) attributes)))
+;;    (org-html-close-tag "img" (org-html--make-attribute-string attributes) info)))
+
+(defun org-html-export-to-mhtml (async subtree visible body)
+  (cl-letf (((symbol-function 'org-html--format-image) 'format-image-inline))
+    (org-html-export-to-html nil subtree visible body)))
+
+(org-export-define-derived-backend 'html-inline-images 'html
+  :menu-entry '(?h "Export to HTML" ((?m "As MHTML file and open" org-html-export-to-mhtml))))
 
 (with-eval-after-load 'ox-latex
 (add-to-list 'org-latex-classes

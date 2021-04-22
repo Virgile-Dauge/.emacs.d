@@ -153,8 +153,8 @@ J'ai trouvé le thème doom-one vraiment sympa.
       (doom-themes-org-config))
 #+end_src
 
-*** Activated Ewal (copie terminal)
-#+begin_src emacs-lisp
+*** Desactivated Ewal (copie terminal)
+#+begin_src emacs-lisp :tangle no
 (use-package ewal
   :init (setq ewal-use-built-in-always-p nil
               ewal-use-built-in-on-failure-p t
@@ -184,6 +184,31 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
     https://github.com/aaronjensen/night-owl-emacs
 *** Futur SubAtomic
     https://peach-melpa.org/themes/subatomic-theme/variants/subatomic?lang=rb
+#+begin_src emacs-lisp :tangle no
+(use-package subatomic-theme)
+(load-theme 'subatomic t)
+#+end_src
+*** Desactivated Material
+#+begin_src emacs-lisp :tangle no
+(use-package material-theme)
+(load-theme 'material t)
+#+end_src
+*** Base 16
+#+begin_src emacs-lisp
+  (use-package base16-theme
+    :ensure t
+    :config
+    (load-theme 'base16-nord t))
+#+end_src
+- base16-material-palenight :: nope
+- base16-material-darker :: nope
+- base16-materia :: mouais
+- base16-eighties :: mouais
+- base16-twilight :: ok
+- base16-nord ::
+- base16-ocean ::
+- base16-chalk ::
+
 ** Modeline
 *** Activated Doom
 #+begin_src emacs-lisp
@@ -745,11 +770,12 @@ Un simple outil permettant de naviguer plus facilement dans un fichier Json.
 ici, fontify et act natively servent à utiliser le mode majeur
 correspondant dans les blocs source.
 #+begin_src emacs-lisp
-(use-package org
-  :config
-  (setq org-src-fontify-natively t)
-  (setq org-src-tab-acts-natively t)
-)
+(use-package org)
+  ;;:config
+  ;;(setq org-src-fontify-natively t)
+  ;;(setq org-src-tab-acts-natively t)
+;;)
+;;(setq org-src-fontify-natively t)
 #+end_src
 
 ** Blocs source (babel)
@@ -769,18 +795,20 @@ ipython. On en profite pour utiliser python3 par défaut.
 *** Activated Liste des languages activés
 Ajout du support de certains languages dans org-babel
 #+begin_src emacs-lisp
-(with-eval-after-load 'org
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '(
-     (ipython . t)
-     (python  . t)
-     (C       . t)
-     (dot     . t)
-     (shell   . t)
-   ))
-    (setq org-confirm-babel-evaluate nil)
-)
+  (with-eval-after-load 'org
+    (org-babel-do-load-languages
+     'org-babel-load-languages
+     '(
+       (ipython . t)
+       (python  . t)
+       (C       . t)
+       (dot     . t)
+       (shell   . t)
+     ))
+      (setq org-confirm-babel-evaluate nil)
+      ;;(setq org-src-fontify-natively t)
+      ;;(setq org-src-tab-acts-natively t)
+  )
 #+end_src
 *** Activated Affichage des images générées par défault
 Toujours afficher les images après les avoir générées:
@@ -871,6 +899,37 @@ C-c C-e h h
 
    (add-hook 'org-export-before-processing-hook 'my/org-inline-css-hook)
  #+end_src
+**** Embed images
+#+begin_src emacs-lisp
+(defun replace-in-string (what with in)
+  (replace-regexp-in-string (regexp-quote what) with in nil 'literal))
+
+(defun format-image-inline (source attributes info)
+  (progn
+    (setq source (replace-in-string "%20" " " source))
+    (format "<img src=\"data:image/%s;base64,%s\"%s />"
+            (or (file-name-extension source) "")
+            (base64-encode-string
+             (with-temp-buffer
+               (insert-file-contents-literally source)
+              (buffer-string)))
+            (file-name-nondirectory source))
+    ))
+;;(defun format-image-inline (source attributes info)
+;;  (let* ((ext (file-name-extension source))
+;;         (prefix (if (string= "svg" ext) "data:image/svg+xml;base64," "data:;base64,"))
+;;         (data (with-temp-buffer (url-insert-file-contents source) (buffer-string)))
+;;         (data-url (concat prefix (base64-encode-string data)))
+;;         (attributes (org-combine-plists `(:src ,data-url) attributes)))
+;;    (org-html-close-tag "img" (org-html--make-attribute-string attributes) info)))
+
+(defun org-html-export-to-mhtml (async subtree visible body)
+  (cl-letf (((symbol-function 'org-html--format-image) 'format-image-inline))
+    (org-html-export-to-html nil subtree visible body)))
+
+(org-export-define-derived-backend 'html-inline-images 'html
+  :menu-entry '(?h "Export to HTML" ((?m "As MHTML file and open" org-html-export-to-mhtml))))
+#+end_src
 *** Activated Export Latex
 
 Création d'une classe simple :
