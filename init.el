@@ -20,7 +20,7 @@
   (setq auto-package-update-hide-results t)
   (auto-package-update-maybe))
 
-(use-package cl-lib)
+(setq byte-compile-warnings '(cl-functions))
 
 (defun find-config ()
    "Edit readme.org"
@@ -384,26 +384,70 @@ background of code to whatever theme I'm using's background"
   :ensure nil
   :init
   (setq org-latex-compiler "xelatex")
-  (setq org-latex-pdf-process (list "latexmk -pdf %f"))
+  (setq org-latex-pdf-process (list "latexmk -shell-escape -pdf %f"))
+  :config
+  (add-to-list 'org-latex-packages-alist '("" "xcolor"))
+  (add-to-list 'org-latex-packages-alist '("" "mdframed"))
+  (add-to-list 'org-latex-packages-alist '("newfloat" "minted"))
+
+  (setq org-latex-listings 'minted)
+  (setq org-latex-minted-options '(("bgcolor" "bg")))
+  (add-to-list 'org-latex-minted-langs '(python "python"))
   )
 
 (with-eval-after-load 'ox-latex
-(add-to-list 'org-latex-classes
-             '("org-plain-latex"
-               "\\documentclass{article}
-           [NO-DEFAULT-PACKAGES]
-           [PACKAGES]
-           [EXTRA]"
-               ("\\section{%s}" . "\\section*{%s}")
-               ("\\subsection{%s}" . "\\subsection*{%s}")
-               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-               ("\\paragraph{%s}" . "\\paragraph*{%s}")
-               ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
+  (add-to-list 'org-latex-classes
+               '("org-plain-latex"
+                 "\\documentclass{article}
+[PACKAGES]
+\\usemintedstyle{native}
+\\definecolor{bg}{HTML}{202020}
+%\\usemintedstyle{material}
+%\\definecolor{bg}{HTML}{263238}
+%\\surroundwithmdframed{minted}
+[EXTRA]"
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
+
+(with-eval-after-load 'ox-latex
+  (add-to-list 'org-latex-classes
+               '("thesul"
+                 "\\documentclass{thesul}
+[PACKAGES]
+\\usemintedstyle{native}
+\\definecolor{bg}{HTML}{202020}
+%\\usemintedstyle{material}
+%\\definecolor{bg}{HTML}{263238}
+%\\surroundwithmdframed{minted}
+[EXTRA]"
+                 ("\chapter{%s}" . "\chapter{%s}")
+                 ("\section{%s}" . "\section{%s}")
+                 ("\subsection{%s}" . "\subsection{%s}")
+                 ("\subsubsection{%s}" . "\subsubsection{%s}")
+                 ("\paragraph{%s}" . "\paragraph*{%s}"))))
+
+(with-eval-after-load 'ox-latex
+  (add-to-list 'org-latex-classes
+               '("yathesis"
+                 "\\documentclass{yathesis}
+[PACKAGES]
+\\usemintedstyle{native}
+\\definecolor{bg}{HTML}{202020}
+%\\usemintedstyle{material}
+%\\definecolor{bg}{HTML}{263238}
+%\\surroundwithmdframed{minted}
+[EXTRA]"
+                 ("\chapter{%s}" . "\chapter{%s}")
+                 ("\section{%s}" . "\section{%s}")
+                 ("\subsection{%s}" . "\subsection{%s}")
+                 ("\subsubsection{%s}" . "\subsubsection{%s}")
+                 ("\paragraph{%s}" . "\paragraph*{%s}"))))
 
 (setq org-latex-logfiles-extensions (quote ("lof" "lot" "tex" "aux" "idx" "log" "out" "toc" "nav" "snm" "vrb" "dvi" "fdb_latexmk" "blg" "brf" "fls" "entoc" "ps" "spl" "bbl" "pygtex" "pygstyle")))
 (setq org-latex-remove-logfiles t)
-
-(setq org-latex-listings 'minted)
 
 (use-package ox-gfm
   :after org)
