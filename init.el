@@ -20,6 +20,8 @@
   (setq auto-package-update-hide-results t)
   (auto-package-update-maybe))
 
+(use-package cl-lib)
+
 (defun find-config ()
    "Edit readme.org"
    (interactive)
@@ -306,6 +308,18 @@
     (add-hook 'org-mode-hook 'org-bullets-mode)
     )
 
+(use-package ivy-bibtex)
+
+(use-package org-ref
+  :after org
+  :init
+  (setq reftex-default-bibliography '("~/bibliography/library.bib"))
+  (setq org-ref-default-bibliography '("~/bibliography/library.bib"))
+  (setq org-ref-pdf-directory '("~/bibliography/pdfs"))
+  (setq bibtex-completion-pdf-open-function 'org-open-file)
+  (setq org-ref-completion-library 'org-ref-ivy-cite)
+  )
+
 (setq org-export-with-sub-superscripts '{})
 
 (use-package ox-pandoc)
@@ -366,6 +380,13 @@ background of code to whatever theme I'm using's background"
 (org-export-define-derived-backend 'html-inline-images 'html
   :menu-entry '(?h "Export to HTML" ((?m "As MHTML file and open" org-html-export-to-mhtml))))
 
+(use-package ox-latex
+  :ensure nil
+  :init
+  (setq org-latex-compiler "xelatex")
+  (setq org-latex-pdf-process (list "latexmk -pdf %f"))
+  )
+
 (with-eval-after-load 'ox-latex
 (add-to-list 'org-latex-classes
              '("org-plain-latex"
@@ -378,6 +399,9 @@ background of code to whatever theme I'm using's background"
                ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
                ("\\paragraph{%s}" . "\\paragraph*{%s}")
                ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
+
+(setq org-latex-logfiles-extensions (quote ("lof" "lot" "tex" "aux" "idx" "log" "out" "toc" "nav" "snm" "vrb" "dvi" "fdb_latexmk" "blg" "brf" "fls" "entoc" "ps" "spl" "bbl" "pygtex" "pygstyle")))
+(setq org-latex-remove-logfiles t)
 
 (setq org-latex-listings 'minted)
 

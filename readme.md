@@ -1,94 +1,114 @@
-- [Config ShortCut](#org29c2f83)
-- [Base](#org36b59d8)
-  - [Initialisation et use-package](#org6e3148d)
-  - [MAJ automatique](#org5808bef)
-  - [Configs simples](#orge057fb7)
-    - [Suppression de la selection](#org1437f5e)
-    - [Suppression des backups/autosaves/locks](#org5f569ec)
-    - [Suppression des menus](#orgb24e5c8)
-    - [Plein écran par défaut](#orgdc36678)
-    - [Montrer les paires de parenthèses](#org2bfe830)
-    - [Désactivation du curseur hors de la fenêtre sélectionnée](#org2603e8c)
-    - [Suppression des espaces avant sauvegarde du fichier](#org54811d9)
-    - [Encodage Utf8 par défaut](#orgc4368a0)
-    - [Unbind de raccourcis chiants](#org2c8e46d)
-  - [Emacs serveur](#orgd4df2f3)
-  - [Lazy loading](#org1415475)
-- [Theme](#org7908d86)
-  - [Actuel](#orgbb3a16c)
-  - [A tester :](#org64aa886)
-    - [Mood-one](#org93f7744)
-    - [Night owl](#orgf1e29f8)
-    - [SubAtomic](#org5c77829)
-  - [Compléments](#orgeb7bd4b)
-  - [Fonts](#orgae180b1)
-  - [pretty symbols](#orgf755c66)
-- [Packages](#orgaca1ec4)
-  - [Curseurs multiples](#org076be5a)
-  - [Iedit](#orga1c5f6f)
-  - [Épurer la *modeline*](#orgee3ca8a)
-  - [Undo tree](#org32c36cc)
-  - [LSP](#org56c6911)
-  - [Completion](#org58c5c4a)
-    - [Text](#org2962d23)
-    - [yasSnipets](#org3ea8d95)
-  - [Org](#orgfecee8c)
-    - [Ajout d'org-mode et quelques config](#org399e693)
-    - [Blocs source (babel)](#org01a9d55)
-    - [Apparence](#org995338c)
-    - [Gestion références et citations](#org24dd90a)
-    - [Tableau de bord](#orgad6c672)
-    - [Export](#org21b4120)
-    - [Tangle](#org91ab75f)
-    - [Tree view](#org92475b4)
-  - [Writegood mode : besoin de tests](#orgb24361e)
-  - [Dashboard](#org501a0de)
-  - [COunsel ivy swiper](#orga5d4747)
-  - [Line number](#org58ce30f)
-  - [Gestion projets](#orgb50cac4)
-  - [Déplacements entre buffers](#org2a21821)
-  - [Next key](#orgfd7e8e8)
-  - [Expend selected region](#org76938aa)
-  - [Parenthèses et autres](#orgff706de)
-  - [Move text](#org1f87a40)
-  - [Indentation](#orgad3e82b)
-  - [Gestionnaire de version (Magit)](#orgba475d0)
-  - [Syntaxe (Flycheck)](#org32673f9)
-  - [Orthographe (Fly Spell)](#orgc3452ed)
-  - [C/C++](#org8d55041)
-  - [Python](#org8384a7a)
-    - [Auto Format](#orgb7927d1)
-  - [Markdown](#org753eb89)
-    - [preview](#org2111f52)
-    - [Preview (grip)](#org0c25f7d)
-  - [Contrôle de programmes externes](#orga7cc1e0)
-  - [JSON](#org9b9a71c)
-  - [Blog](#org834cfb3)
+- [Gestionnaire de packages](#orgc935a13)
+  - [Initialisation et use-package](#org11469fd)
+  - [MAJ automatique](#org0ff0f3f)
+  - [Use cl-lib instead of deprecated cl](#org6d8f5dc)
+  - [Emacs serveur](#org38eafe9)
+  - [Lazy loading](#org15f5fbc)
+- [Configs simples](#org26141f3)
+  - [init.el ShortCut](#org6bd8b71)
+  - [Suppression de la selection](#orgb442196)
+  - [Suppression des backups/autosaves/locks](#org4af1bc1)
+  - [Suppression des menus](#orgd4913c9)
+  - [Plein écran par défaut](#org3d4ceb7)
+  - [Montrer les paires de parenthèses](#org0d33493)
+  - [Désactivation du curseur hors de la fenêtre sélectionnée](#org2ed5716)
+  - [Suppression des espaces avant sauvegarde du fichier](#org7654808)
+  - [Encodage Utf8 par défaut](#orga2af5e8)
+  - [Unbind de raccourcis chiants](#org2b36305)
+- [Visuals](#org6b21e12)
+  - [Theme](#org446058c)
+    - [Doom](#org8de801e)
+    - [Ewal (copie terminal)](#org63602b3)
+    - [Mood-one](#org6cb88f4)
+    - [Night owl](#orge2bf0da)
+    - [SubAtomic](#org91687fb)
+    - [Material](#org4905d2c)
+    - [Base 16](#org5989a7a)
+    - [nord-theme](#orgf42e925)
+  - [Modeline](#orgfd2a1b1)
+    - [Doom](#org9d5b068)
+    - [Épurer la *modeline*](#org425f20d)
+  - [Icons](#org6cdebef)
+    - [All-the-icons](#orgc217532)
+  - [Fonts](#org19627dc)
+  - [Pretty symbols](#orgfa8bd49)
+    - [Global prettify](#org9b2f22c)
+    - [Prettyfy only inside org babel blocs](#org4f21de8)
+  - [Line number](#org42c5282)
+- [Gestion projets](#org538fe2f)
+  - [projectile](#org741a444)
+  - [Gestionnaire de version (Magit)](#org5457f20)
+- [Aide à l'édition](#org736978a)
+  - [Curseurs multiples](#orgf7f4663)
+  - [Iedit](#org5bed0b1)
+  - [Undo tree](#orgb5b94a4)
+  - [Completion](#org881222b)
+    - [Text](#org0b8de44)
+    - [TODO yasSnipets](#orga91ccc3)
+  - [Writegood mode : besoin de tests](#org648bd6e)
+  - [Move text](#orga3e5e81)
+  - [Indentation](#org1c3674f)
+  - [Syntaxe (Flycheck)](#org928a613)
+  - [Orthographe (Fly Spell)](#orgcf78f0b)
+- [Packages](#org18d259d)
+  - [LSP](#org85a48eb)
+  - [Dashboard](#orgc06ee06)
+  - [COunsel ivy swiper](#org820fb2e)
+  - [DONE Déplacements entre buffers](#org884880e)
+  - [DONE Next key](#orgbddacd5)
+  - [DONE Expend selected region](#orgbe1e473)
+  - [Parenthèses et autres](#orge9fc6fd)
+- [Programming modes](#orgca6d178)
+  - [C/C++](#orgbe91430)
+    - [Irony](#orgdb136ef)
+  - [Python](#org61e38bc)
+    - [Anaconda mode](#orge010211)
+    - [Live python](#orgf71befa)
+    - [Auto Format on save](#orge6b759b)
+  - [Markdown](#org75e6965)
+    - [Setup markdown mode](#org914903a)
+    - [Live preview on web browser](#org02675a8)
+    - [TODO preview](#orge82b6bd)
+    - [TODO Preview (grip)](#orge6dccbd)
+  - [JSON](#org3324bec)
+    - [Json mode](#org16bea15)
+    - [json navigator](#orgcbbb4e8)
+- [Org](#orga991a6a)
+  - [Ajout d'org-mode et quelques config](#orge8ae187)
+    - [Package org](#org815a5d5)
+  - [Blocs source (babel)](#orgaae5d53)
+    - [python3 par défaut](#org405782e)
+    - [package babel ipython](#orga82a5b7)
+    - [Liste des languages activés](#org2c23a99)
+    - [Affichage des images générées par défault](#org086a50a)
+  - [Apparence](#org6ff967f)
+    - [Bullets](#orgc44dc6b)
+  - [Gestion références et citations](#org37f3208)
+    - [Org ref](#org258581c)
+  - [Tableau de bord](#org163d9a2)
+  - [Export](#org80cdc96)
+    - [correction problème export \_](#org588b214)
+    - [Pandoc, multi format](#orga5d4be6)
+    - [Blog](#orgc3bdc6c)
+    - [HTML](#org27f6eda)
+    - [Export Latex](#orgb411608)
+    - [Diapositives](#orge7686fd)
+    - [Github Markdown](#orgb1328ed)
+  - [Tangle](#org51f2621)
+  - [Tree view](#org4b90496)
+  - [which app to open file with ?](#org66e2ebd)
+- [Contrôle de programmes externes](#org2812183)
 
 
 
-<a id="org29c2f83"></a>
+<a id="orgc935a13"></a>
 
-# DONE Config ShortCut
-
-```emacs-lisp
-(defun find-config ()
-   "Edit readme.org"
-   (interactive)
-   (find-file "~/.emacs.d/readme.org"))
-
- (global-set-key (kbd "C-c I") 'find-config)
-```
+# Gestionnaire de packages
 
 
-<a id="org36b59d8"></a>
+<a id="org11469fd"></a>
 
-# TODO Base
-
-
-<a id="org6e3148d"></a>
-
-## Initialisation et use-package
+## Activated Initialisation et use-package
 
 Initialisation des dépôts d'archives et installation de use-package.
 
@@ -111,9 +131,9 @@ Initialisation des dépôts d'archives et installation de use-package.
 ```
 
 
-<a id="org5808bef"></a>
+<a id="org0ff0f3f"></a>
 
-## MAJ automatique
+## Activated MAJ automatique
 
 ```emacs-lisp
 (use-package auto-package-update
@@ -124,14 +144,57 @@ Initialisation des dépôts d'archives et installation de use-package.
 ```
 
 
-<a id="orge057fb7"></a>
+<a id="org6d8f5dc"></a>
 
-## Configs simples
+## Use cl-lib instead of deprecated cl
+
+Certains packages dépendent du packet *cl* qui est *deprecated*.
+
+```emacs-lisp
+(use-package cl-lib)
+```
 
 
-<a id="org1437f5e"></a>
+<a id="org38eafe9"></a>
 
-### Suppression de la selection
+## Futur Emacs serveur
+
+<https://www.gnu.org/software/emacs/manual/html_node/emacs/Emacs-Server.html>
+
+```bash
+systemctl --user enable emacs
+```
+
+
+<a id="org15f5fbc"></a>
+
+## Futur Lazy loading
+
+<https://github.com/jwiegley/use-package#notes-about-lazy-loading>
+
+
+<a id="org26141f3"></a>
+
+# Configs simples
+
+
+<a id="org6bd8b71"></a>
+
+## Activated init.el ShortCut     :@Activated:a:
+
+```emacs-lisp
+(defun find-config ()
+   "Edit readme.org"
+   (interactive)
+   (find-file "~/.emacs.d/readme.org"))
+
+ (global-set-key (kbd "C-c I") 'find-config)
+```
+
+
+<a id="orgb442196"></a>
+
+## Activated Suppression de la selection
 
 C'est un comportement dont j'ai l'habitude :
 
@@ -140,9 +203,9 @@ C'est un comportement dont j'ai l'habitude :
 ```
 
 
-<a id="org5f569ec"></a>
+<a id="org4af1bc1"></a>
 
-### Suppression des backups/autosaves/locks
+## Testing Suppression des backups/autosaves/locks
 
 ```emacs-lisp
 (setq
@@ -152,9 +215,9 @@ C'est un comportement dont j'ai l'habitude :
 ```
 
 
-<a id="orgb24e5c8"></a>
+<a id="orgd4913c9"></a>
 
-### Suppression des menus
+## Activated Suppression des menus
 
 Désactiver le startup screen :
 
@@ -176,18 +239,18 @@ Enlever les barres de menu et d'outils, c'est un minimum :
 ```
 
 
-<a id="orgdc36678"></a>
+<a id="org3d4ceb7"></a>
 
-### Plein écran par défaut
+## Desactivated Plein écran par défaut
 
 ```emacs-lisp
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 ```
 
 
-<a id="org2bfe830"></a>
+<a id="org0d33493"></a>
 
-### Montrer les paires de parenthèses
+## Activated Montrer les paires de parenthèses
 
 Montrer les paires de parenthèses : <https://www.emacswiki.org/emacs/ShowParenMode>
 
@@ -197,9 +260,9 @@ Montrer les paires de parenthèses : <https://www.emacswiki.org/emacs/ShowParenM
 ```
 
 
-<a id="org2603e8c"></a>
+<a id="org2ed5716"></a>
 
-### Désactivation du curseur hors de la fenêtre sélectionnée
+## Activated Désactivation du curseur hors de la fenêtre sélectionnée
 
 Désactiver le curseur dans les fenetres non-actives:
 
@@ -208,9 +271,9 @@ Désactiver le curseur dans les fenetres non-actives:
 ```
 
 
-<a id="org54811d9"></a>
+<a id="org7654808"></a>
 
-### Suppression des espaces avant sauvegarde du fichier
+## Activated Suppression des espaces avant sauvegarde du fichier
 
 Suppression des espaces en fin de fichier avant de sauvegarder :
 
@@ -220,9 +283,9 @@ Suppression des espaces en fin de fichier avant de sauvegarder :
 ```
 
 
-<a id="orgc4368a0"></a>
+<a id="orga2af5e8"></a>
 
-### Encodage Utf8 par défaut
+## Activated Encodage Utf8 par défaut
 
 Tout passer en utf-8
 
@@ -239,9 +302,9 @@ Tout passer en utf-8
 ```
 
 
-<a id="org2c8e46d"></a>
+<a id="org2b36305"></a>
 
-### Unbind de raccourcis chiants
+## Activated Unbind de raccourcis chiants
 
 ```emacs-lisp
 ;;(unbind-key "C-x C-f") ;; find-file-read-only
@@ -253,92 +316,197 @@ Tout passer en utf-8
 ```
 
 
-<a id="orgd4df2f3"></a>
+<a id="org6b21e12"></a>
 
-## TODO Emacs serveur
-
-<https://www.gnu.org/software/emacs/manual/html_node/emacs/Emacs-Server.html>
-
-```bash
-systemctl --user enable emacs
-```
+# Visuals
 
 
-<a id="org1415475"></a>
+<a id="org446058c"></a>
 
-## TODO Lazy loading
-
-<https://github.com/jwiegley/use-package#notes-about-lazy-loading>
-
-
-<a id="org7908d86"></a>
-
-# DONE Theme
+## Theme
 
 Le site <https://peach-melpa.org/> propose une galerie des themes Emacs disponibles sur MELPA.
 
 
-<a id="orgbb3a16c"></a>
+<a id="org8de801e"></a>
 
-## Actuel
+### Activated Doom
 
-J'ai trouvé le thème doom-one vraiment sympa.
+Alternatives :
+
+-   **doom-material:** cool
+-   **doom-tomorrow-night:** ok
+-   **doom-palenight:** cool
+-   **doom-nord:** trop fade
 
 ```emacs-lisp
-(use-package doom-modeline
-  :ensure t
-  :hook (after-init . doom-modeline-mode))
-
 (use-package doom-themes
-  :defer t
-  :init
-  (load-theme 'doom-one t)
+  :config
+  ;; Global settings (defaults)
+  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+        doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  (load-theme 'doom-material t)
+
   ;; Enable flashing mode-line on errors
   (doom-themes-visual-bell-config)
+
   ;; Enable custom neotree theme (all-the-icons must be installed!)
   (doom-themes-neotree-config)
+  ;; or for treemacs users
+  (setq doom-themes-treemacs-theme "doom-colors") ; use the colorful treemacs theme
+  (doom-themes-treemacs-config)
+
+  ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
 ```
 
 
-<a id="org64aa886"></a>
+<a id="org63602b3"></a>
 
-## A tester :
+### Desactivated Ewal (copie terminal)
+
+```emacs-lisp
+(use-package ewal
+;;  :init (setq ewal-use-built-in-always-p nil
+;;              ewal-use-built-in-on-failure-p t
+;;              ewal-built-in-palette "sexy-material")
+)
+```
+
+```emacs-lisp
+(use-package ewal-doom-themes
+  :init (progn
+          (setq doom-theme-underline-parens t
+                my:rice:font (font-spec
+                              :family "Source Code Pro"
+                              :weight 'semi-bold
+                              :size 11.0))
+          (show-paren-mode +1)
+          (global-hl-line-mode)
+          (set-frame-font my:rice:font nil t)
+          (add-to-list  'default-frame-alist
+                        `(font . ,(font-xlfd-name my:rice:font))))
+  :config (progn
+            (load-theme 'ewal-doom-one t)
+            (enable-theme 'ewal-doom-one)))
+```
 
 
-<a id="org93f7744"></a>
+<a id="org6cb88f4"></a>
 
-### Mood-one
+### Futur Mood-one
 
 Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo est peut-être moins active. <https://gitlab.com/jessieh/mood-one-theme>
 
 
-<a id="orgf1e29f8"></a>
+<a id="orge2bf0da"></a>
 
-### Night owl
+### Futur Night owl
 
 <https://github.com/aaronjensen/night-owl-emacs>
 
 
-<a id="org5c77829"></a>
+<a id="org91687fb"></a>
 
-### SubAtomic
+### Futur SubAtomic
 
 <https://peach-melpa.org/themes/subatomic-theme/variants/subatomic?lang=rb>
 
+```emacs-lisp
+(use-package subatomic-theme)
+(load-theme 'subatomic t)
+```
 
-<a id="orgeb7bd4b"></a>
 
-## Compléments
+<a id="org4905d2c"></a>
+
+### Desactivated Material
+
+```emacs-lisp
+(use-package material-theme)
+(load-theme 'material t)
+```
+
+
+<a id="org5989a7a"></a>
+
+### Desactivated Base 16
+
+```emacs-lisp
+(use-package base16-theme
+  :ensure t
+  :config
+  (load-theme 'base16-nord t))
+```
+
+-   **base16-material-palenight:** nope
+-   **base16-material-darker:** nope
+-   **base16-materia:** mouais
+-   **base16-eighties:** mouais
+-   **base16-twilight:** ok
+-   **base16-nord:**
+
+-   **base16-ocean:**
+
+-   **base16-chalk:**
+
+
+<a id="orgf42e925"></a>
+
+### Desactivated nord-theme
+
+```emacs-lisp
+(use-package nord-theme
+    :ensure t
+    :config
+    (load-theme 'nord t))
+
+```
+
+
+<a id="orgfd2a1b1"></a>
+
+## Modeline
+
+
+<a id="org9d5b068"></a>
+
+### Activated Doom
+
+```emacs-lisp
+(use-package doom-modeline
+    :ensure t
+    :hook (after-init . doom-modeline-mode))
+```
+
+
+<a id="org425f20d"></a>
+
+### Activated Épurer la *modeline*
+
+```emacs-lisp
+(use-package diminish
+  :config (diminish 'eldoc-mode))
+```
+
+
+<a id="org6cdebef"></a>
+
+## Icons
+
+
+<a id="orgc217532"></a>
+
+### Activated All-the-icons
 
 ```emacs-lisp
 (use-package all-the-icons)
 ```
 
 
-<a id="orgae180b1"></a>
+<a id="org19627dc"></a>
 
-## Fonts
+## Testing Fonts
 
 ```emacs-lisp
 ;;(set-frame-font "Operator Mono 12" nil t)
@@ -346,9 +514,14 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 ```
 
 
-<a id="orgf755c66"></a>
+<a id="orgfa8bd49"></a>
 
-## pretty symbols
+## Pretty symbols
+
+
+<a id="org9b2f22c"></a>
+
+### Activated Global prettify
 
 ```emacs-lisp
 (setq prettify-symbols-unprettify-at-point 'right-edge)
@@ -398,14 +571,67 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 ```
 
 
-<a id="orgaca1ec4"></a>
+<a id="org4f21de8"></a>
 
-# Packages
+### Futur Prettyfy only inside org babel blocs
 
 
-<a id="org076be5a"></a>
+<a id="org42c5282"></a>
 
-## Curseurs multiples
+## Desactivated Line number
+
+```emacs-lisp
+(use-package hlinum
+  :config
+  (hlinum-activate))
+
+(use-package linum
+  :config
+  (setq linum-format " %3d ")
+  (global-linum-mode nil))
+```
+
+
+<a id="org538fe2f"></a>
+
+# Gestion projets
+
+
+<a id="org741a444"></a>
+
+## Desactivated projectile
+
+```emacs-lisp
+(use-package projectile
+  :config
+  (setq projectile-known-projects-file
+        (expand-file-name "projectile-bookmarks.eld" temp-dir))
+
+  (setq projectile-completion-system 'ivy)
+
+  (projectile-global-mode))
+```
+
+
+<a id="org5457f20"></a>
+
+## Activated Gestionnaire de version (Magit)
+
+```emacs-lisp
+(use-package magit
+  :ensure t
+  :bind ("C-x g" . magit-status))
+```
+
+
+<a id="org736978a"></a>
+
+# Aide à l'édition
+
+
+<a id="orgf7f4663"></a>
+
+## Futur Curseurs multiples
 
 ```emacs-lisp
 (use-package multiple-cursors
@@ -414,9 +640,9 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 ```
 
 
-<a id="orga1c5f6f"></a>
+<a id="org5bed0b1"></a>
 
-## Iedit
+## Futur Iedit
 
 ```emacs-lisp
 (use-package iedit)
@@ -443,19 +669,9 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 ```
 
 
-<a id="orgee3ca8a"></a>
+<a id="orgb5b94a4"></a>
 
-## Épurer la *modeline*
-
-```emacs-lisp
-(use-package diminish
-  :config (diminish 'eldoc-mode))
-```
-
-
-<a id="org32c36cc"></a>
-
-## Undo tree
+## Futur Undo tree
 
 ```emacs-lisp
 (use-package undo-tree
@@ -467,48 +683,14 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 ```
 
 
-<a id="org56c6911"></a>
-
-## LSP
-
-```emacs-lisp
-;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
-(setq lsp-keymap-prefix "C-l")
-
-(use-package lsp-mode
-    :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
-            (python-mode . lsp)
-            ;; if you want which-key integration
-            (lsp-mode . lsp-enable-which-key-integration))
-    :commands lsp)
-
-;; optionally
-(use-package lsp-ui :commands lsp-ui-mode)
-;; if you are helm user
-;;(use-package helm-lsp :commands helm-lsp-workspace-symbol)
-;; if you are ivy user
-(use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
-(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
-
-;; optionally if you want to use debugger
-(use-package dap-mode)
-;; (use-package dap-LANGUAGE) to load the dap adapter for your language
-(use-package dap-PYTHON)
-;; optional if you want which-key integration
-;;(use-package which-key
-;;    :config
-;;    (which-key-mode))
-```
-
-
-<a id="org58c5c4a"></a>
+<a id="org881222b"></a>
 
 ## Completion
 
 
-<a id="org2962d23"></a>
+<a id="org0b8de44"></a>
 
-### TODO Text
+### Futur Text
 
 1.  Company <https://company-mode.github.io/>
 
@@ -557,7 +739,7 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
         ```
 
 
-<a id="org3ea8d95"></a>
+<a id="orga91ccc3"></a>
 
 ### TODO yasSnipets
 
@@ -578,271 +760,9 @@ adding a collection of snippets
 1.  TODO Ajout de snippets personalisés:
 
 
-<a id="orgfecee8c"></a>
+<a id="org648bd6e"></a>
 
-## Org
-
-<https://orgmode.org/worg/org-tutorials/org4beginners.html>
-
-
-<a id="org399e693"></a>
-
-### Ajout d'org-mode et quelques config
-
-J'ai trouvé un site avec une config sympa : <https://jamiecollinson.com/blog/my-emacs-config/#org>
-
-ici, fontify et act natively servent à utiliser le mode majeur correspondant dans les blocs source.
-
-```emacs-lisp
-(use-package org
-  :config
-  (setq org-src-fontify-natively t)
-  (setq org-src-tab-acts-natively t)
-)
-```
-
-
-<a id="org01a9d55"></a>
-
-### Blocs source (babel)
-
-Afin de pouvoir gérer ipython, il faut installer le package org-babel ipython
-
-```emacs-lisp
-(use-package ob-ipython
-  :after org)
-```
-
-ajout du support de certains languages dans org-babel
-
-```emacs-lisp
-(with-eval-after-load 'org
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '(
-     (ipython . t)
-     (python  . t)
-     (C       . t)
-     (dot     . t)
-     (shell   . t)
-   ))
-    (setq org-confirm-babel-evaluate nil)
-)
-```
-
-Toujours afficher les images après les avoir générées:
-
-```emacs-lisp
-(add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append)
-```
-
-
-<a id="org995338c"></a>
-
-### Apparence
-
-Permet d'afficher des symboles utf-8 plutôt que des astérisques.
-
-```emacs-lisp
-(use-package org-bullets
-    :ensure t
-    :config
-    ;; (setq org-bullets-bullet-list '("∙"))
-    (add-hook 'org-mode-hook 'org-bullets-mode)
-    )
-```
-
-
-<a id="org24dd90a"></a>
-
-### TODO Gestion références et citations
-
-```emacs-lisp
-(use-package org-ref)
-
-(setq org-latex-pdf-process (list "latexmk -shell-escape -bibtex -f -pdf %f"))
-```
-
-
-<a id="orgad6c672"></a>
-
-### Tableau de bord
-
-```emacs-lisp
-(use-package org-dashboard)
-```
-
-\#+begin<sub>example</sub>
-
-
-<a id="org21b4120"></a>
-
-### Export
-
-Liste des exporteurs : <https://orgmode.org/worg/exporters/index.html>
-
-1.  TODO problème export \_
-
-    piste: TeX-like syntax for sub- and superscripts. If you write ‘^:{}’, ‘a<sub>b</sub>’ is interpreted, but the simple ‘a<sub>b</sub>’ is left as it is (org-export-with-sub-superscripts).
-
-2.  TODO Pandoc, multi format
-
-    <https://github.com/kawabata/ox-pandoc> We need to install last version of pandoc from <https://github.com/jgm/pandoc/releases/>
-
-    ```emacs-lisp
-    (use-package ox-pandoc)
-    ```
-
-3.  Blog
-
-    <https://melpa.org/#/ox-hugo>
-
-4.  TODO Export HTML
-
-    <https://github.com/fniessen/org-html-themes>
-
-    ```emacs-lisp
-    (use-package ox-twbs
-        :ensure t)
-    ```
-
-5.  Coloration Syntaxique
-
-    ```emacs-lisp
-    (add-to-list 'org-latex-packages-alist '("" "xcolor"))
-    (add-to-list 'org-latex-packages-alist '("" "minted"))
-
-    (setq org-latex-listings 'minted)
-    ```
-
-    ```emacs-lisp
-    (setq org-latex-header-extra
-          '(concat
-            org-latex-header-extra
-            "\\usemintedstyle{native}"))
-    ```
-
-6.  Diapositives
-
-    1.  TODO Ioslides
-
-        IOslide, joli et minimaliste <https://github.com/coldnew/org-ioslide>
-
-        ```emacs-lisp
-        (use-package ox-ioslide)
-        ;;(use-package ox-ioslide-helper)
-        ```
-
-    2.  Html5slide
-
-        html5slide, pas de maj depuis 6ans, on oublie : <https://github.com/coldnew/org-html5slide>
-
-    3.  TODO Reveal js
-
-        <https://github.com/hakimel/reveal.js/> To install reveal js locally :
-
-        ```bash
-        cd ~/
-        git clone https://github.com/hakimel/reveal.js/
-        npm update node-sass
-        npm install
-        ```
-
-        as stated in <https://github.com/yjwen/org-reveal>: The easiest way of getint org-reveal is to instal ox-reveal from melpa
-
-        ```emacs-lisp
-        (use-package ox-reveal)
-        (setq org-reveal-root "file:///home/virgile/reveal.js")
-        (use-package htmlize)
-        ```
-
-        to come arount rainbow delimiter incompatibility issues :
-
-        ```emacs-lisp
-        (defadvice htmlize-buffer-1 (around ome-htmlize-buffer-1 disable)
-          (rainbow-delimiters-mode -1)
-          ad-do-it
-          (rainbow-delimiters-mode t))
-
-        (defun ome-htmlize-setup ()
-          (if (el-get-read-package-status 'rainbow-delimiters)
-              (progn
-                (ad-enable-advice 'htmlize-buffer-1 'around 'ome-htmlize-buffer-1)
-                (ad-activate 'htmlize-buffer-1))))
-        ```
-
-    4.  TODO Beamer
-
-        ```emacs-lisp
-        (use-package ox-beamer)
-        ```
-
-7.  Github Markdown
-
-    ```emacs-lisp
-    (use-package ox-gfm
-      :after org)
-    ```
-
-8.  Background color
-
-    ```emacs-lisp
-    (defun my/org-inline-css-hook (exporter)
-      "Insert custom inline css to automatically set the
-    background of code to whatever theme I'm using's background"
-
-      (let* ((my-pre-bg (face-background 'default))
-             (my-pre-fg (face-foreground 'default)))
-        (setq
-         org-html-head-extra
-         (concat
-          org-html-head-extra
-          (format "<style type=\"text/css\">\n pre.src {background-color: %s; color: %s;}</style>\n"
-                  my-pre-bg my-pre-fg)))))
-
-    (add-hook 'org-export-before-processing-hook 'my/org-inline-css-hook)
-    ```
-
-
-<a id="org91ab75f"></a>
-
-### Tangle
-
-```emacs-lisp
-;;; noweb expansion only when you tangle
-(setq org-babel-default-header-args
-      (cons '(:noweb . "tangle")
-            (assq-delete-all :noweb org-babel-default-header-args))
-      )
-```
-
-
-<a id="org92475b4"></a>
-
-### Tree view
-
-On va utiliser *org-sidebar*, mais il dépend de :
-
--   ***org-ql*:** provides a query language for Org files
-
-```emacs-lisp
-(use-package org-ql)
-```
-
--   ***org-super-agenda*:** group items into sections, rather than having them all in one big list.
-
-```emacs-lisp
-(use-package org-super-agenda)
-```
-
-```emacs-lisp
-(use-package org-sidebar)
-```
-
-
-<a id="orgb24361e"></a>
-
-## TODO Writegood mode : besoin de tests
+## Futur Writegood mode : besoin de tests
 
 ```emacs-lisp
 (use-package writegood-mode
@@ -856,168 +776,18 @@ On va utiliser *org-sidebar*, mais il dépend de :
 ```
 
 
-<a id="org501a0de"></a>
+<a id="orga3e5e81"></a>
 
-## DONE Dashboard
-
-<https://github.com/emacs-dashboard/emacs-dashboard> An extensible emacs startup screen showing you what’s most important. install page-break-lines as it is required for dashboard.
-
-```emacs-lisp
-(use-package page-break-lines)
-(use-package dashboard
-  :ensure t
-  :config
-  (dashboard-setup-startup-hook))
-```
-
-
-<a id="orga5d4747"></a>
-
-## COunsel ivy swiper
-
-```emacs-lisp
-(use-package counsel
-  :bind
-  ("M-x" . counsel-M-x)
-  ("C-x C-m" . counsel-M-x)
-  ("C-x C-f" . counsel-find-file)
-  ("C-x c k" . counsel-yank-pop))
-
-(use-package counsel-projectile
-  :bind
-  ("C-x v" . counsel-projectile)
-  ("C-x c p" . counsel-projectile-ag)
-  :config
-  (counsel-projectile-on))
-
-(use-package ivy
-  :bind
-  ("C-x s" . swiper)
-  ("C-x C-r" . ivy-resume)
-  :config
-  (ivy-mode 1)
-  (setq ivy-use-virtual-buffers nil)
-  (define-key read-expression-map (kbd "C-r") 'counsel-expression-history))
-
-(use-package smex)
-
-(use-package all-the-icons-ivy)
-
-```
-
-
-<a id="org58ce30f"></a>
-
-## TODO Line number
-
-```emacs-lisp
-(use-package hlinum
-  :config
-  (hlinum-activate))
-
-(use-package linum
-  :config
-  (setq linum-format " %3d ")
-  (global-linum-mode nil))
-```
-
-
-<a id="orgb50cac4"></a>
-
-## TODO Gestion projets
-
-```emacs-lisp
-(use-package projectile
-  :config
-  (setq projectile-known-projects-file
-        (expand-file-name "projectile-bookmarks.eld" temp-dir))
-
-  (setq projectile-completion-system 'ivy)
-
-  (projectile-global-mode))
-```
-
-
-<a id="org2a21821"></a>
-
-## DONE Déplacements entre buffers
-
-```emacs-lisp
-(use-package windmove
-  :bind
-  ("C-x <up>" . windmove-up)
-  ("C-x <down>" . windmove-down)
-  ("C-x <left>" . windmove-left)
-  ("C-x <right>" . windmove-right))
-```
-
-
-<a id="orgfd7e8e8"></a>
-
-## DONE Next key
-
-```emacs-lisp
-(use-package which-key
-  :ensure t
-  :diminish which-key-mode
-  :config
-  (add-hook 'after-init-hook 'which-key-mode))
-```
-
-
-<a id="org76938aa"></a>
-
-## DONE Expend selected region
-
-```emacs-lisp
-(use-package expand-region
-  :ensure t
-  :bind ("C-=" . er/expand-region))
-```
-
-
-<a id="orgff706de"></a>
-
-## Parenthèses et autres
-
-Automatisation autour des parenthèses <https://github.com/Fuco1/smartparens>
-
-```emacs-lisp
-(use-package smartparens
-  :ensure t
-  :diminish smartparens-mode
-  :config
-  (add-hook 'prog-mode-hook 'smartparens-mode))
-```
-
-Highlight parents
-
-```emacs-lisp
-(use-package rainbow-delimiters
-    :ensure t
-    :config
-    (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
-```
-
-expend parents redondant avec smartparens ?
-
-```emacs-lisp
-(add-hook 'prog-mode-hook 'electric-pair-mode)
-```
-
-
-<a id="org1f87a40"></a>
-
-## DONE Move text
+## Futur Move text
 
 ```emacs-lisp
 (use-package move-text)
 ```
 
 
-<a id="orgad3e82b"></a>
+<a id="org1c3674f"></a>
 
-## TODO Indentation
+## Futur Indentation
 
 ```emacs-lisp
 (use-package aggressive-indent
@@ -1035,20 +805,9 @@ aggressive indent ne fonctionne pas avec python, on peut l'activer, mais cela ne
 ```
 
 
-<a id="orgba475d0"></a>
+<a id="org928a613"></a>
 
-## DONE Gestionnaire de version (Magit)
-
-```emacs-lisp
-(use-package magit
-  :ensure t
-  :bind ("C-x g" . magit-status))
-```
-
-
-<a id="org32673f9"></a>
-
-## TODO Syntaxe (Flycheck)
+## Futur Syntaxe (Flycheck)
 
 J'utilise Flycheck pour vérifier la syntaxe à la volée
 
@@ -1059,9 +818,9 @@ J'utilise Flycheck pour vérifier la syntaxe à la volée
 ```
 
 
-<a id="orgc3452ed"></a>
+<a id="orgcf78f0b"></a>
 
-## DONE Orthographe (Fly Spell)
+## Activated Orthographe (Fly Spell)
 
 ```emacs-lisp
 (use-package flyspell)
@@ -1071,7 +830,6 @@ J'utilise Flycheck pour vérifier la syntaxe à la volée
 On veut l'activer sur org et Latex :
 
 ```emacs-lisp
-
 (add-hook 'LaTeX-mode-hook 'flyspell-mode)
 (add-hook 'org-mode-hook 'flyspell-mode)
 
@@ -1120,9 +878,176 @@ Pour appliquer la correction, deux solutions me paraissent valables :
 ```
 
 
-<a id="org8d55041"></a>
+<a id="org18d259d"></a>
 
-## TODO C/C++
+# Packages
+
+
+<a id="org85a48eb"></a>
+
+## LSP
+
+```emacs-lisp
+;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+(setq lsp-keymap-prefix "C-l")
+
+(use-package lsp-mode
+    :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+            (python-mode . lsp)
+            ;; if you want which-key integration
+            (lsp-mode . lsp-enable-which-key-integration))
+    :commands lsp)
+
+;; optionally
+(use-package lsp-ui :commands lsp-ui-mode)
+;; if you are helm user
+;;(use-package helm-lsp :commands helm-lsp-workspace-symbol)
+;; if you are ivy user
+(use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
+(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
+
+;; optionally if you want to use debugger
+;;(use-package dap-mode)
+;; (use-package dap-LANGUAGE) to load the dap adapter for your language
+;;(use-package dap-PYTHON)
+;; optional if you want which-key integration
+;;(use-package which-key
+;;    :config
+;;    (which-key-mode))
+```
+
+
+<a id="orgc06ee06"></a>
+
+## Desactivated Dashboard
+
+<https://github.com/emacs-dashboard/emacs-dashboard> An extensible emacs startup screen showing you what’s most important. install page-break-lines as it is required for dashboard.
+
+```emacs-lisp
+(use-package page-break-lines)
+(use-package dashboard
+  :ensure t
+  :config
+  (dashboard-setup-startup-hook))
+```
+
+
+<a id="org820fb2e"></a>
+
+## COunsel ivy swiper
+
+```emacs-lisp
+(use-package counsel
+  :bind
+  ("M-x" . counsel-M-x)
+  ("C-x C-m" . counsel-M-x)
+  ("C-x C-f" . counsel-find-file)
+  ("C-x c k" . counsel-yank-pop))
+
+(use-package counsel-projectile
+  :bind
+  ("C-x v" . counsel-projectile)
+  ("C-x c p" . counsel-projectile-ag)
+  :config
+  (counsel-projectile-on))
+
+(use-package ivy
+  :bind
+  ("C-x s" . swiper)
+  ("C-x C-r" . ivy-resume)
+  :config
+  (ivy-mode 1)
+  (setq ivy-use-virtual-buffers nil)
+  (define-key read-expression-map (kbd "C-r") 'counsel-expression-history))
+
+(use-package smex)
+
+(use-package all-the-icons-ivy)
+
+```
+
+
+<a id="org884880e"></a>
+
+## DONE Déplacements entre buffers
+
+```emacs-lisp
+(use-package windmove
+  :bind
+  ("C-x <up>" . windmove-up)
+  ("C-x <down>" . windmove-down)
+  ("C-x <left>" . windmove-left)
+  ("C-x <right>" . windmove-right))
+```
+
+
+<a id="orgbddacd5"></a>
+
+## DONE Next key
+
+```emacs-lisp
+(use-package which-key
+  :ensure t
+  :diminish which-key-mode
+  :config
+  (add-hook 'after-init-hook 'which-key-mode))
+```
+
+
+<a id="orgbe1e473"></a>
+
+## DONE Expend selected region
+
+```emacs-lisp
+(use-package expand-region
+  :ensure t
+  :bind ("C-=" . er/expand-region))
+```
+
+
+<a id="orge9fc6fd"></a>
+
+## Parenthèses et autres
+
+Automatisation autour des parenthèses <https://github.com/Fuco1/smartparens>
+
+```emacs-lisp
+(use-package smartparens
+  :ensure t
+  :diminish smartparens-mode
+  :config
+  (add-hook 'prog-mode-hook 'smartparens-mode))
+```
+
+Highlight parents
+
+```emacs-lisp
+(use-package rainbow-delimiters
+    :ensure t
+    :config
+    (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+```
+
+expend parents redondant avec smartparens ?
+
+```emacs-lisp
+(add-hook 'prog-mode-hook 'electric-pair-mode)
+```
+
+
+<a id="orgca6d178"></a>
+
+# Programming modes
+
+
+<a id="orgbe91430"></a>
+
+## C/C++
+
+
+<a id="orgdb136ef"></a>
+
+### Futur Irony
 
 Le built in est bon, mais j'aimerai tester Irony <https://github.com/Sarcasm/irony-mode>
 
@@ -1157,9 +1082,14 @@ Ajout du support de flycheck
 ```
 
 
-<a id="org8384a7a"></a>
+<a id="org61e38bc"></a>
 
 ## Python
+
+
+<a id="orge010211"></a>
+
+### Testing Anaconda mode
 
 Le mode Anaconda est paraît-il plus complet que le mode intégré :
 
@@ -1181,9 +1111,10 @@ Pour ce débarasser des problèmes d'indentations mixte et régler l'indentation
 (setq-default indent-tabs-mode nil)  ; use only spaces and no tabs
 ```
 
-```emacs-lisp
-(setq org-babel-python-command "python3")
-```
+
+<a id="orgf71befa"></a>
+
+### Desactivated Live python
 
 live py est sympa mais uniquement pour des logiciels simples.
 
@@ -1192,18 +1123,26 @@ live py est sympa mais uniquement pour des logiciels simples.
 ```
 
 
-<a id="orgb7927d1"></a>
+<a id="orge6b759b"></a>
 
-### Auto Format
+### Futur Auto Format on save
+
+<https://github.com/paetzke/py-autopep8.el>
 
 ```emacs-lisp
 (use-package py-autopep8)
+(add-hook 'python-mode-hook 'py-autopep8-enable-on-save)
 ```
 
 
-<a id="org753eb89"></a>
+<a id="org75e6965"></a>
 
-## TODO Markdown
+## Markdown
+
+
+<a id="org914903a"></a>
+
+### Desactivated Setup markdown mode
 
 ```emacs-lisp
 (use-package markdown-mode
@@ -1215,16 +1154,21 @@ live py est sympa mais uniquement pour des logiciels simples.
   :init (setq markdown-command "multimarkdown"))
 ```
 
-Ne fonctionne pas sur firefox actuellement.
+
+<a id="org02675a8"></a>
+
+### Futur Live preview on web browser
+
+<https://github.com/mola-T/flymd>
 
 ```emacs-lisp
 (use-package flymd)
 ```
 
 
-<a id="org2111f52"></a>
+<a id="orge82b6bd"></a>
 
-### TODO preview
+### Desactivated TODO preview
 
 vmd-mode
 
@@ -1239,9 +1183,9 @@ sudo npm install -g vmd
 <https://github.com/jamcha-aa/auto-org-md/tree/9318338bdb7fe8bd698d88f3af89b2d6413efdd2>
 
 
-<a id="org0c25f7d"></a>
+<a id="orge6dccbd"></a>
 
-### TODO Preview (grip)
+### Desactivated TODO Preview (grip)
 
 ```emacs-lisp
 ;; Use keybindings
@@ -1253,9 +1197,491 @@ sudo apt install grip
 ```
 
 
-<a id="orga7cc1e0"></a>
+<a id="org3324bec"></a>
 
-## Contrôle de programmes externes
+## JSON
+
+
+<a id="org16bea15"></a>
+
+### Activated Json mode
+
+```emacs-lisp
+(use-package json-mode)
+```
+
+
+<a id="orgcbbb4e8"></a>
+
+### Desactivated json navigator
+
+Un simple outil permettant de naviguer plus facilement dans un fichier Json.
+
+```emacs-lisp
+(use-package json-navigator)
+```
+
+
+<a id="orga991a6a"></a>
+
+# Org
+
+<https://orgmode.org/worg/org-tutorials/org4beginners.html>
+
+
+<a id="orge8ae187"></a>
+
+## Ajout d'org-mode et quelques config
+
+J'ai trouvé un site avec une config sympa : <https://jamiecollinson.com/blog/my-emacs-config/#org>
+
+
+<a id="org815a5d5"></a>
+
+### Activated Package org
+
+ici, fontify et act natively servent à utiliser le mode majeur correspondant dans les blocs source.
+
+```emacs-lisp
+(use-package org
+  :config
+  (setq org-src-fontify-natively t)
+  (setq org-src-tab-acts-natively t)
+)
+```
+
+
+<a id="orgaae5d53"></a>
+
+## Blocs source (babel)
+
+
+<a id="org405782e"></a>
+
+### Activated python3 par défaut
+
+```emacs-lisp
+(setq org-babel-python-command "python3")
+```
+
+
+<a id="orga82a5b7"></a>
+
+### Activated package babel ipython
+
+Afin de pouvoir gérer ipython, il faut installer le package org-babel ipython. On en profite pour utiliser python3 par défaut.
+
+```emacs-lisp
+(use-package ob-ipython
+  :after org)
+```
+
+
+<a id="org2c23a99"></a>
+
+### Activated Liste des languages activés
+
+Ajout du support de certains languages dans org-babel
+
+```emacs-lisp
+(with-eval-after-load 'org
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '(
+     (ipython . t)
+     (python  . t)
+     (C       . t)
+     (dot     . t)
+     (shell   . t)
+   ))
+    (setq org-confirm-babel-evaluate nil)
+    (setq org-src-fontify-natively t)
+    (setq org-src-tab-acts-natively t)
+)
+```
+
+
+<a id="org086a50a"></a>
+
+### Activated Affichage des images générées par défault
+
+Toujours afficher les images après les avoir générées:
+
+```emacs-lisp
+(add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append)
+```
+
+
+<a id="org6ff967f"></a>
+
+## Apparence
+
+
+<a id="orgc44dc6b"></a>
+
+### Activated Bullets
+
+Permet d'afficher des symboles utf-8 plutôt que des astérisques.
+
+```emacs-lisp
+(use-package org-bullets
+    :ensure t
+    :config
+    ;; (setq org-bullets-bullet-list '("∙"))
+    (add-hook 'org-mode-hook 'org-bullets-mode)
+    )
+```
+
+
+<a id="org37f3208"></a>
+
+## Gestion références et citations
+
+
+<a id="org258581c"></a>
+
+### Testing Org ref
+
+Comme j'utilise Ivy et non Helm, j'ai besoin de ce package:
+
+```emacs-lisp
+(use-package ivy-bibtex)
+
+(use-package org-ref
+  :after org
+  :init
+  (setq reftex-default-bibliography '("~/bibliography/library.bib"))
+  (setq org-ref-default-bibliography '("~/bibliography/library.bib"))
+  (setq org-ref-pdf-directory '("~/bibliography/pdfs"))
+  (setq bibtex-completion-pdf-open-function 'org-open-file)
+  (setq org-ref-completion-library 'org-ref-ivy-cite)
+  )
+```
+
+Il reste à modifier le processus d'exportation,
+
+
+<a id="org163d9a2"></a>
+
+## Tableau de bord
+
+```emacs-lisp
+(use-package org-dashboard)
+```
+
+\#+begin\_example
+
+
+<a id="org80cdc96"></a>
+
+## Export
+
+Liste des exporteurs : <https://orgmode.org/worg/exporters/index.html>
+
+
+<a id="org588b214"></a>
+
+### Activated correction problème export \_
+
+piste: TeX-like syntax for sub- and superscripts. If you write ‘^:{}’, ‘a<sub>b</sub>’ is interpreted, but the simple ‘a\_b’ is left as it is (org-export-with-sub-superscripts).
+
+```emacs-lisp
+(setq org-export-with-sub-superscripts '{})
+```
+
+
+<a id="orga5d4be6"></a>
+
+### Testing Pandoc, multi format
+
+<https://github.com/kawabata/ox-pandoc> We need to install last version of pandoc from <https://github.com/jgm/pandoc/releases/>
+
+```emacs-lisp
+(use-package ox-pandoc)
+```
+
+
+<a id="orgc3bdc6c"></a>
+
+### Futur Blog
+
+<https://melpa.org/#/ox-hugo>
+
+
+<a id="org27f6eda"></a>
+
+### HTML
+
+1.  Activated HTMLIZE
+
+    ```emacs-lisp
+    (use-package htmlize)
+    (defadvice htmlize-buffer-1 (around ome-htmlize-buffer-1 disable)
+      (rainbow-delimiters-mode -1)
+      ad-do-it
+      (rainbow-delimiters-mode t))
+
+    (defun ome-htmlize-setup ()
+      (if (el-get-read-package-status 'rainbow-delimiters)
+          (progn
+            (ad-enable-advice 'htmlize-buffer-1 'around 'ome-htmlize-buffer-1)
+            (ad-activate 'htmlize-buffer-1))))
+    ```
+
+2.  Activated readthedocs theme
+
+    <https://github.com/fniessen/org-html-themes> To use this, just add the following in your .org file
+
+    ```emacs-lisp
+    #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
+    ```
+
+    Then export it with standart latex exporter
+
+    ```emacs-lisp
+    C-c C-e h h
+    ```
+
+3.  Desactivated Bootstrap theme
+
+    ```emacs-lisp
+    (use-package ox-twbs
+        :ensure t)
+    ```
+
+4.  Activated Background color
+
+    ```emacs-lisp
+    (defun my/org-inline-css-hook (exporter)
+      "Insert custom inline css to automatically set the
+    background of code to whatever theme I'm using's background"
+
+      (let* ((my-pre-bg (face-background 'default))
+             (my-pre-fg (face-foreground 'default)))
+        (setq
+         org-html-head-extra
+         (concat
+          org-html-head-extra
+          (format "<style type=\"text/css\">\n pre.src {background-color: %s; color: %s;}</style>\n"
+                  my-pre-bg my-pre-fg)))))
+
+    (add-hook 'org-export-before-processing-hook 'my/org-inline-css-hook)
+    ```
+
+5.  Embed images
+
+    ```emacs-lisp
+    (defun replace-in-string (what with in)
+      (replace-regexp-in-string (regexp-quote what) with in nil 'literal))
+
+    (defun format-image-inline (source attributes info)
+      (progn
+        (setq source (replace-in-string "%20" " " source))
+        (format "<img src=\"data:image/%s;base64,%s\"%s />"
+                (or (file-name-extension source) "")
+                (base64-encode-string
+                 (with-temp-buffer
+                   (insert-file-contents-literally source)
+                  (buffer-string)))
+                (file-name-nondirectory source))
+        ))
+    ;;(defun format-image-inline (source attributes info)
+    ;;  (let* ((ext (file-name-extension source))
+    ;;         (prefix (if (string= "svg" ext) "data:image/svg+xml;base64," "data:;base64,"))
+    ;;         (data (with-temp-buffer (url-insert-file-contents source) (buffer-string)))
+    ;;         (data-url (concat prefix (base64-encode-string data)))
+    ;;         (attributes (org-combine-plists `(:src ,data-url) attributes)))
+    ;;    (org-html-close-tag "img" (org-html--make-attribute-string attributes) info)))
+
+    (defun org-html-export-to-mhtml (async subtree visible body)
+      (cl-letf (((symbol-function 'org-html--format-image) 'format-image-inline))
+        (org-html-export-to-html nil subtree visible body)))
+
+    (org-export-define-derived-backend 'html-inline-images 'html
+      :menu-entry '(?h "Export to HTML" ((?m "As MHTML file and open" org-html-export-to-mhtml))))
+    ```
+
+
+<a id="orgb411608"></a>
+
+### Activated Export Latex
+
+```emacs-lisp
+(use-package ox-latex
+  :ensure nil
+  :init
+  (setq org-latex-compiler "xelatex")
+  (setq org-latex-pdf-process (list "latexmk -pdf %f"))
+  )
+```
+
+1.  Ajout de classes
+
+    Création d'une classe simple :
+
+    ```emacs-lisp
+    (with-eval-after-load 'ox-latex
+    (add-to-list 'org-latex-classes
+                 '("org-plain-latex"
+                   "\\documentclass{article}
+               [NO-DEFAULT-PACKAGES]
+               [PACKAGES]
+               [EXTRA]"
+                   ("\\section{%s}" . "\\section*{%s}")
+                   ("\\subsection{%s}" . "\\subsection*{%s}")
+                   ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                   ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                   ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
+    ```
+
+    Création de fichiers de setup:
+
+    ```org
+    # -*- mode: org; -*-
+    #+LaTeX_CLASS: org-plain-latex
+    #+LaTeX_CLASS_OPTIONS: [letter]
+    #+LATEX_HEADER: \usepackage{lmodern} % Ensures we have the right font
+
+    #+LATEX_HEADER: \usepackage[utf8]{inputenc}
+    #+LATEX_HEADER: \usepackage[T1]{fontenc}
+    #+LATEX_HEADER: \usepackage{babel}
+    #+LATEX_HEADER: \usepackage{graphicx}
+    #+LATEX_HEADER: \usepackage{amsmath, amsthm, amssymb}
+    #+LATEX_HEADER: \usepackage[table, xcdraw]{xcolor}
+    #+LATEX_HEADER: \usepackage[hidelinks]{hyperref}
+    #+LATEX_HEADER: \usepackage{framed}
+    #+LATEX_HEADER: \usepackage{minted}
+    #+LATEX_HEADER: \usemintedstyle{pastie}
+    ```
+
+2.  Nettoyage après compilation
+
+    ```emacs-lisp
+    (setq org-latex-logfiles-extensions (quote ("lof" "lot" "tex" "aux" "idx" "log" "out" "toc" "nav" "snm" "vrb" "dvi" "fdb_latexmk" "blg" "brf" "fls" "entoc" "ps" "spl" "bbl" "pygtex" "pygstyle")))
+    (setq org-latex-remove-logfiles t)
+    ```
+
+3.  Testing Coloration Syntaxique
+
+    ```emacs-lisp
+    (setq org-latex-listings 'minted)
+    ```
+
+    ```emacs-lisp
+    (setq org-latex-header-extra
+          '(concat
+            org-latex-header-extra
+            "\\usemintedstyle{native}"))
+    ```
+
+
+<a id="orge7686fd"></a>
+
+### Diapositives
+
+1.  Futur Ioslides
+
+    IOslide, joli et minimaliste <https://github.com/coldnew/org-ioslide>
+
+    ```emacs-lisp
+    (use-package ox-ioslide)
+    ;;(use-package ox-ioslide-helper)
+    ```
+
+2.  Futur Html5slide
+
+    html5slide, pas de maj depuis 6ans, on oublie : <https://github.com/coldnew/org-html5slide>
+
+3.  Futur Reveal js
+
+    <https://github.com/hakimel/reveal.js/> To install reveal js locally :
+
+    ```bash
+    cd ~/
+    git clone https://github.com/hakimel/reveal.js/
+    npm update node-sass
+    npm install
+    ```
+
+    as stated in <https://github.com/yjwen/org-reveal>: The easiest way of getint org-reveal is to instal ox-reveal from melpa
+
+    ```emacs-lisp
+    (use-package ox-reveal)
+    (setq org-reveal-root "file:///home/virgile/reveal.js")
+    (use-package htmlize)
+    ```
+
+    t
+
+4.  Futur Beamer
+
+    ```emacs-lisp
+    (use-package ox-beamer)
+    ```
+
+
+<a id="orgb1328ed"></a>
+
+### Activated Github Markdown
+
+```emacs-lisp
+(use-package ox-gfm
+  :after org)
+```
+
+
+<a id="org51f2621"></a>
+
+## Tangle
+
+```emacs-lisp
+;;; noweb expansion only when you tangle
+(setq org-babel-default-header-args
+      (cons '(:noweb . "tangle")
+            (assq-delete-all :noweb org-babel-default-header-args))
+      )
+```
+
+
+<a id="org4b90496"></a>
+
+## Desactivated Tree view
+
+On va utiliser *org-sidebar*, mais il dépend de :
+
+-   ***org-ql*:** provides a query language for Org files
+
+```emacs-lisp
+(use-package org-ql)
+```
+
+-   ***org-super-agenda*:** group items into sections, rather than having them all in one big list.
+
+```emacs-lisp
+(use-package org-super-agenda)
+```
+
+```emacs-lisp
+(use-package org-sidebar)
+```
+
+
+<a id="org66e2ebd"></a>
+
+## Testing which app to open file with ?
+
+org was opening produced pdf files with gimp despite the system settings. I had to force evince by adding the following :
+
+```emacs-lisp
+(setq org-file-apps
+  '(("\\.pdf\\'" . org.gnome.Evince.desktop)
+    (auto-mode . emacs)))
+```
+
+
+<a id="org2812183"></a>
+
+# Contrôle de programmes externes
 
 Openwith permet d'ouvrir certains types de fichiers avec des outils externes.
 
@@ -1287,21 +1713,3 @@ Counsel-spotify:
   (setq counsel-spotify-client-id "f614782caa124b179dab2e2a4b3ea0f0")
 )
 ```
-
-
-<a id="org9b9a71c"></a>
-
-## JSON
-
-Un simple outil permettant de naviguer plus facilement dans un fichier Json.
-
-```emacs-lisp
-(use-package json-navigator)
-```
-
-
-<a id="org834cfb3"></a>
-
-## Blog
-
-<https://github.com/masasam/emacs-easy-hugo>

@@ -34,7 +34,11 @@ Initialisation des dépôts d'archives et installation de use-package.
   (setq auto-package-update-hide-results t)
   (auto-package-update-maybe))
 #+end_src
-
+** Use cl-lib instead of deprecated cl
+Certains packages dépendent du packet /cl/ qui est /deprecated/.
+#+begin_src emacs-lisp
+(use-package cl-lib)
+#+end_src
 ** Futur Emacs serveur
 https://www.gnu.org/software/emacs/manual/html_node/emacs/Emacs-Server.html
 #+BEGIN_SRC bash :tangle no
@@ -836,8 +840,8 @@ Toujours afficher les images après les avoir générées:
 #+begin_src emacs-lisp
 (add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append)
 #+end_src
-** Apparence
 
+** Apparence
 *** Activated Bullets
 Permet d'afficher des symboles utf-8 plutôt que des astérisques.
 #+begin_src emacs-lisp
@@ -850,13 +854,25 @@ Permet d'afficher des symboles utf-8 plutôt que des astérisques.
 #+end_src
 
 ** Gestion références et citations
-*** Futur Org ref
-#+begin_src emacs-lisp :tangle no
-(use-package org-ref)
+*** Testing Org ref
+Comme j'utilise Ivy et non Helm, j'ai besoin de ce package:
 
-(setq org-latex-pdf-process (list "latexmk -shell-escape -bibtex -f -pdf %f"))
+
+#+begin_src emacs-lisp
+  (use-package ivy-bibtex)
+
+  (use-package org-ref
+    :after org
+    :init
+    (setq reftex-default-bibliography '("~/bibliography/library.bib"))
+    (setq org-ref-default-bibliography '("~/bibliography/library.bib"))
+    (setq org-ref-pdf-directory '("~/bibliography/pdfs"))
+    (setq bibtex-completion-pdf-open-function 'org-open-file)
+    (setq org-ref-completion-library 'org-ref-ivy-cite)
+    )
 #+end_src
 
+Il reste à modifier le processus d'exportation,
 ** Tableau de bord
 
 #+begin_src emacs-lisp :tangle no
@@ -965,20 +981,29 @@ C-c C-e h h
 #+end_src
 *** Activated Export Latex
 
+#+begin_src emacs-lisp
+  (use-package ox-latex
+    :ensure nil
+    :init
+    (setq org-latex-compiler "xelatex")
+    (setq org-latex-pdf-process (list "latexmk -pdf %f"))
+    )
+#+end_src
+**** Ajout de classes
 Création d'une classe simple :
 #+begin_src emacs-lisp
-(with-eval-after-load 'ox-latex
-(add-to-list 'org-latex-classes
-             '("org-plain-latex"
-               "\\documentclass{article}
-           [NO-DEFAULT-PACKAGES]
-           [PACKAGES]
-           [EXTRA]"
-               ("\\section{%s}" . "\\section*{%s}")
-               ("\\subsection{%s}" . "\\subsection*{%s}")
-               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-               ("\\paragraph{%s}" . "\\paragraph*{%s}")
-               ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
+  (with-eval-after-load 'ox-latex
+  (add-to-list 'org-latex-classes
+               '("org-plain-latex"
+                 "\\documentclass{article}
+             [NO-DEFAULT-PACKAGES]
+             [PACKAGES]
+             [EXTRA]"
+                 ("\\section{%s}" . "\\section*{%s}")
+                 ("\\subsection{%s}" . "\\subsection*{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                 ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
 #+end_src
 
 Création de fichiers de setup:
@@ -999,7 +1024,11 @@ Création de fichiers de setup:
 #+LATEX_HEADER: \usepackage{minted}
 #+LATEX_HEADER: \usemintedstyle{pastie}
 #+end_src
-
+**** Nettoyage après compilation
+#+begin_src emacs-lisp
+(setq org-latex-logfiles-extensions (quote ("lof" "lot" "tex" "aux" "idx" "log" "out" "toc" "nav" "snm" "vrb" "dvi" "fdb_latexmk" "blg" "brf" "fls" "entoc" "ps" "spl" "bbl" "pygtex" "pygstyle")))
+(setq org-latex-remove-logfiles t)
+#+end_src
 **** Testing Coloration Syntaxique
 # (add-to-list 'org-latex-packages-alist '("" "xcolor"))
 # (add-to-list 'org-latex-packages-alist '("" "minted"))
@@ -1013,6 +1042,7 @@ Création de fichiers de setup:
           org-latex-header-extra
           "\\usemintedstyle{native}"))
 #+end_src
+
 
 *** Diapositives
 **** Futur Ioslides
