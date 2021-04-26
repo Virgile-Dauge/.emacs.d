@@ -384,10 +384,10 @@ background of code to whatever theme I'm using's background"
   :ensure nil
   :init
   (setq org-latex-compiler "xelatex")
-  (setq org-latex-pdf-process (list "latexmk -shell-escape -pdf %f"))
+  (setq org-latex-pdf-process (list "latexmk -shell-escape -interaction=nonstopmode -pdf %f"))
   :config
   (add-to-list 'org-latex-packages-alist '("" "xcolor"))
-  (add-to-list 'org-latex-packages-alist '("" "mdframed"))
+  ;;(add-to-list 'org-latex-packages-alist '("" "mdframed"))
   (add-to-list 'org-latex-packages-alist '("newfloat" "minted"))
 
   (setq org-latex-listings 'minted)
@@ -416,7 +416,10 @@ background of code to whatever theme I'm using's background"
   (add-to-list 'org-latex-classes
                '("thesul"
                  "\\documentclass{thesul}
-[PACKAGES]
+[NO-DEFAULT-PACKAGES]
+\\usepackage{xcolor}
+\\usepackage[newfloat]{minted}
+\\usepackage[pdftex]{tulhypref}
 \\usemintedstyle{native}
 \\definecolor{bg}{HTML}{202020}
 %\\usemintedstyle{material}

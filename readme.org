@@ -987,7 +987,7 @@ C-c C-e h h
       :ensure nil
       :init
       (setq org-latex-compiler "xelatex")
-      (setq org-latex-pdf-process (list "latexmk -shell-escape -pdf %f"))
+      (setq org-latex-pdf-process (list "latexmk -shell-escape -interaction=nonstopmode -pdf %f"))
       :config
       (add-to-list 'org-latex-packages-alist '("" "xcolor"))
       ;;(add-to-list 'org-latex-packages-alist '("" "mdframed"))
@@ -1034,7 +1034,10 @@ Création d'une classe thesul :
     (add-to-list 'org-latex-classes
                  '("thesul"
                    "\\documentclass{thesul}
-  [PACKAGES]
+  [NO-DEFAULT-PACKAGES]
+  \\usepackage{xcolor}
+  \\usepackage[newfloat]{minted}
+  \\usepackage[pdftex]{tulhypref}
   \\usemintedstyle{native}
   \\definecolor{bg}{HTML}{202020}
   %\\usemintedstyle{material}
