@@ -1,112 +1,112 @@
-- [Gestionnaire de packages](#orgc935a13)
-  - [Initialisation et use-package](#org11469fd)
-  - [MAJ automatique](#org0ff0f3f)
-  - [Use cl-lib instead of deprecated cl](#org6d8f5dc)
-  - [Emacs serveur](#org38eafe9)
-  - [Lazy loading](#org15f5fbc)
-- [Configs simples](#org26141f3)
-  - [init.el ShortCut](#org6bd8b71)
-  - [Suppression de la selection](#orgb442196)
-  - [Suppression des backups/autosaves/locks](#org4af1bc1)
-  - [Suppression des menus](#orgd4913c9)
-  - [Plein écran par défaut](#org3d4ceb7)
-  - [Montrer les paires de parenthèses](#org0d33493)
-  - [Désactivation du curseur hors de la fenêtre sélectionnée](#org2ed5716)
-  - [Suppression des espaces avant sauvegarde du fichier](#org7654808)
-  - [Encodage Utf8 par défaut](#orga2af5e8)
-  - [Unbind de raccourcis chiants](#org2b36305)
-- [Visuals](#org6b21e12)
-  - [Theme](#org446058c)
-    - [Doom](#org8de801e)
-    - [Ewal (copie terminal)](#org63602b3)
-    - [Mood-one](#org6cb88f4)
-    - [Night owl](#orge2bf0da)
-    - [SubAtomic](#org91687fb)
-    - [Material](#org4905d2c)
-    - [Base 16](#org5989a7a)
-    - [nord-theme](#orgf42e925)
-  - [Modeline](#orgfd2a1b1)
-    - [Doom](#org9d5b068)
-    - [Épurer la *modeline*](#org425f20d)
-  - [Icons](#org6cdebef)
-    - [All-the-icons](#orgc217532)
-  - [Fonts](#org19627dc)
-  - [Pretty symbols](#orgfa8bd49)
-    - [Global prettify](#org9b2f22c)
-    - [Prettyfy only inside org babel blocs](#org4f21de8)
-  - [Line number](#org42c5282)
-- [Gestion projets](#org538fe2f)
-  - [projectile](#org741a444)
-  - [Gestionnaire de version (Magit)](#org5457f20)
-- [Aide à l'édition](#org736978a)
-  - [Curseurs multiples](#orgf7f4663)
-  - [Iedit](#org5bed0b1)
-  - [Undo tree](#orgb5b94a4)
-  - [Completion](#org881222b)
-    - [Text](#org0b8de44)
-    - [TODO yasSnipets](#orga91ccc3)
-  - [Writegood mode : besoin de tests](#org648bd6e)
-  - [Move text](#orga3e5e81)
-  - [Indentation](#org1c3674f)
-  - [Syntaxe (Flycheck)](#org928a613)
-  - [Orthographe (Fly Spell)](#orgcf78f0b)
-- [Packages](#org18d259d)
-  - [LSP](#org85a48eb)
-  - [Dashboard](#orgc06ee06)
-  - [COunsel ivy swiper](#org820fb2e)
-  - [DONE Déplacements entre buffers](#org884880e)
-  - [DONE Next key](#orgbddacd5)
-  - [DONE Expend selected region](#orgbe1e473)
-  - [Parenthèses et autres](#orge9fc6fd)
-- [Programming modes](#orgca6d178)
-  - [C/C++](#orgbe91430)
-    - [Irony](#orgdb136ef)
-  - [Python](#org61e38bc)
-    - [Anaconda mode](#orge010211)
-    - [Live python](#orgf71befa)
-    - [Auto Format on save](#orge6b759b)
-  - [Markdown](#org75e6965)
-    - [Setup markdown mode](#org914903a)
-    - [Live preview on web browser](#org02675a8)
-    - [TODO preview](#orge82b6bd)
-    - [TODO Preview (grip)](#orge6dccbd)
-  - [JSON](#org3324bec)
-    - [Json mode](#org16bea15)
-    - [json navigator](#orgcbbb4e8)
-- [Org](#orga991a6a)
-  - [Ajout d'org-mode et quelques config](#orge8ae187)
-    - [Package org](#org815a5d5)
-  - [Blocs source (babel)](#orgaae5d53)
-    - [python3 par défaut](#org405782e)
-    - [package babel ipython](#orga82a5b7)
-    - [Liste des languages activés](#org2c23a99)
-    - [Affichage des images générées par défault](#org086a50a)
-  - [Apparence](#org6ff967f)
-    - [Bullets](#orgc44dc6b)
-  - [Gestion références et citations](#org37f3208)
-    - [Org ref](#org258581c)
-  - [Tableau de bord](#org163d9a2)
-  - [Export](#org80cdc96)
-    - [correction problème export \_](#org588b214)
-    - [Pandoc, multi format](#orga5d4be6)
-    - [Blog](#orgc3bdc6c)
-    - [HTML](#org27f6eda)
-    - [Export Latex](#orgb411608)
-    - [Diapositives](#orge7686fd)
-    - [Github Markdown](#orgb1328ed)
-  - [Tangle](#org51f2621)
-  - [Tree view](#org4b90496)
-  - [which app to open file with ?](#org66e2ebd)
-- [Contrôle de programmes externes](#org2812183)
+- [Gestionnaire de packages](#org3734eaf)
+  - [Initialisation et use-package](#org714b427)
+  - [MAJ automatique](#orgd33995f)
+  - [Message *deprecated cl*](#org26c4b9e)
+  - [Emacs serveur](#org6cf2541)
+  - [Lazy loading](#orgac64038)
+- [Configs simples](#org0469a76)
+  - [init.el ShortCut](#org47e2ce1)
+  - [Suppression de la selection](#org1c6680d)
+  - [Suppression des backups/autosaves/locks](#org88152bb)
+  - [Suppression des menus](#orgd085a64)
+  - [Plein écran par défaut](#orgbef1fd0)
+  - [Montrer les paires de parenthèses](#orgdf368c2)
+  - [Désactivation du curseur hors de la fenêtre sélectionnée](#org9ec43ab)
+  - [Suppression des espaces avant sauvegarde du fichier](#org85307e6)
+  - [Encodage Utf8 par défaut](#orgf5d102f)
+  - [Unbind de raccourcis chiants](#orgf9ca5f3)
+- [Visuals](#orgb63f19d)
+  - [Theme](#org803c985)
+    - [Doom](#orgb51125d)
+    - [Ewal (copie terminal)](#org152fd5d)
+    - [Mood-one](#org7453a9f)
+    - [Night owl](#orgc822699)
+    - [SubAtomic](#org321cded)
+    - [Material](#org5eec390)
+    - [Base 16](#org194cc65)
+    - [nord-theme](#orgff6272b)
+  - [Modeline](#org1a415ee)
+    - [Doom](#org47ed273)
+    - [Épurer la *modeline*](#orgcdc98b6)
+  - [Icons](#org4d35373)
+    - [All-the-icons](#org97e2c07)
+  - [Fonts](#orgae64280)
+  - [Pretty symbols](#orga86cf19)
+    - [Global prettify](#org7f21150)
+    - [Prettyfy only inside org babel blocs](#org7d429ce)
+  - [Line number](#org5910b82)
+- [Gestion projets](#org97f6015)
+  - [projectile](#orgc5d60a9)
+  - [Gestionnaire de version (Magit)](#org21b5869)
+- [Aide à l'édition](#org44eea20)
+  - [Curseurs multiples](#org27e723a)
+  - [Iedit](#org5d871bc)
+  - [Undo tree](#orgf6d5ac7)
+  - [Completion](#org468c733)
+    - [Text](#org613597f)
+    - [TODO yasSnipets](#org7f244be)
+  - [Writegood mode : besoin de tests](#orgbed0c8c)
+  - [Move text](#orgf53e03e)
+  - [Indentation](#orgdce7abe)
+  - [Syntaxe (Flycheck)](#org0167a00)
+  - [Orthographe (Fly Spell)](#org796893d)
+- [Packages](#org8d165f3)
+  - [LSP](#orgc789a3b)
+  - [Dashboard](#orgabd76a2)
+  - [COunsel ivy swiper](#orge7cd3b7)
+  - [DONE Déplacements entre buffers](#orgca1210d)
+  - [DONE Next key](#org0452255)
+  - [DONE Expend selected region](#org202e5b4)
+  - [Parenthèses et autres](#org5e33d41)
+- [Programming modes](#orgde27a62)
+  - [C/C++](#orgc1e203e)
+    - [Irony](#orgb53693a)
+  - [Python](#orge3dee74)
+    - [Anaconda mode](#orgae621c9)
+    - [Live python](#org211a14e)
+    - [Auto Format on save](#org4db0b0f)
+  - [Markdown](#orgf8e5029)
+    - [Setup markdown mode](#orgbd6f146)
+    - [Live preview on web browser](#org729e7f7)
+    - [TODO preview](#orgab64ec7)
+    - [TODO Preview (grip)](#orgcb99d73)
+  - [JSON](#org533565d)
+    - [Json mode](#org9349a7b)
+    - [json navigator](#org12e3854)
+- [Org](#orgb50eef6)
+  - [Ajout d'org-mode et quelques config](#org8facdc5)
+    - [Package org](#orgb0efbe8)
+  - [Blocs source (babel)](#orga0027f4)
+    - [python3 par défaut](#org228c36b)
+    - [package babel ipython](#org464ae07)
+    - [Liste des languages activés](#org0c4dd52)
+    - [Affichage des images générées par défault](#org6c0fbdd)
+  - [Apparence](#org21fd36a)
+    - [Bullets](#org0cd93b9)
+  - [Gestion références et citations](#org1c45d81)
+    - [Org ref](#org7be9e9f)
+  - [Tableau de bord](#org2c2985a)
+  - [Export](#orgdf154e8)
+    - [correction problème export \_](#orgcdd0bf6)
+    - [Pandoc, multi format](#org6affe2d)
+    - [Blog](#org3200431)
+    - [HTML](#org6a00837)
+    - [Export Latex](#orged2764e)
+    - [Diapositives](#org30bc8a4)
+    - [Github Markdown](#org113e321)
+  - [Tangle](#org41a86d9)
+  - [Tree view](#org2601ede)
+  - [which app to open file with ?](#orga43b1be)
+- [Contrôle de programmes externes](#orgb81d71c)
 
 
 
-<a id="orgc935a13"></a>
+<a id="org3734eaf"></a>
 
 # Gestionnaire de packages
 
 
-<a id="org11469fd"></a>
+<a id="org714b427"></a>
 
 ## Activated Initialisation et use-package
 
@@ -131,7 +131,7 @@ Initialisation des dépôts d'archives et installation de use-package.
 ```
 
 
-<a id="org0ff0f3f"></a>
+<a id="orgd33995f"></a>
 
 ## Activated MAJ automatique
 
@@ -144,18 +144,18 @@ Initialisation des dépôts d'archives et installation de use-package.
 ```
 
 
-<a id="org6d8f5dc"></a>
+<a id="org26c4b9e"></a>
 
-## Use cl-lib instead of deprecated cl
+## Message *deprecated cl*
 
-Certains packages dépendent du packet *cl* qui est *deprecated*.
+Certains packages dépendent du packet *cl* qui est *deprecated*. <https://github.com/kiwanami/emacs-epc/issues/35>
 
 ```emacs-lisp
-(use-package cl-lib)
+(setq byte-compile-warnings '(cl-functions))
 ```
 
 
-<a id="org38eafe9"></a>
+<a id="org6cf2541"></a>
 
 ## Futur Emacs serveur
 
@@ -166,19 +166,19 @@ systemctl --user enable emacs
 ```
 
 
-<a id="org15f5fbc"></a>
+<a id="orgac64038"></a>
 
 ## Futur Lazy loading
 
 <https://github.com/jwiegley/use-package#notes-about-lazy-loading>
 
 
-<a id="org26141f3"></a>
+<a id="org0469a76"></a>
 
 # Configs simples
 
 
-<a id="org6bd8b71"></a>
+<a id="org47e2ce1"></a>
 
 ## Activated init.el ShortCut     :@Activated:a:
 
@@ -192,7 +192,7 @@ systemctl --user enable emacs
 ```
 
 
-<a id="orgb442196"></a>
+<a id="org1c6680d"></a>
 
 ## Activated Suppression de la selection
 
@@ -203,7 +203,7 @@ C'est un comportement dont j'ai l'habitude :
 ```
 
 
-<a id="org4af1bc1"></a>
+<a id="org88152bb"></a>
 
 ## Testing Suppression des backups/autosaves/locks
 
@@ -215,7 +215,7 @@ C'est un comportement dont j'ai l'habitude :
 ```
 
 
-<a id="orgd4913c9"></a>
+<a id="orgd085a64"></a>
 
 ## Activated Suppression des menus
 
@@ -239,7 +239,7 @@ Enlever les barres de menu et d'outils, c'est un minimum :
 ```
 
 
-<a id="org3d4ceb7"></a>
+<a id="orgbef1fd0"></a>
 
 ## Desactivated Plein écran par défaut
 
@@ -248,7 +248,7 @@ Enlever les barres de menu et d'outils, c'est un minimum :
 ```
 
 
-<a id="org0d33493"></a>
+<a id="orgdf368c2"></a>
 
 ## Activated Montrer les paires de parenthèses
 
@@ -260,7 +260,7 @@ Montrer les paires de parenthèses : <https://www.emacswiki.org/emacs/ShowParenM
 ```
 
 
-<a id="org2ed5716"></a>
+<a id="org9ec43ab"></a>
 
 ## Activated Désactivation du curseur hors de la fenêtre sélectionnée
 
@@ -271,7 +271,7 @@ Désactiver le curseur dans les fenetres non-actives:
 ```
 
 
-<a id="org7654808"></a>
+<a id="org85307e6"></a>
 
 ## Activated Suppression des espaces avant sauvegarde du fichier
 
@@ -283,7 +283,7 @@ Suppression des espaces en fin de fichier avant de sauvegarder :
 ```
 
 
-<a id="orga2af5e8"></a>
+<a id="orgf5d102f"></a>
 
 ## Activated Encodage Utf8 par défaut
 
@@ -302,7 +302,7 @@ Tout passer en utf-8
 ```
 
 
-<a id="org2b36305"></a>
+<a id="orgf9ca5f3"></a>
 
 ## Activated Unbind de raccourcis chiants
 
@@ -316,19 +316,19 @@ Tout passer en utf-8
 ```
 
 
-<a id="org6b21e12"></a>
+<a id="orgb63f19d"></a>
 
 # Visuals
 
 
-<a id="org446058c"></a>
+<a id="org803c985"></a>
 
 ## Theme
 
 Le site <https://peach-melpa.org/> propose une galerie des themes Emacs disponibles sur MELPA.
 
 
-<a id="org8de801e"></a>
+<a id="orgb51125d"></a>
 
 ### Activated Doom
 
@@ -361,7 +361,7 @@ Alternatives :
 ```
 
 
-<a id="org63602b3"></a>
+<a id="org152fd5d"></a>
 
 ### Desactivated Ewal (copie terminal)
 
@@ -392,21 +392,21 @@ Alternatives :
 ```
 
 
-<a id="org6cb88f4"></a>
+<a id="org7453a9f"></a>
 
 ### Futur Mood-one
 
 Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo est peut-être moins active. <https://gitlab.com/jessieh/mood-one-theme>
 
 
-<a id="orge2bf0da"></a>
+<a id="orgc822699"></a>
 
 ### Futur Night owl
 
 <https://github.com/aaronjensen/night-owl-emacs>
 
 
-<a id="org91687fb"></a>
+<a id="org321cded"></a>
 
 ### Futur SubAtomic
 
@@ -418,7 +418,7 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 ```
 
 
-<a id="org4905d2c"></a>
+<a id="org5eec390"></a>
 
 ### Desactivated Material
 
@@ -428,7 +428,7 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 ```
 
 
-<a id="org5989a7a"></a>
+<a id="org194cc65"></a>
 
 ### Desactivated Base 16
 
@@ -451,7 +451,7 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 -   **base16-chalk:**
 
 
-<a id="orgf42e925"></a>
+<a id="orgff6272b"></a>
 
 ### Desactivated nord-theme
 
@@ -464,12 +464,12 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 ```
 
 
-<a id="orgfd2a1b1"></a>
+<a id="org1a415ee"></a>
 
 ## Modeline
 
 
-<a id="org9d5b068"></a>
+<a id="org47ed273"></a>
 
 ### Activated Doom
 
@@ -480,7 +480,7 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 ```
 
 
-<a id="org425f20d"></a>
+<a id="orgcdc98b6"></a>
 
 ### Activated Épurer la *modeline*
 
@@ -490,12 +490,12 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 ```
 
 
-<a id="org6cdebef"></a>
+<a id="org4d35373"></a>
 
 ## Icons
 
 
-<a id="orgc217532"></a>
+<a id="org97e2c07"></a>
 
 ### Activated All-the-icons
 
@@ -504,7 +504,7 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 ```
 
 
-<a id="org19627dc"></a>
+<a id="orgae64280"></a>
 
 ## Testing Fonts
 
@@ -514,12 +514,12 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 ```
 
 
-<a id="orgfa8bd49"></a>
+<a id="orga86cf19"></a>
 
 ## Pretty symbols
 
 
-<a id="org9b2f22c"></a>
+<a id="org7f21150"></a>
 
 ### Activated Global prettify
 
@@ -571,12 +571,12 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 ```
 
 
-<a id="org4f21de8"></a>
+<a id="org7d429ce"></a>
 
 ### Futur Prettyfy only inside org babel blocs
 
 
-<a id="org42c5282"></a>
+<a id="org5910b82"></a>
 
 ## Desactivated Line number
 
@@ -592,12 +592,12 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 ```
 
 
-<a id="org538fe2f"></a>
+<a id="org97f6015"></a>
 
 # Gestion projets
 
 
-<a id="org741a444"></a>
+<a id="orgc5d60a9"></a>
 
 ## Desactivated projectile
 
@@ -613,7 +613,7 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 ```
 
 
-<a id="org5457f20"></a>
+<a id="org21b5869"></a>
 
 ## Activated Gestionnaire de version (Magit)
 
@@ -624,12 +624,12 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 ```
 
 
-<a id="org736978a"></a>
+<a id="org44eea20"></a>
 
 # Aide à l'édition
 
 
-<a id="orgf7f4663"></a>
+<a id="org27e723a"></a>
 
 ## Futur Curseurs multiples
 
@@ -640,7 +640,7 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 ```
 
 
-<a id="org5bed0b1"></a>
+<a id="org5d871bc"></a>
 
 ## Futur Iedit
 
@@ -669,7 +669,7 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 ```
 
 
-<a id="orgb5b94a4"></a>
+<a id="orgf6d5ac7"></a>
 
 ## Futur Undo tree
 
@@ -683,12 +683,12 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 ```
 
 
-<a id="org881222b"></a>
+<a id="org468c733"></a>
 
 ## Completion
 
 
-<a id="org0b8de44"></a>
+<a id="org613597f"></a>
 
 ### Futur Text
 
@@ -739,7 +739,7 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
         ```
 
 
-<a id="orga91ccc3"></a>
+<a id="org7f244be"></a>
 
 ### TODO yasSnipets
 
@@ -760,7 +760,7 @@ adding a collection of snippets
 1.  TODO Ajout de snippets personalisés:
 
 
-<a id="org648bd6e"></a>
+<a id="orgbed0c8c"></a>
 
 ## Futur Writegood mode : besoin de tests
 
@@ -776,7 +776,7 @@ adding a collection of snippets
 ```
 
 
-<a id="orga3e5e81"></a>
+<a id="orgf53e03e"></a>
 
 ## Futur Move text
 
@@ -785,7 +785,7 @@ adding a collection of snippets
 ```
 
 
-<a id="org1c3674f"></a>
+<a id="orgdce7abe"></a>
 
 ## Futur Indentation
 
@@ -805,7 +805,7 @@ aggressive indent ne fonctionne pas avec python, on peut l'activer, mais cela ne
 ```
 
 
-<a id="org928a613"></a>
+<a id="org0167a00"></a>
 
 ## Futur Syntaxe (Flycheck)
 
@@ -818,7 +818,7 @@ J'utilise Flycheck pour vérifier la syntaxe à la volée
 ```
 
 
-<a id="orgcf78f0b"></a>
+<a id="org796893d"></a>
 
 ## Activated Orthographe (Fly Spell)
 
@@ -878,12 +878,12 @@ Pour appliquer la correction, deux solutions me paraissent valables :
 ```
 
 
-<a id="org18d259d"></a>
+<a id="org8d165f3"></a>
 
 # Packages
 
 
-<a id="org85a48eb"></a>
+<a id="orgc789a3b"></a>
 
 ## LSP
 
@@ -917,7 +917,7 @@ Pour appliquer la correction, deux solutions me paraissent valables :
 ```
 
 
-<a id="orgc06ee06"></a>
+<a id="orgabd76a2"></a>
 
 ## Desactivated Dashboard
 
@@ -932,7 +932,7 @@ Pour appliquer la correction, deux solutions me paraissent valables :
 ```
 
 
-<a id="org820fb2e"></a>
+<a id="orge7cd3b7"></a>
 
 ## COunsel ivy swiper
 
@@ -967,7 +967,7 @@ Pour appliquer la correction, deux solutions me paraissent valables :
 ```
 
 
-<a id="org884880e"></a>
+<a id="orgca1210d"></a>
 
 ## DONE Déplacements entre buffers
 
@@ -981,7 +981,7 @@ Pour appliquer la correction, deux solutions me paraissent valables :
 ```
 
 
-<a id="orgbddacd5"></a>
+<a id="org0452255"></a>
 
 ## DONE Next key
 
@@ -994,7 +994,7 @@ Pour appliquer la correction, deux solutions me paraissent valables :
 ```
 
 
-<a id="orgbe1e473"></a>
+<a id="org202e5b4"></a>
 
 ## DONE Expend selected region
 
@@ -1005,7 +1005,7 @@ Pour appliquer la correction, deux solutions me paraissent valables :
 ```
 
 
-<a id="orge9fc6fd"></a>
+<a id="org5e33d41"></a>
 
 ## Parenthèses et autres
 
@@ -1035,17 +1035,17 @@ expend parents redondant avec smartparens ?
 ```
 
 
-<a id="orgca6d178"></a>
+<a id="orgde27a62"></a>
 
 # Programming modes
 
 
-<a id="orgbe91430"></a>
+<a id="orgc1e203e"></a>
 
 ## C/C++
 
 
-<a id="orgdb136ef"></a>
+<a id="orgb53693a"></a>
 
 ### Futur Irony
 
@@ -1082,12 +1082,12 @@ Ajout du support de flycheck
 ```
 
 
-<a id="org61e38bc"></a>
+<a id="orge3dee74"></a>
 
 ## Python
 
 
-<a id="orge010211"></a>
+<a id="orgae621c9"></a>
 
 ### Testing Anaconda mode
 
@@ -1112,7 +1112,7 @@ Pour ce débarasser des problèmes d'indentations mixte et régler l'indentation
 ```
 
 
-<a id="orgf71befa"></a>
+<a id="org211a14e"></a>
 
 ### Desactivated Live python
 
@@ -1123,7 +1123,7 @@ live py est sympa mais uniquement pour des logiciels simples.
 ```
 
 
-<a id="orge6b759b"></a>
+<a id="org4db0b0f"></a>
 
 ### Futur Auto Format on save
 
@@ -1135,12 +1135,12 @@ live py est sympa mais uniquement pour des logiciels simples.
 ```
 
 
-<a id="org75e6965"></a>
+<a id="orgf8e5029"></a>
 
 ## Markdown
 
 
-<a id="org914903a"></a>
+<a id="orgbd6f146"></a>
 
 ### Desactivated Setup markdown mode
 
@@ -1155,7 +1155,7 @@ live py est sympa mais uniquement pour des logiciels simples.
 ```
 
 
-<a id="org02675a8"></a>
+<a id="org729e7f7"></a>
 
 ### Futur Live preview on web browser
 
@@ -1166,7 +1166,7 @@ live py est sympa mais uniquement pour des logiciels simples.
 ```
 
 
-<a id="orge82b6bd"></a>
+<a id="orgab64ec7"></a>
 
 ### Desactivated TODO preview
 
@@ -1183,7 +1183,7 @@ sudo npm install -g vmd
 <https://github.com/jamcha-aa/auto-org-md/tree/9318338bdb7fe8bd698d88f3af89b2d6413efdd2>
 
 
-<a id="orge6dccbd"></a>
+<a id="orgcb99d73"></a>
 
 ### Desactivated TODO Preview (grip)
 
@@ -1197,12 +1197,12 @@ sudo apt install grip
 ```
 
 
-<a id="org3324bec"></a>
+<a id="org533565d"></a>
 
 ## JSON
 
 
-<a id="org16bea15"></a>
+<a id="org9349a7b"></a>
 
 ### Activated Json mode
 
@@ -1211,7 +1211,7 @@ sudo apt install grip
 ```
 
 
-<a id="orgcbbb4e8"></a>
+<a id="org12e3854"></a>
 
 ### Desactivated json navigator
 
@@ -1222,21 +1222,21 @@ Un simple outil permettant de naviguer plus facilement dans un fichier Json.
 ```
 
 
-<a id="orga991a6a"></a>
+<a id="orgb50eef6"></a>
 
 # Org
 
 <https://orgmode.org/worg/org-tutorials/org4beginners.html>
 
 
-<a id="orge8ae187"></a>
+<a id="org8facdc5"></a>
 
 ## Ajout d'org-mode et quelques config
 
 J'ai trouvé un site avec une config sympa : <https://jamiecollinson.com/blog/my-emacs-config/#org>
 
 
-<a id="org815a5d5"></a>
+<a id="orgb0efbe8"></a>
 
 ### Activated Package org
 
@@ -1251,12 +1251,12 @@ ici, fontify et act natively servent à utiliser le mode majeur correspondant da
 ```
 
 
-<a id="orgaae5d53"></a>
+<a id="orga0027f4"></a>
 
 ## Blocs source (babel)
 
 
-<a id="org405782e"></a>
+<a id="org228c36b"></a>
 
 ### Activated python3 par défaut
 
@@ -1265,7 +1265,7 @@ ici, fontify et act natively servent à utiliser le mode majeur correspondant da
 ```
 
 
-<a id="orga82a5b7"></a>
+<a id="org464ae07"></a>
 
 ### Activated package babel ipython
 
@@ -1277,7 +1277,7 @@ Afin de pouvoir gérer ipython, il faut installer le package org-babel ipython. 
 ```
 
 
-<a id="org2c23a99"></a>
+<a id="org0c4dd52"></a>
 
 ### Activated Liste des languages activés
 
@@ -1301,7 +1301,7 @@ Ajout du support de certains languages dans org-babel
 ```
 
 
-<a id="org086a50a"></a>
+<a id="org6c0fbdd"></a>
 
 ### Activated Affichage des images générées par défault
 
@@ -1312,12 +1312,12 @@ Toujours afficher les images après les avoir générées:
 ```
 
 
-<a id="org6ff967f"></a>
+<a id="org21fd36a"></a>
 
 ## Apparence
 
 
-<a id="orgc44dc6b"></a>
+<a id="org0cd93b9"></a>
 
 ### Activated Bullets
 
@@ -1333,12 +1333,12 @@ Permet d'afficher des symboles utf-8 plutôt que des astérisques.
 ```
 
 
-<a id="org37f3208"></a>
+<a id="org1c45d81"></a>
 
 ## Gestion références et citations
 
 
-<a id="org258581c"></a>
+<a id="org7be9e9f"></a>
 
 ### Testing Org ref
 
@@ -1361,7 +1361,7 @@ Comme j'utilise Ivy et non Helm, j'ai besoin de ce package:
 Il reste à modifier le processus d'exportation,
 
 
-<a id="org163d9a2"></a>
+<a id="org2c2985a"></a>
 
 ## Tableau de bord
 
@@ -1372,14 +1372,14 @@ Il reste à modifier le processus d'exportation,
 \#+begin\_example
 
 
-<a id="org80cdc96"></a>
+<a id="orgdf154e8"></a>
 
 ## Export
 
 Liste des exporteurs : <https://orgmode.org/worg/exporters/index.html>
 
 
-<a id="org588b214"></a>
+<a id="orgcdd0bf6"></a>
 
 ### Activated correction problème export \_
 
@@ -1390,7 +1390,7 @@ piste: TeX-like syntax for sub- and superscripts. If you write ‘^:{}’, ‘a<
 ```
 
 
-<a id="orga5d4be6"></a>
+<a id="org6affe2d"></a>
 
 ### Testing Pandoc, multi format
 
@@ -1401,14 +1401,14 @@ piste: TeX-like syntax for sub- and superscripts. If you write ‘^:{}’, ‘a<
 ```
 
 
-<a id="orgc3bdc6c"></a>
+<a id="org3200431"></a>
 
 ### Futur Blog
 
 <https://melpa.org/#/ox-hugo>
 
 
-<a id="org27f6eda"></a>
+<a id="org6a00837"></a>
 
 ### HTML
 
@@ -1502,7 +1502,7 @@ piste: TeX-like syntax for sub- and superscripts. If you write ‘^:{}’, ‘a<
     ```
 
 
-<a id="orgb411608"></a>
+<a id="orged2764e"></a>
 
 ### Activated Export Latex
 
@@ -1511,53 +1511,125 @@ piste: TeX-like syntax for sub- and superscripts. If you write ‘^:{}’, ‘a<
   :ensure nil
   :init
   (setq org-latex-compiler "xelatex")
-  (setq org-latex-pdf-process (list "latexmk -pdf %f"))
+  (setq org-latex-pdf-process (list "latexmk -shell-escape -interaction=nonstopmode -pdf %f"))
+  :config
+  (add-to-list 'org-latex-packages-alist '("" "xcolor"))
+  ;;(add-to-list 'org-latex-packages-alist '("" "mdframed"))
+  (add-to-list 'org-latex-packages-alist '("newfloat" "minted"))
+  (add-to-list 'org-latex-packages-alist '("" "mathtools"))
+  (add-to-list 'org-latex-packages-alist '("" "amssymb"))
+  (add-to-list 'org-latex-packages-alist '("" "amsthm"))
+  ;; outputdir=build
+  (setq org-latex-prefer-user-labels t)
+  (setq org-latex-listings 'minted)
+  (setq org-latex-minted-options '(("bgcolor" "bg")))
+  (add-to-list 'org-latex-minted-langs '(python "python"))
   )
 ```
 
+options minted intéressantes :
+
+-   **mathescape:** latex math mode pour les commentaires
+-   **autogobble:** Remove (gobble) all common leading whitespace from code.
+-   **breaklines, breakafter 80:** Break lines after specified characters, not just at spaces, whenbreaklines=true
+
 1.  Ajout de classes
 
-    Création d'une classe simple :
+    1.  Article
 
-    ```emacs-lisp
-    (with-eval-after-load 'ox-latex
-    (add-to-list 'org-latex-classes
-                 '("org-plain-latex"
-                   "\\documentclass{article}
-               [NO-DEFAULT-PACKAGES]
-               [PACKAGES]
-               [EXTRA]"
-                   ("\\section{%s}" . "\\section*{%s}")
-                   ("\\subsection{%s}" . "\\subsection*{%s}")
-                   ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-                   ("\\paragraph{%s}" . "\\paragraph*{%s}")
-                   ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
-    ```
+        Création d'une classe simple :
 
-    Création de fichiers de setup:
+        ```emacs-lisp
+        (with-eval-after-load 'ox-latex
+          (add-to-list 'org-latex-classes
+                       '("org-plain-latex"
+                         "\\documentclass{article}
+        [PACKAGES]
+        \\usemintedstyle{native}
+        \\definecolor{bg}{HTML}{202020}
+        %\\usemintedstyle{material}
+        %\\definecolor{bg}{HTML}{263238}
+        %\\surroundwithmdframed{minted}
+        [EXTRA]"
+                         ("\\section{%s}" . "\\section*{%s}")
+                         ("\\subsection{%s}" . "\\subsection*{%s}")
+                         ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                         ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                         ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
+        ```
 
-    ```org
-    # -*- mode: org; -*-
-    #+LaTeX_CLASS: org-plain-latex
-    #+LaTeX_CLASS_OPTIONS: [letter]
-    #+LATEX_HEADER: \usepackage{lmodern} % Ensures we have the right font
+    2.  thesul
 
-    #+LATEX_HEADER: \usepackage[utf8]{inputenc}
-    #+LATEX_HEADER: \usepackage[T1]{fontenc}
-    #+LATEX_HEADER: \usepackage{babel}
-    #+LATEX_HEADER: \usepackage{graphicx}
-    #+LATEX_HEADER: \usepackage{amsmath, amsthm, amssymb}
-    #+LATEX_HEADER: \usepackage[table, xcdraw]{xcolor}
-    #+LATEX_HEADER: \usepackage[hidelinks]{hyperref}
-    #+LATEX_HEADER: \usepackage{framed}
-    #+LATEX_HEADER: \usepackage{minted}
-    #+LATEX_HEADER: \usemintedstyle{pastie}
-    ```
+        Création d'une classe thesul :
+
+        ```emacs-lisp
+        (with-eval-after-load 'ox-latex
+          (add-to-list 'org-latex-classes
+                       '("thesul"
+                         "\\documentclass{thesul}
+        [NO-DEFAULT-PACKAGES]
+        [PACKAGES]
+        %\\usepackage{xcolor}
+        %\\usepackage[newfloat]{minted}
+        \\usepackage[pdftex]{tulhypref}
+        \\usemintedstyle{native}
+        \\definecolor{bg}{HTML}{202020}
+        %\\usemintedstyle{material}
+        %\\definecolor{bg}{HTML}{263238}
+        %\\surroundwithmdframed{minted}
+        "
+                         ("\\chapter{%s}" . "\\chapter{%s}")
+                         ("\\section{%s}" . "\\section{%s}")
+                         ("\\subsection{%s}" . "\\subsection{%s}")
+                         ("\\subsubsection{%s}" . "\\subsubsection{%s}")
+                         ("\\paragraph{%s}" . "\\paragraph*{%s}"))))
+        ```
+
+    3.  yathesis
+
+        ```emacs-lisp
+        (with-eval-after-load 'ox-latex
+          (add-to-list 'org-latex-classes
+                       '("yathesis"
+                         "\\documentclass{yathesis}
+        [PACKAGES]
+        \\usemintedstyle{native}
+        \\definecolor{bg}{HTML}{202020}
+        %\\usemintedstyle{material}
+        %\\definecolor{bg}{HTML}{263238}
+        %\\surroundwithmdframed{minted}
+        [EXTRA]"
+                         ("\chapter{%s}" . "\chapter{%s}")
+                         ("\section{%s}" . "\section{%s}")
+                         ("\subsection{%s}" . "\subsection{%s}")
+                         ("\subsubsection{%s}" . "\subsubsection{%s}")
+                         ("\paragraph{%s}" . "\paragraph*{%s}"))))
+        ```
+
+        Création de fichiers de setup:
+
+        ```org
+        # -*- mode: org; -*-
+        #+LaTeX_CLASS: org-plain-latex
+        #+LaTeX_CLASS_OPTIONS: [letter]
+        #+LATEX_HEADER: \usepackage{lmodern} % Ensures we have the right font
+
+        #+LATEX_HEADER: \usepackage[utf8]{inputenc}
+        #+LATEX_HEADER: \usepackage[T1]{fontenc}
+        #+LATEX_HEADER: \usepackage{babel}
+        #+LATEX_HEADER: \usepackage{graphicx}
+        #+LATEX_HEADER: \usepackage{amsmath, amsthm, amssymb}
+        #+LATEX_HEADER: \usepackage[table, xcdraw]{xcolor}
+        #+LATEX_HEADER: \usepackage[hidelinks]{hyperref}
+        #+LATEX_HEADER: \usepackage{framed}
+        #+LATEX_HEADER: \usepackage{minted}
+        #+LATEX_HEADER: \usemintedstyle{pastie}
+        ```
 
 2.  Nettoyage après compilation
 
     ```emacs-lisp
-    (setq org-latex-logfiles-extensions (quote ("lof" "lot" "tex" "aux" "idx" "log" "out" "toc" "nav" "snm" "vrb" "dvi" "fdb_latexmk" "blg" "brf" "fls" "entoc" "ps" "spl" "bbl" "pygtex" "pygstyle")))
+    (setq org-latex-logfiles-extensions (quote ("lol" "flg" "lof" "lot" "tex" "aux" "idx" "log" "out" "toc" "nav" "snm" "vrb" "dvi" "fdb_latexmk" "blg" "brf" "fls" "entoc" "ps" "spl" "bbl" "pygtex" "pygstyle")))
     (setq org-latex-remove-logfiles t)
     ```
 
@@ -1575,7 +1647,7 @@ piste: TeX-like syntax for sub- and superscripts. If you write ‘^:{}’, ‘a<
     ```
 
 
-<a id="orge7686fd"></a>
+<a id="org30bc8a4"></a>
 
 ### Diapositives
 
@@ -1620,7 +1692,7 @@ piste: TeX-like syntax for sub- and superscripts. If you write ‘^:{}’, ‘a<
     ```
 
 
-<a id="orgb1328ed"></a>
+<a id="org113e321"></a>
 
 ### Activated Github Markdown
 
@@ -1630,7 +1702,7 @@ piste: TeX-like syntax for sub- and superscripts. If you write ‘^:{}’, ‘a<
 ```
 
 
-<a id="org51f2621"></a>
+<a id="org41a86d9"></a>
 
 ## Tangle
 
@@ -1643,7 +1715,7 @@ piste: TeX-like syntax for sub- and superscripts. If you write ‘^:{}’, ‘a<
 ```
 
 
-<a id="org4b90496"></a>
+<a id="org2601ede"></a>
 
 ## Desactivated Tree view
 
@@ -1666,7 +1738,7 @@ On va utiliser *org-sidebar*, mais il dépend de :
 ```
 
 
-<a id="org66e2ebd"></a>
+<a id="orga43b1be"></a>
 
 ## Testing which app to open file with ?
 
@@ -1679,7 +1751,7 @@ org was opening produced pdf files with gimp despite the system settings. I had 
 ```
 
 
-<a id="org2812183"></a>
+<a id="orgb81d71c"></a>
 
 # Contrôle de programmes externes
 

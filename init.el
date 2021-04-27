@@ -389,6 +389,9 @@ background of code to whatever theme I'm using's background"
   (add-to-list 'org-latex-packages-alist '("" "xcolor"))
   ;;(add-to-list 'org-latex-packages-alist '("" "mdframed"))
   (add-to-list 'org-latex-packages-alist '("newfloat" "minted"))
+  (add-to-list 'org-latex-packages-alist '("" "mathtools"))
+  (add-to-list 'org-latex-packages-alist '("" "amssymb"))
+  (add-to-list 'org-latex-packages-alist '("" "amsthm"))
   ;; outputdir=build
   (setq org-latex-prefer-user-labels t)
   (setq org-latex-listings 'minted)
