@@ -389,7 +389,7 @@ background of code to whatever theme I'm using's background"
   (add-to-list 'org-latex-packages-alist '("" "xcolor"))
   ;;(add-to-list 'org-latex-packages-alist '("" "mdframed"))
   (add-to-list 'org-latex-packages-alist '("newfloat" "minted"))
-
+  ;; outputdir=build
   (setq org-latex-prefer-user-labels t)
   (setq org-latex-listings 'minted)
   (setq org-latex-minted-options '(("bgcolor" "bg")))
@@ -418,15 +418,16 @@ background of code to whatever theme I'm using's background"
                '("thesul"
                  "\\documentclass{thesul}
 [NO-DEFAULT-PACKAGES]
-\\usepackage{xcolor}
-\\usepackage[newfloat]{minted}
+[PACKAGES]
+%\\usepackage{xcolor}
+%\\usepackage[newfloat]{minted}
 \\usepackage[pdftex]{tulhypref}
 \\usemintedstyle{native}
 \\definecolor{bg}{HTML}{202020}
 %\\usemintedstyle{material}
 %\\definecolor{bg}{HTML}{263238}
 %\\surroundwithmdframed{minted}
-[EXTRA]"
+"
                  ("\\chapter{%s}" . "\\chapter{%s}")
                  ("\\section{%s}" . "\\section{%s}")
                  ("\\subsection{%s}" . "\\subsection{%s}")
@@ -450,7 +451,7 @@ background of code to whatever theme I'm using's background"
                  ("\subsubsection{%s}" . "\subsubsection{%s}")
                  ("\paragraph{%s}" . "\paragraph*{%s}"))))
 
-(setq org-latex-logfiles-extensions (quote ("lof" "lot" "tex" "aux" "idx" "log" "out" "toc" "nav" "snm" "vrb" "dvi" "fdb_latexmk" "blg" "brf" "fls" "entoc" "ps" "spl" "bbl" "pygtex" "pygstyle")))
+(setq org-latex-logfiles-extensions (quote ("lol" "flg" "lof" "lot" "tex" "aux" "idx" "log" "out" "toc" "nav" "snm" "vrb" "dvi" "fdb_latexmk" "blg" "brf" "fls" "entoc" "ps" "spl" "bbl" "pygtex" "pygstyle")))
 (setq org-latex-remove-logfiles t)
 
 (use-package ox-gfm
