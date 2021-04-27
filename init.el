@@ -390,6 +390,7 @@ background of code to whatever theme I'm using's background"
   ;;(add-to-list 'org-latex-packages-alist '("" "mdframed"))
   (add-to-list 'org-latex-packages-alist '("newfloat" "minted"))
 
+  (setq org-latex-prefer-user-labels t)
   (setq org-latex-listings 'minted)
   (setq org-latex-minted-options '(("bgcolor" "bg")))
   (add-to-list 'org-latex-minted-langs '(python "python"))
@@ -426,11 +427,11 @@ background of code to whatever theme I'm using's background"
 %\\definecolor{bg}{HTML}{263238}
 %\\surroundwithmdframed{minted}
 [EXTRA]"
-                 ("\chapter{%s}" . "\chapter{%s}")
-                 ("\section{%s}" . "\section{%s}")
-                 ("\subsection{%s}" . "\subsection{%s}")
-                 ("\subsubsection{%s}" . "\subsubsection{%s}")
-                 ("\paragraph{%s}" . "\paragraph*{%s}"))))
+                 ("\\chapter{%s}" . "\\chapter{%s}")
+                 ("\\section{%s}" . "\\section{%s}")
+                 ("\\subsection{%s}" . "\\subsection{%s}")
+                 ("\\subsubsection{%s}" . "\\subsubsection{%s}")
+                 ("\\paragraph{%s}" . "\\paragraph*{%s}"))))
 
 (with-eval-after-load 'ox-latex
   (add-to-list 'org-latex-classes
