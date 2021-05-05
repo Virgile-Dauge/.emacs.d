@@ -72,6 +72,10 @@
 (unbind-key "<mouse-2>") ;; pasting with mouse-wheel click
 (unbind-key "<C-wheel-down>") ;; text scale adjust
 
+(use-package fira-code-mode
+  :custom (fira-code-mode-disabled-ligatures '("[]" "#{" "#(" "#_" "#_(" "x")) ;; List of ligatures to turn off
+  :hook prog-mode) ;; Enables fira-code-mode automatically for programming major modes
+
 (use-package doom-themes
   :config
   ;; Global settings (defaults)
@@ -102,51 +106,6 @@
 
 ;;(set-frame-font "Operator Mono 12" nil t)
 (set-fontset-font t 'unicode "STIXGeneral" nil 'prepend)
-
-(setq prettify-symbols-unprettify-at-point 'right-edge)
-(global-prettify-symbols-mode 1)
-(setq-default prettify-symbols-alist '(("#+BEGIN_SRC" . "†")
-                                     ("#+END_SRC" . "†")
-                                     ("#+begin_src" . "†")
-                                     ("#+end_src" . "†")
-                                     (">=" . "≥")
-                                     ("=>" . "⇨")
-                                     ("def" . "𝒇")
-                                     ("class" . "𝑪")
-                                     ("and" . "∧")
-                                     ("or" . "∨")
-                                     ("not" . "￢")
-                                     ("in" . "∈")
-                                     ("not in" . "∉")
-                                     ("return" . "⟼")
-                                     ("yield" . "⟻")
-                                     ("for" . "∀")
-                                     ("!=" . "≠")
-                                     ("==" . "＝")
-                                     (">=" . "≥")
-                                     ("<=" . "≤")))
-
-
-(add-hook 'org-mode-hook 'prettify-symbols-mode)
-(add-hook
- 'python-mode-hook
- (lambda ()
-   (mapc (lambda (pair) (push pair prettify-symbols-alist))
-         '(("def" . "𝒇")
-           ("class" . "𝑪")
-           ("and" . "∧")
-           ("or" . "∨")
-           ("not" . "￢")
-           ("in" . "∈")
-           ("not in" . "∉")
-           ("return" . "⟼")
-           ("yield" . "⟻")
-           ("for" . "∀")
-           ("!=" . "≠")
-           ("==" . "＝")
-           (">=" . "≥")
-           ("<=" . "≤")
-           ("=" . "≝")))))
 
 (use-package magit
   :ensure t
@@ -384,7 +343,8 @@ background of code to whatever theme I'm using's background"
   :ensure nil
   :init
   (setq org-latex-compiler "xelatex")
-  (setq org-latex-pdf-process (list "latexmk -shell-escape -interaction=nonstopmode -pdf %f"))
+  (setq org-latex-compilers '("xelatex" "pdflatex" "lualatex"))
+  (setq org-latex-pdf-process (list "latexmk -xelatex -shell-escape -interaction=nonstopmode -f %f"))
   :config
   (add-to-list 'org-latex-packages-alist '("" "xcolor"))
   ;;(add-to-list 'org-latex-packages-alist '("" "mdframed"))
@@ -392,6 +352,7 @@ background of code to whatever theme I'm using's background"
   (add-to-list 'org-latex-packages-alist '("" "mathtools"))
   (add-to-list 'org-latex-packages-alist '("" "amssymb"))
   (add-to-list 'org-latex-packages-alist '("" "amsthm"))
+  (add-to-list 'org-latex-packages-alist '("" "fontspec"))
   ;; outputdir=build
   (setq org-latex-prefer-user-labels t)
   (setq org-latex-listings 'minted)
@@ -401,11 +362,12 @@ background of code to whatever theme I'm using's background"
 
 (with-eval-after-load 'ox-latex
   (add-to-list 'org-latex-classes
-               '("org-plain-latex"
+               '("base"
                  "\\documentclass{article}
 [PACKAGES]
 \\usemintedstyle{native}
 \\definecolor{bg}{HTML}{202020}
+\\setmonofont[Contextuals={Alternate}]{Fira Code}
 %\\usemintedstyle{material}
 %\\definecolor{bg}{HTML}{263238}
 %\\surroundwithmdframed{minted}
@@ -424,9 +386,13 @@ background of code to whatever theme I'm using's background"
 [PACKAGES]
 %\\usepackage{xcolor}
 %\\usepackage[newfloat]{minted}
-\\usepackage[pdftex]{tulhypref}
+\\usepackage[xelatex]{tulhypref}
 \\usemintedstyle{native}
 \\definecolor{bg}{HTML}{202020}
+\\definecolor{b}{HTML}{1E90FF}
+\\definecolor{o}{HTML}{ffa91e}
+\\definecolor{r}{HTML}{ff381e}
+\\setmonofont[Contextuals={Alternate}]{Fira Code}
 %\\usemintedstyle{material}
 %\\definecolor{bg}{HTML}{263238}
 %\\surroundwithmdframed{minted}
