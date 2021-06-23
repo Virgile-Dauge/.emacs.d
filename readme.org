@@ -1011,6 +1011,8 @@ C-c C-e h h
     (add-to-list 'org-latex-packages-alist '("" "amsthm"))
     (add-to-list 'org-latex-packages-alist '("" "fontspec"))
     (add-to-list 'org-latex-packages-alist '("" "graphicx"))
+    (add-to-list 'org-latex-packages-alist '("" "caption"))
+
     ;; outputdir=build
     (setq org-latex-prefer-user-labels t)
     (setq org-latex-listings 'minted)
@@ -1066,7 +1068,6 @@ Création d'une classe thesul :
 
   %\\usepackage[xelatex]{tulhypref}
   \\usepackage{tulhypref}
-  %\\usepackage[french]{minitoc}
   \\hypersetup{
     colorlinks = true,
     linkcolor = {citeblue},
