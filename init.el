@@ -107,6 +107,51 @@
 ;;(set-frame-font "Operator Mono 12" nil t)
 (set-fontset-font t 'unicode "STIXGeneral" nil 'prepend)
 
+(setq prettify-symbols-unprettify-at-point 'right-edge)
+(global-prettify-symbols-mode 1)
+(setq-default prettify-symbols-alist '(("#+BEGIN_SRC" . "†")
+                                     ("#+END_SRC" . "†")
+                                     ("#+begin_src" . "†")
+                                     ("#+end_src" . "†")
+                                     (">=" . "≥")
+                                     ("=>" . "⇨")
+                                     ("def" . "𝒇")
+                                     ("class" . "𝑪")
+                                     ("and" . "∧")
+                                     ("or" . "∨")
+                                     ("not" . "￢")
+                                     ("in" . "∈")
+                                     ("not in" . "∉")
+                                     ("return" . "⟼")
+                                     ("yield" . "⟻")
+                                     ("for" . "∀")
+                                     ("!=" . "≠")
+                                     ("==" . "＝")
+                                     (">=" . "≥")
+                                     ("<=" . "≤")))
+
+
+(add-hook 'org-mode-hook 'prettify-symbols-mode)
+(add-hook
+ 'python-mode-hook
+ (lambda ()
+   (mapc (lambda (pair) (push pair prettify-symbols-alist))
+         '(("def" . "𝒇")
+           ("class" . "𝑪")
+           ("and" . "∧")
+           ("or" . "∨")
+           ("not" . "￢")
+           ("in" . "∈")
+           ("not in" . "∉")
+           ("return" . "⟼")
+           ("yield" . "⟻")
+           ("for" . "∀")
+           ("!=" . "≠")
+           ("==" . "＝")
+           (">=" . "≥")
+           ("<=" . "≤")
+           ("=" . "≝")))))
+
 (use-package magit
   :ensure t
   :bind ("C-x g" . magit-status))
@@ -238,6 +283,9 @@
   (setq org-src-tab-acts-natively t)
 )
 
+(use-package org-inline-pdf)
+(add-hook 'org-mode-hook #'org-inline-pdf-mode)
+
 (setq org-babel-python-command "python3")
 
 (use-package ob-ipython
@@ -350,9 +398,12 @@ background of code to whatever theme I'm using's background"
   ;;(add-to-list 'org-latex-packages-alist '("" "mdframed"))
   (add-to-list 'org-latex-packages-alist '("newfloat" "minted"))
   (add-to-list 'org-latex-packages-alist '("" "mathtools"))
+  (add-to-list 'org-latex-packages-alist '("" "amsfonts"))
   (add-to-list 'org-latex-packages-alist '("" "amssymb"))
+  (add-to-list 'org-latex-packages-alist '("" "amsmath"))
   (add-to-list 'org-latex-packages-alist '("" "amsthm"))
   (add-to-list 'org-latex-packages-alist '("" "fontspec"))
+  (add-to-list 'org-latex-packages-alist '("" "graphicx"))
   ;; outputdir=build
   (setq org-latex-prefer-user-labels t)
   (setq org-latex-listings 'minted)
@@ -384,15 +435,32 @@ background of code to whatever theme I'm using's background"
                  "\\documentclass{thesul}
 [NO-DEFAULT-PACKAGES]
 [PACKAGES]
-%\\usepackage{xcolor}
-%\\usepackage[newfloat]{minted}
-\\usepackage[xelatex]{tulhypref}
-\\usemintedstyle{native}
 \\definecolor{bg}{HTML}{202020}
 \\definecolor{b}{HTML}{1E90FF}
 \\definecolor{o}{HTML}{ffa91e}
 \\definecolor{r}{HTML}{ff381e}
+\\definecolor{aubergine}{HTML}{370028}
+\\definecolor{citeblue}{HTML}{0d5fb8}
+
+%\\usepackage[xelatex]{tulhypref}
+\\usepackage{tulhypref}
+%\\usepackage[french]{minitoc}
+\\hypersetup{
+  colorlinks = true,
+  linkcolor = {citeblue},
+  citecolor = {citeblue},
+  urlcolor = {o}
+}
+\\usepackage[french]{minitoc}
+%\\mtcsetdepth{1}
+%\\mtcsettitle{minitoc}{Sommaire}
+%\\mtcsetrules{minitoc}{off}
+\\usemintedstyle{native}
+
 \\setmonofont[Contextuals={Alternate}]{Fira Code}
+\\usepackage{pifont}
+\\usepackage{ccicons}
+\\newcommand{\\xmark}{\\ding{55}}
 %\\usemintedstyle{material}
 %\\definecolor{bg}{HTML}{263238}
 %\\surroundwithmdframed{minted}
@@ -435,7 +503,3 @@ background of code to whatever theme I'm using's background"
 (setq org-file-apps
   '(("\\.pdf\\'" . org.gnome.Evince.desktop)
     (auto-mode . emacs)))
-
-(use-package openwith)
-(openwith-mode t)
-(setq openwith-associations '(("\\.pdf\\'" "evince" (file))))

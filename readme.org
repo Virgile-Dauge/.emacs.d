@@ -272,7 +272,7 @@ Inspiré de doom-one, il ne necéssite pas de dépendances. En revanche la repo 
 #+end_src
 ** Pretty symbols
 *** Activated Global prettify
-#+begin_src emacs-lisp :tangle no
+#+begin_src emacs-lisp
   (setq prettify-symbols-unprettify-at-point 'right-edge)
   (global-prettify-symbols-mode 1)
   (setq-default prettify-symbols-alist '(("#+BEGIN_SRC" . "†")
@@ -809,6 +809,11 @@ correspondant dans les blocs source.
     (setq org-src-tab-acts-natively t)
   )
 #+end_src
+** inline pdf images
+#+begin_src emacs-lisp
+(use-package org-inline-pdf)
+(add-hook 'org-mode-hook #'org-inline-pdf-mode)
+#+end_src
 ** Blocs source (babel)
 
 *** Activated python3 par défaut
@@ -1000,9 +1005,12 @@ C-c C-e h h
     ;;(add-to-list 'org-latex-packages-alist '("" "mdframed"))
     (add-to-list 'org-latex-packages-alist '("newfloat" "minted"))
     (add-to-list 'org-latex-packages-alist '("" "mathtools"))
+    (add-to-list 'org-latex-packages-alist '("" "amsfonts"))
     (add-to-list 'org-latex-packages-alist '("" "amssymb"))
+    (add-to-list 'org-latex-packages-alist '("" "amsmath"))
     (add-to-list 'org-latex-packages-alist '("" "amsthm"))
     (add-to-list 'org-latex-packages-alist '("" "fontspec"))
+    (add-to-list 'org-latex-packages-alist '("" "graphicx"))
     ;; outputdir=build
     (setq org-latex-prefer-user-labels t)
     (setq org-latex-listings 'minted)
@@ -1049,15 +1057,32 @@ Création d'une classe thesul :
                    "\\documentclass{thesul}
   [NO-DEFAULT-PACKAGES]
   [PACKAGES]
-  %\\usepackage{xcolor}
-  %\\usepackage[newfloat]{minted}
-  \\usepackage[xelatex]{tulhypref}
-  \\usemintedstyle{native}
   \\definecolor{bg}{HTML}{202020}
   \\definecolor{b}{HTML}{1E90FF}
   \\definecolor{o}{HTML}{ffa91e}
   \\definecolor{r}{HTML}{ff381e}
+  \\definecolor{aubergine}{HTML}{370028}
+  \\definecolor{citeblue}{HTML}{0d5fb8}
+
+  %\\usepackage[xelatex]{tulhypref}
+  \\usepackage{tulhypref}
+  %\\usepackage[french]{minitoc}
+  \\hypersetup{
+    colorlinks = true,
+    linkcolor = {citeblue},
+    citecolor = {citeblue},
+    urlcolor = {o}
+  }
+  \\usepackage[french]{minitoc}
+  %\\mtcsetdepth{1}
+  %\\mtcsettitle{minitoc}{Sommaire}
+  %\\mtcsetrules{minitoc}{off}
+  \\usemintedstyle{native}
+
   \\setmonofont[Contextuals={Alternate}]{Fira Code}
+  \\usepackage{pifont}
+  \\usepackage{ccicons}
+  \\newcommand{\\xmark}{\\ding{55}}
   %\\usemintedstyle{material}
   %\\definecolor{bg}{HTML}{263238}
   %\\surroundwithmdframed{minted}
@@ -1202,7 +1227,7 @@ settings. I had to force evince by adding the following :
 
 Openwith permet d'ouvrir certains types de fichiers avec des outils
 externes.
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
 (use-package openwith)
 (openwith-mode t)
 (setq openwith-associations '(("\\.pdf\\'" "evince" (file))))
