@@ -405,6 +405,7 @@ background of code to whatever theme I'm using's background"
   (add-to-list 'org-latex-packages-alist '("" "fontspec"))
   (add-to-list 'org-latex-packages-alist '("" "graphicx"))
   (add-to-list 'org-latex-packages-alist '("" "caption"))
+  (add-to-list 'org-latex-packages-alist '("" "breakcites"))
 
   ;; outputdir=build
   (setq org-latex-prefer-user-labels t)
@@ -446,6 +447,7 @@ background of code to whatever theme I'm using's background"
 
 %\\usepackage[xelatex]{tulhypref}
 \\usepackage{tulhypref}
+\\usepackage{pdfpages}
 \\hypersetup{
   colorlinks = true,
   linkcolor = {citeblue},
@@ -457,10 +459,11 @@ background of code to whatever theme I'm using's background"
 %\\mtcsettitle{minitoc}{Sommaire}
 %\\mtcsetrules{minitoc}{off}
 \\usemintedstyle{native}
-
+\\usepackage{tikz}
 \\setmonofont[Contextuals={Alternate}]{Fira Code}
 \\usepackage{pifont}
 \\usepackage{ccicons}
+\\usepackage{gensymb}
 \\newcommand{\\xmark}{\\ding{55}}
 %\\usemintedstyle{material}
 %\\definecolor{bg}{HTML}{263238}
@@ -504,15 +507,3 @@ background of code to whatever theme I'm using's background"
 (setq org-file-apps
   '(("\\.pdf\\'" . org.gnome.Evince.desktop)
     (auto-mode . emacs)))
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(safe-local-variable-values '((org-image-actual-width . 600))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )

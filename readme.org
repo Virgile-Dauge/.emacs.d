@@ -1012,6 +1012,7 @@ C-c C-e h h
     (add-to-list 'org-latex-packages-alist '("" "fontspec"))
     (add-to-list 'org-latex-packages-alist '("" "graphicx"))
     (add-to-list 'org-latex-packages-alist '("" "caption"))
+    (add-to-list 'org-latex-packages-alist '("" "breakcites"))
 
     ;; outputdir=build
     (setq org-latex-prefer-user-labels t)
@@ -1068,6 +1069,7 @@ Création d'une classe thesul :
 
   %\\usepackage[xelatex]{tulhypref}
   \\usepackage{tulhypref}
+  \\usepackage{pdfpages}
   \\hypersetup{
     colorlinks = true,
     linkcolor = {citeblue},
@@ -1079,10 +1081,11 @@ Création d'une classe thesul :
   %\\mtcsettitle{minitoc}{Sommaire}
   %\\mtcsetrules{minitoc}{off}
   \\usemintedstyle{native}
-
+  \\usepackage{tikz}
   \\setmonofont[Contextuals={Alternate}]{Fira Code}
   \\usepackage{pifont}
   \\usepackage{ccicons}
+  \\usepackage{gensymb}
   \\newcommand{\\xmark}{\\ding{55}}
   %\\usemintedstyle{material}
   %\\definecolor{bg}{HTML}{263238}
