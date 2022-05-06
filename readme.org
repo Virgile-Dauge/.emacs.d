@@ -389,6 +389,19 @@ Swiper, an Ivy-enhanced alternative to Isearch.
 
 #+END_SRC
 
+
+*** complétion des commandes
+#+begin_src emacs-lisp
+(use-package which-key
+  :ensure t
+  :diminish
+  :custom
+  (which-key-idle-secondary-delay 0.01)
+  (which-key-dont-use-unicode t)
+  :config
+  (which-key-mode t))
+#+end_src
+
 ** Déplacements entre buffers
 *** Activated windmove
 #+begin_src emacs-lisp
@@ -878,6 +891,41 @@ Highlight parents
 
 
 
+
+
+** Language Server Protocol
+
+#+begin_src emacs-lisp :tangle no
+(use-package projectile
+  :ensure t
+  :init
+  (projectile-mode +1)
+  :bind (:map projectile-mode-map
+              ("s-p" . projectile-command-map)
+              ("C-c p" . projectile-command-map)))
+#+end_src
+Installation coté emacs :
+https://emacs-lsp.github.io/lsp-mode/page/installation/
+
+#+begin_src emacs-lisp
+  (use-package lsp-mode
+    :init
+    ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+    (setq lsp-keymap-prefix "C-c l")
+    :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+           (python-mode . lsp)
+           ;; if you want which-key integration
+           (lsp-mode . lsp-enable-which-key-integration))
+    :commands lsp)
+
+  ;; optionally
+  (use-package lsp-ui :commands lsp-ui-mode)
+
+  ;; if you are ivy user
+  (use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
+  ;;(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
+
+#+end_src
 
 * Pas traité
 ** Language Server Protocol

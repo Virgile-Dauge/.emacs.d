@@ -149,7 +149,7 @@
      "[<" ">]" ":?>" ":?" "/=" "[||]" "!!" "?:" "?." "::"
      "+++" "??" "###" "##" ":::" "####" ".?" "?=" "=!=" "<|>"
      "<:" ":<" ":>" ">:" "<>" "***" ";;" "/==" ".=" ".-" "__"
-     "=/=" "<-<" "<<<" ">>>" "<=<" "<<=" "<==" "<==>" "==>" "=>>"
+     "=/=" "<-<" ">" "<=<" ""
      ">=>" ">>=" ">>-" ">-" "<~>" "-<" "-<<" "=<<" "---" "<-|"
      "<=|" "/\\" "\\/" "|=>" "|~>" "<~~" "<~" "~~" "~~>" "~>"
      "<$>" "<$" "$>" "<+>" "<+" "+>" "<*>" "<*" "*>" "</>" "</" "/>"
@@ -259,6 +259,19 @@
 
 (use-package all-the-icons-ivy)
 ;; COunsel ivy swiper:1 ends here
+
+;; complétion des commandes
+
+;; [[file:readme.org::*complétion des commandes][complétion des commandes:1]]
+(use-package which-key
+  :ensure t
+  :diminish
+  :custom
+  (which-key-idle-secondary-delay 0.01)
+  (which-key-dont-use-unicode t)
+  :config
+  (which-key-mode t))
+;; complétion des commandes:1 ends here
 
 ;; Activated windmove
 
@@ -659,3 +672,27 @@ background of code to whatever theme I'm using's background"
             (assq-delete-all :noweb org-babel-default-header-args))
       )
 ;; Tangle:1 ends here
+
+
+;; Installation coté emacs :
+;; https://emacs-lsp.github.io/lsp-mode/page/installation/
+
+
+;; [[file:readme.org::*Language Server Protocol][Language Server Protocol:2]]
+(use-package lsp-mode
+  :init
+  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+  (setq lsp-keymap-prefix "C-c l")
+  :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+         (python-mode . lsp)
+         ;; if you want which-key integration
+         (lsp-mode . lsp-enable-which-key-integration))
+  :commands lsp)
+
+;; optionally
+(use-package lsp-ui :commands lsp-ui-mode)
+
+;; if you are ivy user
+(use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
+;;(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
+;; Language Server Protocol:2 ends here
