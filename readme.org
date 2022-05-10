@@ -518,18 +518,24 @@ Highlight parents
  #+end_src
 *** Blocs source (babel)
 
-**** Activated python3 par défaut
- #+begin_src emacs-lisp
+**** Desactivated python3 par défaut
+ #+begin_src emacs-lisp :tangle no
    (setq org-babel-python-command "python3")
  #+end_src
-**** Activated package babel ipython
+**** Desactivated package babel ipython
  Afin de pouvoir gérer ipython, il faut installer le package org-babel
  ipython. On en profite pour utiliser python3 par défaut.
- #+begin_src emacs-lisp
+ #+begin_src emacs-lisp :tangle no
    (use-package ob-ipython
      :after org)
  #+end_src
-
+**** Activated package jupyter
+ https://github.com/nnicandro/emacs-jupyter
+ #+begin_src emacs-lisp
+   (use-package jupyter
+     :after org
+   )
+ #+end_src
 **** Activated Liste des languages activés
  Ajout du support de certains languages dans org-babel
  #+begin_src emacs-lisp
@@ -537,16 +543,16 @@ Highlight parents
      (org-babel-do-load-languages
       'org-babel-load-languages
       '(
-	(ipython . t)
-	(python  . t)
-	(C       . t)
-	(dot     . t)
-	(shell   . t)
+        ;;(ipython . t)
+        (python  . t)
+        (jupyter . t)
+        (shell   . t)
       ))
        (setq org-confirm-babel-evaluate nil)
        (setq org-src-fontify-natively t)
        (setq org-src-tab-acts-natively t)
    )
+   (org-babel-jupyter-override-src-block "python")
  #+end_src
 **** Activated Affichage des images générées par défault
  Toujours afficher les images après les avoir générées:
@@ -564,8 +570,9 @@ Highlight parents
    (use-package org-superstar
      :after org
      :hook (org-mode . org-superstar-mode)
-     :custom
-     (org-superstar-headline-bullets-list '("⌾" "◈" "⚬" "▷")))
+     ;;:custom
+     ;;(org-superstar-headline-bullets-list '("⌾" "◈" "⚬" "▷"))
+     )
  #+end_src
 
 *** Gestion références et citations
@@ -895,15 +902,6 @@ Highlight parents
 
 ** Language Server Protocol
 
-#+begin_src emacs-lisp :tangle no
-(use-package projectile
-  :ensure t
-  :init
-  (projectile-mode +1)
-  :bind (:map projectile-mode-map
-              ("s-p" . projectile-command-map)
-              ("C-c p" . projectile-command-map)))
-#+end_src
 Installation coté emacs :
 https://emacs-lsp.github.io/lsp-mode/page/installation/
 
@@ -914,6 +912,7 @@ https://emacs-lsp.github.io/lsp-mode/page/installation/
     (setq lsp-keymap-prefix "C-c l")
     :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
            (python-mode . lsp)
+           (rust-mode . lsp)
            ;; if you want which-key integration
            (lsp-mode . lsp-enable-which-key-integration))
     :commands lsp)
@@ -927,6 +926,23 @@ https://emacs-lsp.github.io/lsp-mode/page/installation/
 
 #+end_src
 
+*** Backends languages
+**** Python
+Installation de la backend python
+https://github.com/python-lsp/python-lsp-server
+#+begin_src bash :tangle install.sh
+  pip install python-lsp-server[all] pyls-mypy pyls-memestra
+#+end_src
+
+#+begin_src bash :tangle install.sh
+sudo apt install libjansson-dev
+#+end_src
+
+**** Rust
+[[https://github.com/rust-lang/rust-analyzer][Rust Analyser]]
+#+begin_src emacs-lisp
+(use-package rustic)
+#+end_src
 * Pas traité
 ** Language Server Protocol
 
@@ -961,17 +977,6 @@ https://emacs-lsp.github.io/lsp-mode/page/installation/
 (use-package lsp-treemacs :commands lsp-treemacs-errors-list)
 
 #+end_src
-*** Python
-Installation de la backend python
-https://github.com/python-lsp/python-lsp-server
-#+begin_src bash :tangle install.sh
-  pip install python-lsp-server[all] pyls-mypy pyls-memestra
-#+end_src
-
-#+begin_src bash :tangle install.sh
-sudo apt install libjansson-dev
-#+end_src
-
 
 *** Testing Anaconda mode
 Le mode Anaconda est paraît-il plus complet que le mode intégré :

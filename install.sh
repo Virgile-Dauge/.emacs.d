@@ -15,8 +15,16 @@ sudo apt install aspell aspell-fr
 sudo apt install pandoc
 # Pandoc, multi format:1 ends here
 
-pip install python-lsp-server[all] pyls-mypy pyls-memestra
+# Python
+# Installation de la backend python
+# https://github.com/python-lsp/python-lsp-server
 
+# [[file:readme.org::*Python][Python:1]]
+pip install python-lsp-server[all] pyls-mypy pyls-memestra
+# Python:1 ends here
+
+# [[file:readme.org::*Python][Python:2]]
 sudo apt install libjansson-dev
+# Python:2 ends here
 
 sudo pip install pyflakes pep8

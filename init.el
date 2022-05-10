@@ -389,20 +389,14 @@
 (add-hook 'org-mode-hook #'org-inline-pdf-mode)
 ;; inline pdf images:1 ends here
 
-;; Activated python3 par défaut
+;; Activated package jupyter
+;;  https://github.com/nnicandro/emacs-jupyter
 
-;; [[file:readme.org::*python3 par défaut][python3 par défaut:1]]
-(setq org-babel-python-command "python3")
-;; python3 par défaut:1 ends here
-
-;; Activated package babel ipython
-;;  Afin de pouvoir gérer ipython, il faut installer le package org-babel
-;;  ipython. On en profite pour utiliser python3 par défaut.
-
-;; [[file:readme.org::*package babel ipython][package babel ipython:1]]
-(use-package ob-ipython
-  :after org)
-;; package babel ipython:1 ends here
+;; [[file:readme.org::*package jupyter][package jupyter:1]]
+(use-package jupyter
+  :after org
+)
+;; package jupyter:1 ends here
 
 ;; Activated Liste des languages activés
 ;;  Ajout du support de certains languages dans org-babel
@@ -412,16 +406,16 @@
   (org-babel-do-load-languages
    'org-babel-load-languages
    '(
-     (ipython . t)
+     ;;(ipython . t)
      (python  . t)
-     (C       . t)
-     (dot     . t)
+     (jupyter . t)
      (shell   . t)
    ))
     (setq org-confirm-babel-evaluate nil)
     (setq org-src-fontify-natively t)
     (setq org-src-tab-acts-natively t)
 )
+(org-babel-jupyter-override-src-block "python")
 ;; Liste des languages activés:1 ends here
 
 ;; Activated Affichage des images générées par défault
@@ -439,8 +433,9 @@
 (use-package org-superstar
   :after org
   :hook (org-mode . org-superstar-mode)
-  :custom
-  (org-superstar-headline-bullets-list '("⌾" "◈" "⚬" "▷")))
+  ;;:custom
+  ;;(org-superstar-headline-bullets-list '("⌾" "◈" "⚬" "▷"))
+  )
 ;; SUPERSTAR:1 ends here
 
 ;; Activated Org-ref
@@ -673,18 +668,20 @@ background of code to whatever theme I'm using's background"
       )
 ;; Tangle:1 ends here
 
+;; Language Server Protocol
 
 ;; Installation coté emacs :
 ;; https://emacs-lsp.github.io/lsp-mode/page/installation/
 
 
-;; [[file:readme.org::*Language Server Protocol][Language Server Protocol:2]]
+;; [[file:readme.org::*Language Server Protocol][Language Server Protocol:1]]
 (use-package lsp-mode
   :init
   ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
   (setq lsp-keymap-prefix "C-c l")
   :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
          (python-mode . lsp)
+         (rust-mode . lsp)
          ;; if you want which-key integration
          (lsp-mode . lsp-enable-which-key-integration))
   :commands lsp)
@@ -695,4 +692,11 @@ background of code to whatever theme I'm using's background"
 ;; if you are ivy user
 (use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
 ;;(use-package lsp-treemacs :commands lsp-treemacs-errors-list)
-;; Language Server Protocol:2 ends here
+;; Language Server Protocol:1 ends here
+
+;; Rust
+;; [[https://github.com/rust-lang/rust-analyzer][Rust Analyser]]
+
+;; [[file:readme.org::*Rust][Rust:1]]
+(use-package rustic)
+;; Rust:1 ends here
