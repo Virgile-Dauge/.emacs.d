@@ -284,19 +284,9 @@
   ("C-x <right>" . windmove-right))
 ;; windmove:1 ends here
 
-;; Orthographe
-;; Fly Spell
 
 
-;; [[file:readme.org::*Orthographe][Orthographe:1]]
-(use-package flyspell
-  :ensure t
-  :defer t
-  :hook (prog-mode text-mode org-mode)
-)
-;; Orthographe:1 ends here
-
-
+;; #+RESULTS:
 
 ;; Afin de pouvoir changer de langue facilement, j'ai trouvé la fonction
 ;; suivante :

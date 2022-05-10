@@ -415,13 +415,15 @@ Swiper, an Ivy-enhanced alternative to Isearch.
 ** Orthographe
 Fly Spell
 
-#+begin_src emacs-lisp
+#+begin_src emacs-lisp :tangle no
 (use-package flyspell
   :ensure t
   :defer t
   :hook (prog-mode text-mode org-mode)
 )
 #+end_src
+
+#+RESULTS:
 
 Afin de pouvoir changer de langue facilement, j'ai trouvé la fonction
 suivante :
