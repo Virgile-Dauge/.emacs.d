@@ -396,6 +396,10 @@
 (use-package jupyter
   :after org
 )
+(defun display-ansi-colors ()
+  (ansi-color-apply-on-region (point-min) (point-max)))
+
+(add-hook 'org-babel-after-execute-hook #'display-ansi-colors)
 ;; package jupyter:1 ends here
 
 ;; Activated Liste des languages activés

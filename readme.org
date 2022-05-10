@@ -535,6 +535,10 @@ Highlight parents
    (use-package jupyter
      :after org
    )
+   (defun display-ansi-colors ()
+     (ansi-color-apply-on-region (point-min) (point-max)))
+
+   (add-hook 'org-babel-after-execute-hook #'display-ansi-colors)
  #+end_src
 **** Activated Liste des languages activés
  Ajout du support de certains languages dans org-babel
